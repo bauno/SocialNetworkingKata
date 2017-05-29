@@ -8,4 +8,4 @@ script:
   - cd $TEST_DIR
   - nuget restore $TEST_DIR.sln
   - xbuild /p:Configuration=Release CSharp.sln
-  - mono ../testrunner/NUnit.ConsoleRunner.2.6.4/tools/nunit-console.exe ./CSharp.Tests/bin/Release/CSharp.Tests.dll
+  - mono ../testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./CSharp.Tests/bin/Release/CSharp.Tests.dll
