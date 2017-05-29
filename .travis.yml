@@ -1,0 +1,9 @@
+language: csharp
+solution: CSharp.sln
+install:
+  - nuget restore  CSharp.sln
+  - nuget install NUnit.Runners -OutputDirectory testrunner
+script:
+  - cd CSharp
+  - xbuild /p:Configuration=Release CSharp.sln
+  - mono ../testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./CSharp.Tests/bin/Release/CSharp.Tests.dll
