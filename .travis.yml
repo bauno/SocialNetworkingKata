@@ -6,6 +6,6 @@ install:
 env:
   - TEST_DIR=CSharp
 script:
-  - cd CSharp
+  - cd $TEST_DIR
   - xbuild /p:Configuration=Release CSharp.sln
-  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./CSharp.Tests/bin/Release/CSharp.Tests.dll
+  - mono ../testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe ./CSharp.Tests/bin/Release/CSharp.Tests.dll
