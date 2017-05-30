@@ -23,16 +23,6 @@ namespace CSharp.Core
             
         }
 
-        public void Save(Post post)
-        {
-            _data.Add(post.User, post);
-        }
-
-        public Post ReadPostFrom(string user)
-        {
-            return _data[user];
-        }
-
         public void Save(IWall wall)
         {
             var dto = ((Dto<WallDto, Wall>) wall).ToDto();

@@ -14,15 +14,11 @@ namespace CSharp.Tests
     {
         private SocialEngine _sut;
         private Mock<PostRepository> _repository;
-        private Post _savedPost;        
 
         [SetUp]
         public void Init()
         {
-            _repository = new Mock<PostRepository>();
-            _repository.Setup(r => r.Save(It.IsAny<Post>()))
-                .Callback<Post>(p => _savedPost = p);
-
+            _repository = new Mock<PostRepository>();            
             _sut = new SocialEngine(_repository.Object);
         }
 

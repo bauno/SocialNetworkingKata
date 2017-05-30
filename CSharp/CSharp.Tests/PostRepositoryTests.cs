@@ -22,30 +22,8 @@ namespace CSharp.Tests
             Assert.Throws<ArgumentNullException>(() => new MemoryPostRepository(null, new Dictionary<string, WallDto>() ));
             Assert.Throws<ArgumentNullException>(() => new MemoryPostRepository(new Dictionary<string, Post>(), null));
         }
-             
-        [Test]
-        public void CanSavePosts()
-        {
-            var data = new Dictionary<string, Post>();
-            var walls = new Dictionary<string, WallDto>();
-            var sut = new MemoryPostRepository(data, walls);
-            var post = new Post {User = "pippo", Content = "pluto"};
-            sut.Save(post);
-            var savedPost = data.Single();
-            Assert.AreEqual("pippo", savedPost.Key);
-            Assert.AreEqual(post, savedPost.Value);
-
-        }
-
-        [Test]
-        public void CanReadSavedPosts()
-        {
-            var data = new Dictionary<string, Post> {{"pippo", new Post {User = "pippo", Content = "pluto"}}};
-            var sut = new MemoryPostRepository(data, new Dictionary<string, WallDto>());
-            var post = sut.ReadPostFrom("pippo");
-            Assert.AreEqual("pippo", post.User);
-            Assert.AreEqual("pluto", post.Content);
-        }
+                     
+        
 
         [Test]
         public void CanLoadAWall()
