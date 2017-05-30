@@ -1,7 +1,10 @@
-﻿namespace CSharp.Core
+﻿using System.Collections;
+using System.Collections.Generic;
+
+namespace CSharp.Core
 {
     public interface Command
     {
-        string SendTo(SocialNetwork socialNetwork);
+        IEnumerable<Post> SendTo(SocialNetwork socialNetwork);
     }
 }

@@ -1,3 +1,6 @@
+using System.Collections;
+using System.Collections.Generic;
+
 namespace CSharp.Core
 {
     public class PostCommand : Command
@@ -16,10 +19,10 @@ namespace CSharp.Core
             return $"Type: Post; User: {_user}; Post: {_message}";
         }
 
-        public string SendTo(SocialNetwork socialNetwork)
+        public IEnumerable<Post> SendTo(SocialNetwork socialNetwork)
         {
             socialNetwork.Post(_user, _message);
-            return string.Empty;
+            return new List<Post>();
 
         }
     }

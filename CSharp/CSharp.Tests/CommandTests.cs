@@ -1,4 +1,5 @@
 using System.CodeDom;
+using System.Linq;
 using CSharp.Core;
 using Moq;
 using NUnit.Framework;
@@ -29,12 +30,13 @@ namespace CSharp.Tests
         public void CanExecReadCommand()
         {
             _socialNetwork.Setup(s => s.ReadWall("pippo"))
-                .Returns(new Post{User = "pippo", Content = "pluto"});
+                .Returns(new[]{new Post{User = "pippo", Content = "pluto"}});
             
             var cmd = new ReadCommand("pippo");
             var res = cmd.SendTo(_socialNetwork.Object);
             
-            Assert.AreEqual("pluto", res);
+            Assert.AreEqual("pippo", res.Single().User);
+            Assert.AreEqual("pluto", res.Single().Content);
             
             
             _socialNetwork.Verify(s => s.ReadWall("pippo"));

@@ -23,8 +23,11 @@ namespace CSharp.Core
         {
             var res = _parser.Parse(cmdString)
                     .SendTo(_engine);
-            if (!string.IsNullOrEmpty(res))
-                _display.Show(res);
+
+            foreach (var post in res)
+            {
+                _display.Show(post.Content);                
+            }
         }
     }
 }

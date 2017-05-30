@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Net.WebSockets;
 
 namespace CSharp.Core
 {
@@ -15,12 +17,15 @@ namespace CSharp.Core
 
         public void Post(string user, string message)
         {
-            _repository.Save(new Post{User = user, Content = message});
+            var wall = _repository.LoadOrCreateWallOf(user);
+            wall.AddPost(new Post{Content = message, User = user});
+            _repository.Save(wall);
+            
         }
 
-        public Post ReadWall(string user)
-        {
-            return _repository.ReadPostFrom(user);
+        public IEnumerable<Post> ReadWall(string user)
+        {            
+            return _repository.ReadWallOf(user).Posts;
         }
     }
 }

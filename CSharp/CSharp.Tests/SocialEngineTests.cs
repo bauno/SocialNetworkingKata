@@ -1,5 +1,8 @@
 ﻿using System;
 using System.CodeDom;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Policy;
 using CSharp.Core;
 using Moq;
 using NUnit.Framework;
@@ -11,8 +14,7 @@ namespace CSharp.Tests
     {
         private SocialEngine _sut;
         private Mock<PostRepository> _repository;
-        private Post _savedPost;
-        private WallDto _savedWallDto;
+        private Post _savedPost;        
 
         [SetUp]
         public void Init()
@@ -29,28 +31,33 @@ namespace CSharp.Tests
         {
             Assert.Throws<ArgumentNullException>(() => new SocialEngine(null));
         }
-
-        [Test]
-        public void CanPostToWall()
-        {
-            var user = "Alice";
-            var message = "I love the weather today";
-            _sut.Post(user, message);
-
-            Assert.AreEqual(user, _savedPost.User);
-            Assert.AreEqual(message, _savedPost.Content);
-
-        }
+       
 
         [Test]
         public void CanPostToWallTwice()
         {
+            var wall = new Mock<IWall>();
+            var posts = new List<Post>();
+            wall.Setup(w => w.AddPost(It.IsAny<Post>()))
+                .Callback<Post>(p => posts.Add(p));
+
+            _repository.Setup(r => r.LoadOrCreateWallOf("Bob"))
+                .Returns(wall.Object);
+                
+                
+            
             var user = "Bob";
             var firstPost = "first";
             var secondPost = "second";
             _sut.Post(user, firstPost);
-            _sut.Post(user, secondPost);
-            Assert.Fail();                        
+            _sut.Post(user, secondPost); 
+            
+            Assert.AreEqual(2, posts.Count);
+            Assert.AreEqual("Bob", posts.First().User);
+            Assert.AreEqual("first", posts.First().Content);
+            Assert.AreEqual("Bob", posts.Last().User);
+            Assert.AreEqual("second", posts.Last().Content);
+                                    
         }
 
         [Test]
@@ -58,11 +65,12 @@ namespace CSharp.Tests
         {
             var user = "Alice";
             var message = "the quick brown fox";
-            _repository.Setup(r => r.ReadPostFrom(user))
-                .Returns(new Post {User = user, Content = message});
+            var wall = new ReadWall {User = "Alice", Posts = new[] {new Post {User = "Alice", Content = message}}};
+            _repository.Setup(r => r.ReadWallOf("Alice"))
+                .Returns(wall);
             var post = _sut.ReadWall(user);
-            Assert.AreEqual(user, post.User);
-            Assert.AreEqual(message, post.Content);
+            Assert.AreEqual(user, post.Single().User);
+            Assert.AreEqual(message, post.Single().Content);
 
         }
 

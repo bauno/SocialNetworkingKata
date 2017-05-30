@@ -12,6 +12,7 @@ namespace CSharp.Tests
         private PostDto _firstPost;
         private PostDto _secondPost;
         private WallDto _wallDto;
+        private Wall _sut;
 
         [SetUp]
         public void Init()
@@ -29,11 +30,18 @@ namespace CSharp.Tests
                 }
             };
             
+            _sut = new Wall("pippo");
+            
         }
         
         [Test]
         public void CanAddPostToWall()
         {
+            _sut.AddPost(new Post {Content = "pluto"});
+            var wDto = (Dto<WallDto, Wall>) _sut;
+            var res = wDto.ToDto();
+            Assert.AreEqual(_wallDto.User, res.User);
+            Assert.AreEqual("pluto", res.Posts.Single().Content);
             
         }
 
@@ -48,11 +56,8 @@ namespace CSharp.Tests
 
         [Test]
         public void CanCrudWall()
-        {
-            
-            var wall = new Wall("pippo");
-
-            var wDto = (Dto<WallDto, Wall>) wall;
+        {                       
+            var wDto = (Dto<WallDto, Wall>) _sut;
             wDto.Load(_wallDto);
 
             var res = wDto.ToDto();
@@ -60,9 +65,7 @@ namespace CSharp.Tests
             Assert.AreEqual(_wallDto.User, res.User);
             Assert.AreEqual(_wallDto.Posts.First().Content, res.Posts.First().Content);
             Assert.AreEqual(_wallDto.Posts.Last().Content, res.Posts.Last().Content);
-            
-            
-            
+                                    
         }
         
     }

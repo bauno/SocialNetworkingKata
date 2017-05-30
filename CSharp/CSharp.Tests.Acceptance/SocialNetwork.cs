@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Messaging;
+using System.Threading;
 using CSharp.Core;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -14,7 +15,7 @@ namespace CSharp.Tests.Acceptance
 	{
 		private class FakeDisplay : Display
 		{
-			public List<string> Display { get; set; }
+			public List<string> Display { get; }
 
 			public FakeDisplay()
 			{
@@ -30,6 +31,7 @@ namespace CSharp.Tests.Acceptance
 		private Post _post;		
 		private ConsoleSocialNetwork _socialNetwork;
 		private FakeDisplay _display;
+		private int _count = 0;
 		
 		[BeforeScenario]
 		public void InitNetwork()
@@ -62,7 +64,8 @@ namespace CSharp.Tests.Acceptance
 		[Then(@"he can read (.*)")]
 		public void ThenHeCanRead(string message)
 		{
-			Assert.AreEqual(message, _display.Display.Single());
+			Assert.AreEqual(message, _display.Display[_count]);
+			_count++;
 		}
 				
 	}

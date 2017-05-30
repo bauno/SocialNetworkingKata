@@ -4,10 +4,10 @@ using System.Linq;
 
 namespace CSharp.Core
 {
-    public class Wall : Dto<WallDto, Wall>
+    public class Wall : Dto<WallDto, Wall>, IWall
     {
         private readonly string _user;
-        private IEnumerable<Post> _posts;
+        private IList<Post> _posts;
 
         public Wall(string user)
         {
@@ -15,6 +15,11 @@ namespace CSharp.Core
                 throw new ArgumentNullException(nameof(user));
             _user = user;
             _posts = new List<Post>();
+        }
+        
+        public void AddPost(Post post)
+        {
+            _posts.Add(post);
         }
         
 
@@ -29,7 +34,10 @@ namespace CSharp.Core
 
         void Dto<WallDto, Wall>.Load(WallDto dto)
         {
-            _posts = dto.Posts.Select(p => new Post {Content = p.Content});
+            _posts = dto.Posts.Select(p => new Post {Content = p.Content})
+                        .ToList();
         }
+
+        
     }
 }

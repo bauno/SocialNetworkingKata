@@ -45,8 +45,10 @@
     <Compile Include="ConsoleSocialNetwork.cs" />
     <Compile Include="Display.cs" />
     <Compile Include="Dto.cs" />
+    <Compile Include="IWall.cs" />
     <Compile Include="PostDto.cs" />
     <Compile Include="ReadCommand.cs" />
+    <Compile Include="ReadWall.cs" />
     <Compile Include="StringCommandParser.cs" />
     <Compile Include="InvalidCommandException.cs" />
     <Compile Include="PostCommand.cs" />

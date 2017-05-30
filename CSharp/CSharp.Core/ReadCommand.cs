@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace CSharp.Core
 {
@@ -16,9 +18,9 @@ namespace CSharp.Core
             return $"Type: Read; User: {_user}";
         }
 
-        public string SendTo(SocialNetwork socialNetwork)
+        public IEnumerable<Post> SendTo(SocialNetwork socialNetwork)
         {
-            return socialNetwork.ReadWall(_user).Content;
+            return socialNetwork.ReadWall(_user);
         }
     }
 }
