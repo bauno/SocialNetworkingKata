@@ -8,7 +8,7 @@ namespace CSharp.Tests
     [TestFixture]
     public class SocialNetworkTests
     {
-        private Social _sut;
+        private SocialEngine _sut;
         private Mock<PostRepository> _repository;
         private Post _savedPost; 
 
@@ -19,13 +19,13 @@ namespace CSharp.Tests
             _repository.Setup(r => r.Save(It.IsAny<Post>()))
                 .Callback<Post>(p => _savedPost = p);
             
-            _sut = new Social(_repository.Object);
+            _sut = new SocialEngine(_repository.Object);
         }
 
        [Test]
        public void ConstructorTests()
        {           
-           Assert.Throws<ArgumentNullException>(() => new Social(null));
+           Assert.Throws<ArgumentNullException>(() => new SocialEngine(null));
        }  
 
         [Test]

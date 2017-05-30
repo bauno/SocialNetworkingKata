@@ -16,9 +16,11 @@ namespace CSharp.Core
             return $"Type: Post; User: {_user}; Post: {_message}";
         }
 
-        public void SendTo(ISocial socialNetwork)
+        public string SendTo(SocialNetwork socialNetwork)
         {
             socialNetwork.Post(_user, _message);
+            return string.Empty;
+
         }
     }
 }

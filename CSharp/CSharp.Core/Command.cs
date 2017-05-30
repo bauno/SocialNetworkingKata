@@ -2,5 +2,6 @@
 {
     public interface Command
     {
+        string SendTo(SocialNetwork socialNetwork);
     }
 }

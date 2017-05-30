@@ -2,11 +2,11 @@
 
 namespace CSharp.Core
 {
-    public class Social : ISocial
+    public class SocialEngine : SocialNetwork
     {
         private readonly PostRepository _repository;
 
-        public Social(PostRepository repository)
+        public SocialEngine(PostRepository repository)
         {
             if (repository == null) throw new ArgumentNullException(nameof(repository));
             _repository = repository;

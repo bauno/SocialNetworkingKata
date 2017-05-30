@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Runtime.Remoting.Messaging;
 using CSharp.Core;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
@@ -6,36 +10,58 @@ using TechTalk.SpecFlow;
 namespace CSharp.Tests.Acceptance
 {
 	[Binding]
-	public class SocialNetwork
+	public class SocialNetworkTests
 	{
-		private ISocial _socialNetwork;
-		private Post _post;
+		private class FakeDisplay : Display
+		{
+			public List<string> Display { get; set; }
+
+			public FakeDisplay()
+			{
+				Display = new List<string>();
+			}
+			
+			public void Show(string line)
+			{
+				Display.Add(line);
+			}
+		}
+		
+		private Post _post;		
+		private ConsoleSocialNetwork _socialNetwork;
+		private FakeDisplay _display;
 		
 		[BeforeScenario]
 		public void InitNetwork()
 		{
 			
 			var repository = new MemoryPostRepository();
-			_socialNetwork = new Social(repository);			
+			var engine = new SocialEngine(repository);
+			var parser = new StringCommandParser();
+			_display = new FakeDisplay();
+			_socialNetwork = new ConsoleSocialNetwork(parser, engine, _display);
 		}
 			
 
 		[Given("(.*) posted (.*) to her wall")]
 		public void GivenAUserPosted(string user, string message)
 		{
-			_socialNetwork.Post(user, message);
+			var cmdStr = $"{user} -> {message}";
+			_socialNetwork.Enter(cmdStr);
+			
 		}
 
 		[When(@"someone enters the command ""(.*)""")]
 		public void WhenSomeoneEnters(string user)
 		{
-			_post = _socialNetwork.ReadWall(user);
+			var cmdStr = user;
+			_socialNetwork.Enter(cmdStr);
 		}
 
 		[Then(@"he can read (.*)")]
 		public void ThenHeCanRead(string message)
 		{
-			Assert.AreEqual(message, _post.Content);
+			Assert.AreEqual(message, _display.Display.Single());
 		}
 				
 	}
