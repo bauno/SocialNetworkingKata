@@ -39,6 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PostRepository.cs" />
+    <Compile Include="Post.cs" />
+    <Compile Include="MemoryPostRepository.cs" />
     <Compile Include="Social.cs" />
     <Compile Include="ISocial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
