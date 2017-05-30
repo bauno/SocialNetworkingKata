@@ -1,5 +1,6 @@
 ﻿using System;
-
+using CSharp.Core;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 
 namespace CSharp.Tests.Acceptance
@@ -7,36 +8,36 @@ namespace CSharp.Tests.Acceptance
 	[Binding]
 	public class SocialNetwork
 	{
-		[Given ("I have entered (.*) into the calculator")]
-		public void GivenIHaveEnteredSomethingIntoTheCalculator (int number)
+		private ISocial _socialNetwork;
+		private Post _post;
+		
+		[BeforeScenario]
+		public void InitNetwork()
 		{
-			// TODO: implement arrange (recondition) logic
-			// For storing and retrieving scenario-specific data, 
-			// the instance fields of the class or the
-			//     ScenarioContext.Current
-			// collection can be used.
-			// To use the multiline text or the table argument of the scenario,
-			// additional string/Table parameters can be defined on the step definition
-			// method. 
+			
+			var repository = new MemoryPostRepository();
+			_socialNetwork = new Social(repository);			
+		}
+			
 
-			ScenarioContext.Current.Pending ();
+		[Given("(.*) posted (.*) to her wall")]
+		public void GivenAUserPosted(string user, string message)
+		{
+			_socialNetwork.Post(user, message);
 		}
 
-		[When ("I press add")]
-		public void WhenIPressAdd ()
+		[When(@"someone enters the command ""(.*)""")]
+		public void WhenSomeoneEnters(string user)
 		{
-			// TODO: implement act (action) logic
-
-			ScenarioContext.Current.Pending ();
+			_post = _socialNetwork.ReadWall(user);
 		}
 
-		[Then ("the result should be (.*) on the screen")]
-		public void ThenTheResultShouldBe (int result)
+		[Then(@"he can read (.*)")]
+		public void ThenHeCanRead(string message)
 		{
-			// TODO: implement assert (verification) logic
-          
-			ScenarioContext.Current.Pending ();
+			Assert.AreEqual(message, _post.Content);
 		}
+				
 	}
 }
 		

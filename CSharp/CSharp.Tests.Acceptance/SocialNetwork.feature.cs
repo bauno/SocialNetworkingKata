@@ -74,7 +74,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 8
  testRunner.Given("Alice posted \"I love the weather today\" to her wall", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 9
- testRunner.When("Bob enters the command \"Alice\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("someone enters the command \"Alice\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
  testRunner.Then("he can read \"I love the weather today\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

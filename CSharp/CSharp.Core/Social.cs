@@ -13,11 +13,6 @@ namespace CSharp.Core
             
         }
 
-        public string Read(string user)
-        {
-            return string.Empty;
-        }
-
         public void Post(string user, string message)
         {
             _repository.Save(new Post{User = user, Content = message});

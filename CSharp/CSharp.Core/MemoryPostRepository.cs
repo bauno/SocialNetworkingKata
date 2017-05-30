@@ -14,6 +14,11 @@ namespace CSharp.Core
             
         }
 
+        public MemoryPostRepository() : this(new Dictionary<string, Post>())
+        {
+            
+        }
+
         public void Save(Post post)
         {
             _data.Add(post.User, post);

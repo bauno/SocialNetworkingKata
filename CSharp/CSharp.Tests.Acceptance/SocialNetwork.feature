@@ -6,7 +6,7 @@
 
 Scenario: Reading Alice's posts
 	Given Alice posted "I love the weather today" to her wall
-	When Bob enters the command "Alice"
+	When someone enters the command "Alice"
 	Then he can read "I love the weather today"
 
 
