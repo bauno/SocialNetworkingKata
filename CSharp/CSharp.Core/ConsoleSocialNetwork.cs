@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace CSharp.Core
 {
@@ -21,13 +22,12 @@ namespace CSharp.Core
 
         public void Enter(string cmdString)
         {
-            var res = _parser.Parse(cmdString)
-                    .SendTo(_engine);
+            _parser.Parse(cmdString)
+                    .SendTo(_engine)
+                    .ToList()
+                    .ForEach(post => _display.Show(post.Content));
 
-            foreach (var post in res)
-            {
-                _display.Show(post.Content);                
-            }
+            
         }
     }
 }
