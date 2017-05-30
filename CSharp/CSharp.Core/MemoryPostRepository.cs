@@ -18,5 +18,10 @@ namespace CSharp.Core
         {
             _data.Add(post.User, post);
         }
+
+        public Post ReadPostFrom(string user)
+        {
+            return _data[user];
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Net.WebSockets;
 using CSharp.Core;
 using Microsoft.Win32;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 
 namespace CSharp.Tests
 {
@@ -40,7 +41,11 @@ namespace CSharp.Tests
         [Test]
         public void CanReadSavedPosts()
         {
-            Assert.Fail();
+            var data = new Dictionary<string, Post> {{"pippo", new Post {User = "pippo", Content = "pluto"}}};
+            var sut = new MemoryPostRepository(data);
+            var post = sut.ReadPostFrom("pippo");
+            Assert.AreEqual("pippo", post.User);
+            Assert.AreEqual("pluto", post.Content);
         }
     }
 }
