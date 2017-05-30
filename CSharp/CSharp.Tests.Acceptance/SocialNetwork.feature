@@ -13,9 +13,9 @@ Scenario: Reading Alice's posts
 Scenario: Reading Bob's posts
 	Given Bob posted "Damn! We lost" to his wall
 	And Bob posted "Good game though" to his wall
-	When Alice enters the command "Bob"
+	When someone enters the command "Bob"
 	Then he can read "Damn! We lost"
-	And he can read "Good gamethough"
+	And he can read "Good game though"
 
 
 Scenario: Subscriptions

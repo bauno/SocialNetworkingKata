@@ -39,6 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command.cs" />
+    <Compile Include="CommandParser.cs" />
+    <Compile Include="InvalidCommandException.cs" />
+    <Compile Include="PostCommand.cs" />
     <Compile Include="PostRepository.cs" />
     <Compile Include="Post.cs" />
     <Compile Include="MemoryPostRepository.cs" />

@@ -93,11 +93,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 15
  testRunner.And("Bob posted \"Good game though\" to his wall", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 16
- testRunner.When("Alice enters the command \"Bob\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("someone enters the command \"Bob\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 17
  testRunner.Then("he can read \"Damn! We lost\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 18
- testRunner.And("he can read \"Good gamethough\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("he can read \"Good game though\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
