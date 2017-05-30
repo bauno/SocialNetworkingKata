@@ -28,7 +28,6 @@ namespace CSharp.Tests.Acceptance
 			}
 		}
 		
-		private Post _post;		
 		private ConsoleSocialNetwork _socialNetwork;
 		private FakeDisplay _display;
 		private int _count = 0;
