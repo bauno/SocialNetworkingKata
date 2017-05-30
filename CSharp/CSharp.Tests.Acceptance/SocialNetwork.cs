@@ -43,13 +43,14 @@ namespace CSharp.Tests.Acceptance
 		}
 			
 
-		[Given("(.*) posted (.*) to her wall")]
+		[Given("(.*) posted (.*) to (?:his|her) wall")]
 		public void GivenAUserPosted(string user, string message)
 		{
 			var cmdStr = $"{user} -> {message}";
 			_socialNetwork.Enter(cmdStr);
 			
 		}
+				
 
 		[When(@"someone enters the command ""(.*)""")]
 		public void WhenSomeoneEnters(string user)

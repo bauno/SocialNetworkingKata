@@ -52,8 +52,9 @@
     <Compile Include="CommandTests.cs" />
     <Compile Include="ConsoleSocialNetworkTests.cs" />
     <Compile Include="PostRepositoryTests.cs" />
-    <Compile Include="SocialNetworkTests.cs" />
+    <Compile Include="SocialEngineTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WallTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CSharp.Core\CSharp.Core.csproj">

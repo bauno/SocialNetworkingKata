@@ -118,7 +118,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 25
  testRunner.And("Charlie follows Alice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 26
- testRunner.When("Charlie gives the command Wall", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("Charlie gives the command WallDto", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 27
  testRunner.Then("he can read \"I'm in New York today! Anyone wants to have a coffee? (2 seconds ago)\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 28
