@@ -1,6 +1,6 @@
 namespace CSharp.Core
 {
-    class PostCommand : Command
+    public class PostCommand : Command
     {
         private readonly string _user;
         private readonly string _message;
@@ -14,6 +14,11 @@ namespace CSharp.Core
         public override string ToString()
         {
             return $"Type: Post; User: {_user}; Post: {_message}";
+        }
+
+        public void SendTo(ISocial socialNetwork)
+        {
+            socialNetwork.Post(_user, _message);
         }
     }
 }
