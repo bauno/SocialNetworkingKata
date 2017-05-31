@@ -49,7 +49,7 @@ namespace CSharp.Core
             return new WallView
             {
                 User = user,
-                Posts = _walls[user].Posts.Select(p => new PostView {Content = p.Content, User = user})
+                Posts = _walls[user].Posts.Select(p => new PostView {Content = p.Content})
             };
         }
     }

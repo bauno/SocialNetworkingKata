@@ -46,12 +46,15 @@
     <Compile Include="Display.cs" />
     <Compile Include="Dto.cs" />
     <Compile Include="IConsoleSocialNetwork.cs" />
+    <Compile Include="ITextConsole.cs" />
     <Compile Include="IWall.cs" />
     <Compile Include="PostDto.cs" />
     <Compile Include="PostTsFormatter.cs" />
     <Compile Include="PostTsStringFormatter.cs" />
     <Compile Include="PostView.cs" />
     <Compile Include="ReadCommand.cs" />
+    <Compile Include="TextConsole.cs" />
+    <Compile Include="TimeService.cs" />
     <Compile Include="WallView.cs" />
     <Compile Include="StringCommandParser.cs" />
     <Compile Include="InvalidCommandException.cs" />

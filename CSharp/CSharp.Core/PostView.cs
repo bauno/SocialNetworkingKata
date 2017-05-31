@@ -1,8 +1,10 @@
-﻿namespace CSharp.Core
+﻿using System;
+
+namespace CSharp.Core
 {
     public class PostView
     {
-        public string User { get; set; }
         public string Content { get; set; }
+        public DateTime TimeStamp { get; set; }
     }
 }

@@ -61,7 +61,7 @@ namespace CSharp.Tests
         {
             var user = "Alice";
             var message = "the quick brown fox";
-            var wall = new WallView {User = "Alice", Posts = new[] {new PostView {User = "Alice", Content = message}}};
+            var wall = new WallView {User = "Alice", Posts = new[] {new PostView {Content = message}}};
             _repository.Setup(r => r.ReadWallOf("Alice"))
                 .Returns(wall);
             var outputWall = _sut.ReadWall(user);
