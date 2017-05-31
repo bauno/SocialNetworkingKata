@@ -30,10 +30,5 @@ namespace CSharp.Core
         {
             
         }
-
-        public void ExecAndShowOutput(SocialNetwork socialNetwork, Display display)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

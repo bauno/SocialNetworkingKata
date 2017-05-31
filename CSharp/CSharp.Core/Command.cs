@@ -7,7 +7,5 @@ namespace CSharp.Core
     {
         Command SendTo(SocialNetwork socialNetwork);
         void ShowOn(Display display);
-        void ExecAndShowOutput(SocialNetwork socialNetwork, Display display);
-
     }
 }

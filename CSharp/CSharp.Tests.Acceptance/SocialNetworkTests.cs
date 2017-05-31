@@ -21,11 +21,6 @@ namespace CSharp.Tests.Acceptance
 			{
 				Display = new List<string>();
 			}
-			
-			public void Show(string line)
-			{
-				Display.Add(line);
-			}
 
 			public void Show(WallView wall)
 			{

@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace CSharp.Core
 {
-    public class ConsoleSocialNetwork
+    public class ConsoleSocialNetwork : IConsoleSocialNetwork
     {
         private readonly CommandParser _parser;
         private readonly SocialNetwork _engine;

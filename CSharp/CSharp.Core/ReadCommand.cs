@@ -29,11 +29,5 @@ namespace CSharp.Core
         {
             display.Show(_wall);
         }
-
-        public void ExecAndShowOutput(SocialNetwork socialNetwork, Display display)
-        {
-            var wall = socialNetwork.ReadWall(_user);
-            display.Show(wall);
-        }
     }
 }
