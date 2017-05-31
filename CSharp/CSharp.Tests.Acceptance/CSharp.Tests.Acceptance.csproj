@@ -51,7 +51,7 @@
     <Compile Include="SocialNetwork.feature.cs">
       <DependentUpon>SocialNetwork.feature</DependentUpon>
     </Compile>
-    <Compile Include="SocialNetwork.cs" />
+    <Compile Include="SocialNetworkTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -9,11 +9,13 @@ namespace CSharp.Tests
     [TestFixture]
     public class CommandTests
     {
+        private Mock<Display> _display;
         private Mock<SocialNetwork> _socialNetwork;
 
         [SetUp]
         public void Init()
         {
+            _display = new Mock<Display>();
             _socialNetwork = new Mock<SocialNetwork>();
         }
         
@@ -22,24 +24,25 @@ namespace CSharp.Tests
         {
             var cmd = new PostCommand("pippo", "pluto");
             
-            cmd.SendTo(_socialNetwork.Object);
+            cmd.SendTo(_socialNetwork.Object)
+                .ShowOn(_display.Object);
             _socialNetwork.Verify(s => s.Post("pippo", "pluto"), Times.Once);
+            _display.Verify(d => d.Show(It.IsAny<WallView>()), Times.Never);
         }
 
         [Test]
         public void CanExecReadCommand()
         {
+            var wallView = new WallView();
             _socialNetwork.Setup(s => s.ReadWall("pippo"))
-                .Returns(new[]{new PostView{User = "pippo", Content = "pluto"}});
+                .Returns(wallView);
             
             var cmd = new ReadCommand("pippo");
-            var res = cmd.SendTo(_socialNetwork.Object);
-            
-            Assert.AreEqual("pippo", res.Single().User);
-            Assert.AreEqual("pluto", res.Single().Content);
-            
-            
+            cmd.SendTo(_socialNetwork.Object)
+                .ShowOn(_display.Object);
+ 
             _socialNetwork.Verify(s => s.ReadWall("pippo"));
+            _display.Verify(d => d.Show(wallView), Times.Once);
         }
           
     }

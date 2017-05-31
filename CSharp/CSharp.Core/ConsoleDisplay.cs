@@ -8,5 +8,10 @@ namespace CSharp.Core
         {
             Console.WriteLine(line);
         }
+
+        public void Show(WallView wall)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -19,11 +19,21 @@ namespace CSharp.Core
             return $"Type: Post; User: {_user}; Post: {_message}";
         }
 
-        public IEnumerable<PostView> SendTo(SocialNetwork socialNetwork)
+        public Command SendTo(SocialNetwork socialNetwork)
         {
             socialNetwork.Post(_user, _message);
-            return new List<PostView>();
+            return this;
 
+        }
+
+        public void ShowOn(Display display)
+        {
+            
+        }
+
+        public void ExecAndShowOutput(SocialNetwork socialNetwork, Display display)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

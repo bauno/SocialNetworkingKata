@@ -64,9 +64,9 @@ namespace CSharp.Tests
             var wall = new WallView {User = "Alice", Posts = new[] {new PostView {User = "Alice", Content = message}}};
             _repository.Setup(r => r.ReadWallOf("Alice"))
                 .Returns(wall);
-            var post = _sut.ReadWall(user);
-            Assert.AreEqual(user, post.Single().User);
-            Assert.AreEqual(message, post.Single().Content);
+            var outputWall = _sut.ReadWall(user);
+            Assert.AreEqual(user, outputWall.User);
+            Assert.AreEqual(message, outputWall.Posts.Single().Content);
 
         }
 

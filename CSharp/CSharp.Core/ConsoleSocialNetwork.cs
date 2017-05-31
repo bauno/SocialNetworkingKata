@@ -23,11 +23,8 @@ namespace CSharp.Core
         public void Enter(string cmdString)
         {
             _parser.Parse(cmdString)
-                    .SendTo(_engine)
-                    .ToList()
-                    .ForEach(post => _display.Show(post.Content));
-
-            
+                .SendTo(_engine)
+                .ShowOn(_display);
         }
     }
 }

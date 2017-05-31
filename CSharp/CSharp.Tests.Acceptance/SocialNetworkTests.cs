@@ -26,6 +26,11 @@ namespace CSharp.Tests.Acceptance
 			{
 				Display.Add(line);
 			}
+
+			public void Show(WallView wall)
+			{
+				wall.Posts.ToList().ForEach(p => Display.Add(p.Content));
+			}
 		}
 		
 		private ConsoleSocialNetwork _socialNetwork;
@@ -44,8 +49,8 @@ namespace CSharp.Tests.Acceptance
 		}
 			
 
-		[Given("(.*) posted (.*) to (?:his|her) wall")]
-		public void GivenAUserPosted(string user, string message)
+		[Given("(.*) posted (.*) to (?:his|her) wall (.*) minutes? ago")]
+		public void GivenAUserPosted(string user, string message, int delta)
 		{
 			var cmdStr = $"{user} -> {message}";
 			_socialNetwork.Enter(cmdStr);

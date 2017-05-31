@@ -23,9 +23,9 @@ namespace CSharp.Core
             
         }
 
-        public IEnumerable<PostView> ReadWall(string user)
-        {            
-            return _repository.ReadWallOf(user).Posts;
+        public WallView ReadWall(string user)
+        {
+            return _repository.ReadWallOf(user);
         }
     }
 }

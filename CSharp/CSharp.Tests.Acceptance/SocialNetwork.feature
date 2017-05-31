@@ -5,17 +5,18 @@
 	
 
 Scenario: Reading Alice's posts
-	Given Alice posted "I love the weather today" to her wall
+	Given Alice posted "I love the weather today" to her wall 5 minutes ago
 	When someone enters the command "Alice"
-	Then he can read "I love the weather today"
+	Then he can read "I love the weather today (5 minutes ago)"
 
 
 Scenario: Reading Bob's posts
-	Given Bob posted "Damn! We lost" to his wall
-	And Bob posted "Good game though" to his wall
+	Given Bob posted "Damn! We lost" to his wall 2 minutes ago
+	And Bob posted "Good game though" to his wall 1 minute ago
 	When someone enters the command "Bob"
-	Then he can read "Damn! We lost"
-	And he can read "Good game though"
+	Then he can read "Good game though (1 minutes ago)"
+	Then he can read "Damn! We lost (2 minutes ago)"
+	
 
 
 Scenario: Subscriptions

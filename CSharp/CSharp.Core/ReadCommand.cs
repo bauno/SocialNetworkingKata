@@ -7,6 +7,7 @@ namespace CSharp.Core
     public class ReadCommand : Command
     {
         private readonly string _user;
+        private WallView _wall;
 
         public ReadCommand(string user)
         {
@@ -18,9 +19,21 @@ namespace CSharp.Core
             return $"Type: Read; User: {_user}";
         }
 
-        public IEnumerable<PostView> SendTo(SocialNetwork socialNetwork)
+        public Command SendTo(SocialNetwork socialNetwork)
         {
-            return socialNetwork.ReadWall(_user);
+            _wall = socialNetwork.ReadWall(_user);
+            return this;
+        }
+
+        public void ShowOn(Display display)
+        {
+            display.Show(_wall);
+        }
+
+        public void ExecAndShowOutput(SocialNetwork socialNetwork, Display display)
+        {
+            var wall = socialNetwork.ReadWall(_user);
+            display.Show(wall);
         }
     }
 }
