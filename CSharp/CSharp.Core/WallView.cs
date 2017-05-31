@@ -2,9 +2,9 @@
 
 namespace CSharp.Core
 {
-    public class ReadWall
+    public class WallView
     {
         public string User { get; set; }
-        public IEnumerable<Post> Posts { get; set; }
+        public IEnumerable<PostView> Posts { get; set; }
     }
 }

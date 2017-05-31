@@ -50,7 +50,7 @@ namespace CSharp.Tests
             var cmdString = "query";
             var cmd = new Mock<Command>();
             cmd.Setup(c => c.SendTo(_engine.Object))
-                .Returns(new[]{new Post{Content = "Pippo"}});
+                .Returns(new[]{new PostView{Content = "Pippo"}});
             _parser.Setup(p => p.Parse(cmdString))
                 .Returns(cmd.Object);
             _sut.Enter(cmdString);

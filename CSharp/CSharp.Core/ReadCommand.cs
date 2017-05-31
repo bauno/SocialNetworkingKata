@@ -18,7 +18,7 @@ namespace CSharp.Core
             return $"Type: Read; User: {_user}";
         }
 
-        public IEnumerable<Post> SendTo(SocialNetwork socialNetwork)
+        public IEnumerable<PostView> SendTo(SocialNetwork socialNetwork)
         {
             return socialNetwork.ReadWall(_user);
         }

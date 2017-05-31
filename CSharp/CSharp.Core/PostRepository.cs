@@ -4,7 +4,7 @@
     {
         void Save(IWall wall);
         IWall LoadOrCreateWallOf(string user);
-        ReadWall ReadWallOf(string user);
+        WallView ReadWallOf(string user);
 
     }
 }

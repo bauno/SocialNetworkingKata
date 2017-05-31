@@ -5,6 +5,6 @@ namespace CSharp.Core
 {
     public interface Command
     {
-        IEnumerable<Post> SendTo(SocialNetwork socialNetwork);
+        IEnumerable<PostView> SendTo(SocialNetwork socialNetwork);
     }
 }

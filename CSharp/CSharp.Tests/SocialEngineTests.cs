@@ -49,9 +49,9 @@ namespace CSharp.Tests
             _sut.Post(user, secondPost); 
             
             Assert.AreEqual(2, posts.Count);
-            Assert.AreEqual("Bob", posts.First().User);
+            
             Assert.AreEqual("first", posts.First().Content);
-            Assert.AreEqual("Bob", posts.Last().User);
+          
             Assert.AreEqual("second", posts.Last().Content);
                                     
         }
@@ -61,7 +61,7 @@ namespace CSharp.Tests
         {
             var user = "Alice";
             var message = "the quick brown fox";
-            var wall = new ReadWall {User = "Alice", Posts = new[] {new Post {User = "Alice", Content = message}}};
+            var wall = new WallView {User = "Alice", Posts = new[] {new PostView {User = "Alice", Content = message}}};
             _repository.Setup(r => r.ReadWallOf("Alice"))
                 .Returns(wall);
             var post = _sut.ReadWall(user);

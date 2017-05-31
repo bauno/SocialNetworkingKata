@@ -18,12 +18,12 @@ namespace CSharp.Core
         public void Post(string user, string message)
         {
             var wall = _repository.LoadOrCreateWallOf(user);
-            wall.AddPost(new Post{Content = message, User = user});
+            wall.AddPost(new Post(message));
             _repository.Save(wall);
             
         }
 
-        public IEnumerable<Post> ReadWall(string user)
+        public IEnumerable<PostView> ReadWall(string user)
         {            
             return _repository.ReadWallOf(user).Posts;
         }

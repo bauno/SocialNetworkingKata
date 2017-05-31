@@ -44,12 +44,12 @@ namespace CSharp.Core
             
         }
 
-        public ReadWall ReadWallOf(string user)
+        public WallView ReadWallOf(string user)
         {
-            return new ReadWall
+            return new WallView
             {
                 User = user,
-                Posts = _walls[user].Posts.Select(p => new Post {Content = p.Content, User = user})
+                Posts = _walls[user].Posts.Select(p => new PostView {Content = p.Content, User = user})
             };
         }
     }

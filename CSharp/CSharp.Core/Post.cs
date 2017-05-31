@@ -2,7 +2,12 @@
 {
     public class Post
     {
-        public string User { get; set; }
-        public string Content { get; set; }
+        public Post(string content)
+        {
+            Content = content;
+        }
+
+        public string User { get; }
+        public string Content { get; }
     }
 }

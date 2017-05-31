@@ -34,7 +34,7 @@ namespace CSharp.Core
 
         void Dto<WallDto, Wall>.Load(WallDto dto)
         {
-            _posts = dto.Posts.Select(p => new Post {Content = p.Content})
+            _posts = dto.Posts.Select(p => new Post(p.Content))
                         .ToList();
         }
 

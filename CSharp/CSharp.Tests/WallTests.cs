@@ -37,11 +37,12 @@ namespace CSharp.Tests
         [Test]
         public void CanAddPostToWall()
         {
-            _sut.AddPost(new Post {Content = "pluto"});
+            _sut.AddPost(new Post ("pluto"));
             var wDto = (Dto<WallDto, Wall>) _sut;
             var res = wDto.ToDto();
             Assert.AreEqual(_wallDto.User, res.User);
             Assert.AreEqual("pluto", res.Posts.Single().Content);
+            
             
         }
 
