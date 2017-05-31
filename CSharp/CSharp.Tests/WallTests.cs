@@ -1,6 +1,7 @@
 using System;
 using System.CodeDom;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using CSharp.Core;
 using NUnit.Framework;
 
@@ -37,11 +38,14 @@ namespace CSharp.Tests
         [Test]
         public void CanAddPostToWall()
         {
-            _sut.AddPost(new Post ("pluto"));
+            var now = DateTime.Now;
+            TimeService.TestNow = now;
+            _sut.AddPost(new Post ("pluto", now));
             var wDto = (Dto<WallDto, Wall>) _sut;
             var res = wDto.ToDto();
             Assert.AreEqual(_wallDto.User, res.User);
             Assert.AreEqual("pluto", res.Posts.Single().Content);
+            Assert.AreEqual(now, res.Posts.Single().TimeStamp);
             
             
         }

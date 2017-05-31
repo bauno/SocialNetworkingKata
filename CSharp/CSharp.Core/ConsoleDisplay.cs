@@ -1,5 +1,4 @@
 ﻿using System;
-using System.CodeDom;
 using System.Linq;
 
 namespace CSharp.Core
@@ -18,8 +17,7 @@ namespace CSharp.Core
         }
 
         public void Show(WallView wall)
-        {
-            _console.PrintLine(wall.User);
+        {            
             wall.Posts.ToList()
                 .ForEach(p => _console.PrintLine($"{p.Content} ({_formatter.NiceTs(TimeService.Now(), p.TimeStamp)})"));
         }

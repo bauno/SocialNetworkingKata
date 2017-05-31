@@ -28,13 +28,13 @@ namespace CSharp.Core
             return new WallDto
             {
                 User = _user,
-                Posts = _posts.Select(p => new PostDto {Content = p.Content})
+                Posts = _posts.Select(p => new PostDto {Content = p.Content, TimeStamp = p.TimeStamp})
             };
         }
 
         void Dto<WallDto, Wall>.Load(WallDto dto)
         {
-            _posts = dto.Posts.Select(p => new Post(p.Content))
+            _posts = dto.Posts.Select(p => new Post(p.Content, p.TimeStamp))
                         .ToList();
         }
 

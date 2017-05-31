@@ -6,11 +6,10 @@ namespace CSharp.Core
     {
         public string NiceTs(DateTime now, DateTime postTs)
         {
-            var delta = now.Subtract(postTs).TotalSeconds;
-            if (delta < 60)
-                return $"{delta} seconds ago";
-            var minutes = (int) delta / 60;
-            return $"{minutes} minutes ago";
+            var delta = now.Subtract(postTs);
+            if (delta.TotalMinutes < 1)
+                return $"{delta.TotalSeconds} seconds ago";
+            return $"{(int)delta.TotalMinutes} minutes ago";
         }
     }
 }

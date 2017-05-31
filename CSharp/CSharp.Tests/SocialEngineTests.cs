@@ -1,8 +1,6 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Policy;
 using CSharp.Core;
 using Moq;
 using NUnit.Framework;
@@ -13,7 +11,7 @@ namespace CSharp.Tests
     public class SocialEngineTests
     {
         private SocialEngine _sut;
-        private Mock<PostRepository> _repository;
+        private Mock<PostRepository> _repository;        
 
         [SetUp]
         public void Init()
@@ -32,6 +30,9 @@ namespace CSharp.Tests
         [Test]
         public void CanPostToWallTwice()
         {
+            var now = DateTime.Now;
+            TimeService.TestNow = now;
+            
             var wall = new Mock<IWall>();
             var posts = new List<Post>();
             wall.Setup(w => w.AddPost(It.IsAny<Post>()))
@@ -51,8 +52,11 @@ namespace CSharp.Tests
             Assert.AreEqual(2, posts.Count);
             
             Assert.AreEqual("first", posts.First().Content);
+            Assert.AreEqual(now, posts.First().TimeStamp);
           
             Assert.AreEqual("second", posts.Last().Content);
+            Assert.AreEqual(now, posts.Last().TimeStamp);
+                                    
                                     
         }
 

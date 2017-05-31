@@ -18,7 +18,7 @@ namespace CSharp.Core
         public void Post(string user, string message)
         {
             var wall = _repository.LoadOrCreateWallOf(user);
-            wall.AddPost(new Post(message));
+            wall.AddPost(new Post(message, TimeService.Now()));
             _repository.Save(wall);
             
         }

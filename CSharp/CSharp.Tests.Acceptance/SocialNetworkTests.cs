@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.Remoting.Messaging;
+using System.Security.AccessControl;
 using System.Threading;
 using CSharp.Core;
 using NUnit.Framework;
@@ -13,23 +14,24 @@ namespace CSharp.Tests.Acceptance
 	[Binding]
 	public class SocialNetworkTests
 	{
-		private class FakeDisplay : Display
+		private class FakeConsole : ITextConsole
 		{
 			public List<string> Display { get; }
 
-			public FakeDisplay()
+			public FakeConsole()
 			{
 				Display = new List<string>();
 			}
+			
 
-			public void Show(WallView wall)
+			public void PrintLine(string line)
 			{
-				wall.Posts.ToList().ForEach(p => Display.Add(p.Content));
+				Display.Add(line);
 			}
 		}
 		
 		private ConsoleSocialNetwork _socialNetwork;
-		private FakeDisplay _display;
+		private FakeConsole _console;
 		private int _count = 0;
 		
 		[BeforeScenario]
@@ -39,8 +41,10 @@ namespace CSharp.Tests.Acceptance
 			var repository = new MemoryPostRepository();
 			var engine = new SocialEngine(repository);
 			var parser = new StringCommandParser();
-			_display = new FakeDisplay();
-			_socialNetwork = new ConsoleSocialNetwork(parser, engine, _display);
+			var formatter = new PostTsStringFormatter();
+			_console = new FakeConsole();
+			var display = new ConsoleDisplay(formatter, _console);
+			_socialNetwork = new ConsoleSocialNetwork(parser, engine, display);
 		}
 			
 
@@ -63,7 +67,7 @@ namespace CSharp.Tests.Acceptance
 		[Then(@"he can read (.*)")]
 		public void ThenHeCanRead(string message)
 		{
-			Assert.AreEqual(message, _display.Display[_count]);
+			Assert.AreEqual(message, _console.Display[_count]);
 			_count++;
 		}
 				
