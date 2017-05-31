@@ -19,7 +19,13 @@ namespace CSharp.Core
         public void Show(WallView wall)
         {            
             wall.Posts.ToList()
-                .ForEach(p => _console.PrintLine($"{p.Content} ({_formatter.NiceTs(TimeService.Now(), p.TimeStamp)})"));
+                .ForEach(p =>
+                {                    
+                    var niceTs = _formatter.NiceTs(TimeService.Now(), p.TimeStamp);
+                    var line = string.Format("{0} ({1})", p.Content, niceTs);
+                    _console.PrintLine(line);
+//                    _console.PrintLine($"{p.Content} ({niceTs})");
+                });
         }
     }
 }

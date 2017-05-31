@@ -7,7 +7,7 @@
 Scenario: Reading Alice's posts
 	Given Alice posted "I love the weather today" to her wall 5 minutes ago
 	When someone enters the command "Alice"
-	And he can read "I love the weather today (5 minutes ago)"
+	And he can read "I love the weather today" (5 minutes ago)
 
 
 Scenario: Reading Bob's posts

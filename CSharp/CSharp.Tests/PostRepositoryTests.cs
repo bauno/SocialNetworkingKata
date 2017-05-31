@@ -44,13 +44,22 @@ namespace CSharp.Tests
         [Test]
         public void CanLoadAReadWall()
         {
+            var now = DateTime.Now;
+            TimeService.TestNow = now;
             var data = new Dictionary<string, Post>();
-            var walls = new Dictionary<string, WallDto>{
-                {"pippo", new WallDto{User = "pippo", Posts = new[]{new PostDto{Content = "pluto"}}}}};
+            var walls = new Dictionary<string, WallDto>
+            {
+                {
+                    "pippo",
+                    new WallDto {User = "pippo", Posts = new[] {new PostDto {Content = "pluto", TimeStamp = now}}}
+                }
+            };
             var sut = new MemoryPostRepository(data, walls);
             var wall = sut.ReadWallOf("pippo");            
             Assert.AreEqual("pippo", wall.User);
             Assert.AreEqual("pluto", wall.Posts.Single().Content);
+            Assert.AreEqual(now, wall.Posts.Single().TimeStamp);
+            
             
         }
 
