@@ -37,7 +37,7 @@ namespace CSharp.Tests.Acceptance
 			var readCommandFactory = new ReadCommandFactory();
 			var postCommandFactory = new PostCommandFactory();
 			var wallCommandFactory = new WallCommandFactory();
-			var followCommandFactory = new WallCommandFactory();
+			var followCommandFactory = new FollowCommandFactory();
 			var repository = new MemoryPostRepository();
 			var engine = new SocialEngine(repository);
 			var parser = new StringCommandParser(new CommandFactory[]
@@ -59,11 +59,17 @@ namespace CSharp.Tests.Acceptance
 
 		}
 				
+		[Given(@"(.*) follows (.*)")]
+		public void GivenCharlieFollowsAlice(string user, string who)
+		{
+			var cmdStr = $"{user} follows {who}";
+			_socialNetwork.Enter(cmdStr);
+		}
 
 		[When(@"someone enters the command ""(.*)""")]
-		public void WhenSomeoneEnters(string user)
+		public void WhenSomeoneEnters(string cmd)
 		{
-			var cmdStr = user;
+			var cmdStr = cmd;
 			_socialNetwork.Enter(cmdStr);
 		}
 		

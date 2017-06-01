@@ -117,9 +117,9 @@ this.ScenarioSetup(scenarioInfo);
 #line 24
  testRunner.When("someone enters the command \"Charlie wall\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 25
- testRunner.Then("he can read \"I'm in New York today! Anyone wants to have a coffee? (2 seconds ago)\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("he can read \"Charlie - I'm in New York today! Anyone wants to have a coffee? (2 seconds ago)\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 26
- testRunner.And("he can read \"I love the weather today (5 minutes ago)\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("he can read \"Alice - I love the weather today (5 minutes ago)\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

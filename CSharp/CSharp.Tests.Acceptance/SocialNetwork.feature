@@ -22,8 +22,8 @@ Scenario: Subscriptions
 	And Charlie posted "I'm in New York today! Anyone wants to have a coffee?" to his wall 2 seconds ago
 	And Charlie follows Alice	
 	When someone enters the command "Charlie wall"
-	Then he can read "I'm in New York today! Anyone wants to have a coffee? (2 seconds ago)"
-	And he can read "I love the weather today (5 minutes ago)"
+	Then he can read "Charlie - I'm in New York today! Anyone wants to have a coffee? (2 seconds ago)"
+	And he can read "Alice - I love the weather today (5 minutes ago)"
 
 Scenario: Multiple subscriptions	
 	Given Bob posted "Damn! We lost" to his wall 2 minutes ago
