@@ -47,7 +47,7 @@ namespace CSharp.Tests.Acceptance
 		[Given("(.*) posted \"(.*)\" to (?:his|her) wall (.*) minutes? ago")]
 		public void GivenAUserPosted(string user, string message, int delta)
 		{
-			TimeService.TestNow = _now.AddMinutes(-5);
+			TimeService.TestNow = _now.AddMinutes(-delta);
 			var cmdStr = $"{user} -> {message}";
 			_socialNetwork.Enter(cmdStr);
 			TimeService.TestNow = _now;
