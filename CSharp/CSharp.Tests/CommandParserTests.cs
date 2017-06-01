@@ -1,5 +1,7 @@
+using System;
 using System.CodeDom;
 using CSharp.Core;
+using Moq;
 using NUnit.Framework;
 
 namespace CSharp.Tests
@@ -7,39 +9,51 @@ namespace CSharp.Tests
     [TestFixture]
     public class CommandParserTests
     {
-        private StringCommandParser _sut;
-
-        [SetUp]
-        public void Init()
-        {
-            _sut = new StringCommandParser();
-        }
-        
         [Test]
-        public void CanParsePostCommand()
+        public void ConstructorTests()
         {
+            Assert.Throws<ArgumentNullException>(() => new StringCommandParser(null));
+        }
+
+        [Test]
+        public void WillCallFactoriesToParseCommand()
+        {
+            var cmdString = "pippo";
+            var cmd = new Mock<Command>(); 
+            var fac1 = new Mock<CommandFactory>();
+            fac1.Setup(f1 => f1.Parse(cmdString))
+                .Returns<Command>(null);
             
-            var cmdString = "Alice -> I love the weather today";
-            var cmd = _sut.Parse(cmdString);
-            var expected = "Type: Post; User: Alice; Post: I love the weather today";
-            Assert.AreEqual(expected, cmd.ToString());
+            var fac2 = new Mock<CommandFactory>();
+            fac2.Setup(f2 => f2.Parse(cmdString))
+                .Returns(cmd.Object);
+            
+            var sut = new StringCommandParser(new[]{fac1.Object, fac2.Object});
+            
+            Assert.AreEqual(cmd.Object, sut.Parse(cmdString));
+            
         }
 
         [Test]
-        public void CanParseReadCommand()
+        public void WillThrowInvalidCommandIfAllFactoriesReturnNull()
         {
-            var cmdString = "Alice";
-            var cmd = _sut.Parse(cmdString);
-            var expected = "Type: Read; User: Alice";
-            Assert.AreEqual(expected, cmd.ToString());
-        }
-
-        [Test]
-        public void CannotParseInvalidCommand()
-        {
-            var cmdString = "pippo pappo puppo";
-            var sut = new StringCommandParser();
+            var cmdString = "pippo";             
+            var fac1 = new Mock<CommandFactory>();
+            fac1.Setup(f1 => f1.Parse(cmdString))
+                .Returns<Command>(null);
+            
+            var fac2 = new Mock<CommandFactory>();
+            fac2.Setup(f2 => f2.Parse(cmdString))
+                .Returns<Command>(null);
+            
+            var sut = new StringCommandParser(new[]{fac1.Object, fac2.Object});
+            
             Assert.Throws<InvalidCommandException>(() => sut.Parse(cmdString));
+            
+            fac1.Verify(f1 => f1.Parse(cmdString), Times.Once);
+            fac1.Verify(f2 => f2.Parse(cmdString), Times.Once);
         }
+
+                 
     }
 }
