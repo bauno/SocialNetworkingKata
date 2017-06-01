@@ -24,5 +24,26 @@ namespace CSharp.Tests
             Assert.AreEqual(expected, sut.Parse(cmdString).ToString());
         }
 
+        [TestCase("Alice")]
+        [TestCase("Charlie follows Alice")]
+        [TestCase("Charlie wall")]
+        public void PostCommandFactoryReturnsNullIfCannotParseCommand(string cmdString)
+        {
+
+           var sut = new PostCommandFactory();
+           Assert.IsNull(sut.Parse(cmdString));
+        }
+        
+        [TestCase("Alice -> I love the weather today")]
+        [TestCase("Charlie follows Alice")]
+        [TestCase("Charlie wall")]
+        public void ReadCommandFactoryReturnsNullIfCannotParseCommand(string cmdString)
+        {
+
+            var sut = new ReadCommandFactory();
+            Assert.IsNull(sut.Parse(cmdString));
+        }
+
+
     }
 }
