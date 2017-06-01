@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Command.cs" />
+    <Compile Include="CommandFactory.cs" />
     <Compile Include="CommandParser.cs" />
     <Compile Include="ConsoleDisplay.cs" />
     <Compile Include="ConsoleSocialNetwork.cs" />
@@ -48,11 +49,13 @@
     <Compile Include="IConsoleSocialNetwork.cs" />
     <Compile Include="ITextConsole.cs" />
     <Compile Include="IWall.cs" />
+    <Compile Include="PostCommandFactory.cs" />
     <Compile Include="PostDto.cs" />
     <Compile Include="PostTsFormatter.cs" />
     <Compile Include="PostTsStringFormatter.cs" />
     <Compile Include="PostView.cs" />
     <Compile Include="ReadCommand.cs" />
+    <Compile Include="ReadCommandFactory.cs" />
     <Compile Include="TextConsole.cs" />
     <Compile Include="TimeService.cs" />
     <Compile Include="WallView.cs" />

@@ -61,7 +61,8 @@ namespace CSharp.Tests.Acceptance
 			var cmdStr = user;
 			_socialNetwork.Enter(cmdStr);
 		}
-
+		
+				
 		[Then(@"he can read ""(.*)""")]
 		public void ThenHeCanRead(string message)
 		{

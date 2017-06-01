@@ -48,6 +48,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandFactoriesTests.cs" />
     <Compile Include="CommandParserTests.cs" />
     <Compile Include="CommandTests.cs" />
     <Compile Include="ConsoleDisplayTests.cs" />
