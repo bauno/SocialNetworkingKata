@@ -5,7 +5,10 @@ namespace CSharp.Core
     public interface SocialNetwork
     {        
         void Post(string user, string message);
-//        IEnumerable<PostView> ReadWall(string user);
+        void Follow(string user, string whoToFollow);
+
         WallView ReadWall(string user);
+
+
     }
 }

@@ -17,13 +17,11 @@ Scenario: Reading Bob's posts
 	Then he can read "Good game though (1 minutes ago)"
 	And he can read "Damn! We lost (2 minutes ago)"
 	
-
-
 Scenario: Subscriptions
     Given Alice posted "I love the weather today" to her wall 5 minutes ago
 	And Charlie posted "I'm in New York today! Anyone wants to have a coffee?" to his wall 2 seconds ago
 	And Charlie follows Alice	
-	When someone enters the command "Charlie Wall"
+	When someone enters the command "Charlie wall"
 	Then he can read "I'm in New York today! Anyone wants to have a coffee? (2 seconds ago)"
 	And he can read "I love the weather today (5 minutes ago)"
 
@@ -34,9 +32,9 @@ Scenario: Multiple subscriptions
 	And Charlie posted "I'm in New York today! Anyone wants to have a coffee?" 15 seconds ago
 	And Charlie follows Alice
 	And Charlie follows Bob
-	When someone enters the command Charlie wall
+	When someone enters the command "Charlie wall"	
 	Then he can read "Charlie - I'm in New York today! Anyone wants to have a coffee? (15 seconds ago)"
 	And he can read "Bob - Good game though (1 minutes ago)"
 	And he can read "Bob - Damn! We lost (2 minutes ago)"
-	And he can read "Alice - I love the weather today" to her wall 15 minutes ago
+	And he can read "Alice - I love the weather today (15 minutes ago)"
 

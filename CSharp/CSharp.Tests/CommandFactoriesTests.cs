@@ -1,3 +1,4 @@
+using System.CodeDom;
 using CSharp.Core;
 using NUnit.Framework;
 
@@ -22,6 +23,45 @@ namespace CSharp.Tests
             var expected = "Type: Read; User: Alice";
             var sut = new ReadCommandFactory();
             Assert.AreEqual(expected, sut.Parse(cmdString).ToString());
+        }
+
+        [Test]
+        public void WallCommandFactoryCanParseWallCommand()
+        {
+            var cmdString = "Charlie wall";
+            var expected = "Type: Wall; User: Charlie";
+            var sut = new WallCommandFactory();
+            Assert.AreEqual(expected, sut.Parse(cmdString).ToString());
+            
+        }
+        
+        [Test]
+        public void FollowCommandFactoryCanParseFollowCommand()
+        {
+            var cmdString = "Charlie follows Alice";
+            var expected = "Type: Follow; User: Charlie; Who: Alice";
+            var sut = new FollowCommandFactory();
+            Assert.AreEqual(expected, sut.Parse(cmdString).ToString());
+        }
+        
+        [TestCase("Alice")]
+        [TestCase("Charlie wall")]
+        [TestCase("Alice -> I love the weather today")]
+        public void FollowCommandFactoryReturnsNullIfCannotParseCommand(string cmdString)
+        {
+
+            var sut = new FollowCommandFactory();
+            Assert.IsNull(sut.Parse(cmdString));
+        }
+        
+        [TestCase("Alice")]
+        [TestCase("Charlie follows Alice")]
+        [TestCase("Alice -> I love the weather today")]
+        public void WallCommandFactoryReturnsNullIfCannotParseCommand(string cmdString)
+        {
+
+            var sut = new WallCommandFactory();
+            Assert.IsNull(sut.Parse(cmdString));
         }
 
         [TestCase("Alice")]

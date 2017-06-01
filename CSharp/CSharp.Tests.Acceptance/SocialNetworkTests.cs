@@ -36,9 +36,12 @@ namespace CSharp.Tests.Acceptance
 			_now = DateTime.Now;
 			var readCommandFactory = new ReadCommandFactory();
 			var postCommandFactory = new PostCommandFactory();
+			var wallCommandFactory = new WallCommandFactory();
+			var followCommandFactory = new WallCommandFactory();
 			var repository = new MemoryPostRepository();
 			var engine = new SocialEngine(repository);
-			var parser = new StringCommandParser(new CommandFactory[]{readCommandFactory, postCommandFactory});
+			var parser = new StringCommandParser(new CommandFactory[]
+				{readCommandFactory, postCommandFactory, wallCommandFactory, followCommandFactory});
 			var formatter = new PostTsStringFormatter();
 			_console = new FakeConsole();
 			var display = new ConsoleDisplay(formatter, _console);

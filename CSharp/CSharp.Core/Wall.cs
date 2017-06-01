@@ -21,7 +21,12 @@ namespace CSharp.Core
         {
             _posts.Add(post);
         }
-        
+
+        public void Follow(string whoToFollow)
+        {
+            throw new NotImplementedException();
+        }
+
 
         WallDto Dto<WallDto, Wall>.ToDto()
         {

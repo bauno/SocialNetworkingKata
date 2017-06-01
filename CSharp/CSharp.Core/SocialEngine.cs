@@ -23,6 +23,13 @@ namespace CSharp.Core
             
         }
 
+        public void Follow(string user, string whoToFollow)
+        {
+            var wall = _repository.LoadOrCreateWallOf(user);
+            wall.Follow(whoToFollow);
+            _repository.Save(wall);
+        }
+
         public WallView ReadWall(string user)
         {
             return _repository.ReadWallOf(user);

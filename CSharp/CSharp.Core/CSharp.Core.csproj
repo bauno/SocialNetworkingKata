@@ -46,6 +46,8 @@
     <Compile Include="ConsoleSocialNetwork.cs" />
     <Compile Include="Display.cs" />
     <Compile Include="Dto.cs" />
+    <Compile Include="FollowCommand.cs" />
+    <Compile Include="FollowCommandFactory.cs" />
     <Compile Include="IConsoleSocialNetwork.cs" />
     <Compile Include="ITextConsole.cs" />
     <Compile Include="IWall.cs" />
@@ -58,6 +60,8 @@
     <Compile Include="ReadCommandFactory.cs" />
     <Compile Include="TextConsole.cs" />
     <Compile Include="TimeService.cs" />
+    <Compile Include="WallCommand.cs" />
+    <Compile Include="WallCommandFactory.cs" />
     <Compile Include="WallView.cs" />
     <Compile Include="StringCommandParser.cs" />
     <Compile Include="InvalidCommandException.cs" />

@@ -106,19 +106,19 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void Subscriptions()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Subscriptions", ((string[])(null)));
-#line 22
+#line 20
 this.ScenarioSetup(scenarioInfo);
-#line 23
+#line 21
     testRunner.Given("Alice posted \"I love the weather today\" to her wall 5 minutes ago", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 24
+#line 22
  testRunner.And("Charlie posted \"I'm in New York today! Anyone wants to have a coffee?\" to his wall 2 seconds ago", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 25
+#line 23
  testRunner.And("Charlie follows Alice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 26
- testRunner.When("someone enters the command \"Charlie Wall\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 27
+#line 24
+ testRunner.When("someone enters the command \"Charlie wall\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 25
  testRunner.Then("he can read \"I'm in New York today! Anyone wants to have a coffee? (2 seconds ago)\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 28
+#line 26
  testRunner.And("he can read \"I love the weather today (5 minutes ago)\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -129,30 +129,30 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void MultipleSubscriptions()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Multiple subscriptions", ((string[])(null)));
-#line 30
+#line 28
 this.ScenarioSetup(scenarioInfo);
-#line 31
+#line 29
  testRunner.Given("Bob posted \"Damn! We lost\" to his wall 2 minutes ago", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 32
+#line 30
  testRunner.And("Bob posted \"Good game though\" to his wall 1 minutes ago", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 33
+#line 31
  testRunner.And("Alice posted \"I love the weather today\" to her wall 15 minutes ago", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 34
+#line 32
  testRunner.And("Charlie posted \"I'm in New York today! Anyone wants to have a coffee?\" 15 seconds ago", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 35
+#line 33
  testRunner.And("Charlie follows Alice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 36
+#line 34
  testRunner.And("Charlie follows Bob", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 37
- testRunner.When("someone enters the command Charlie wall", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 38
+#line 35
+ testRunner.When("someone enters the command \"Charlie wall\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 36
  testRunner.Then("he can read \"Charlie - I'm in New York today! Anyone wants to have a coffee? (15 seconds ago)\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 39
+#line 37
  testRunner.And("he can read \"Bob - Good game though (1 minutes ago)\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 40
+#line 38
  testRunner.And("he can read \"Bob - Damn! We lost (2 minutes ago)\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 41
- testRunner.And("he can read \"Alice - I love the weather today\" to her wall 15 minutes ago", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 39
+ testRunner.And("he can read \"Alice - I love the weather today (15 minutes ago)\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
