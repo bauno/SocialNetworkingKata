@@ -27,7 +27,16 @@ namespace CSharp.Core
 
         public void Show(IEnumerable<WallView> walls)
         {
-            throw new NotImplementedException();
+            var posts = from wall in walls
+                from post in wall.Posts
+                orderby post.TimeStamp descending 
+                select new {wall.User, post.Content, post.TimeStamp };
+
+            foreach (var post in posts)
+            {
+                _console.PrintLine(
+                    $"{post.User} - {post.Content} ({_formatter.NiceTs(TimeService.Now(), post.TimeStamp)})");
+            }                                               
         }
     }
 }

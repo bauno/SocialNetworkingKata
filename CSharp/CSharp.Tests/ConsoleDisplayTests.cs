@@ -75,5 +75,36 @@ namespace CSharp.Tests
             
             
         }
-    }
+
+        [Test]
+        public void CanPrintMultipleWalls()
+        {
+            var now = DateTime.Now;
+            TimeService.TestNow = now;
+            
+            var post1Ts = now.AddSeconds(-2);
+            var post2Ts = now.AddSeconds(-300);
+            
+            _formatter.Setup(f => f.NiceTs(now, post1Ts))
+                .Returns("pippo");
+            
+            _formatter.Setup(f => f.NiceTs(now, post2Ts))
+                .Returns("pluto");
+            
+            var postView1 = new PostView {Content = "New York", TimeStamp = post1Ts};
+            var postView2 = new PostView {Content = "Weather", TimeStamp = post2Ts};
+            var wall1 = new WallView {User = "Charlie", Posts = new[]{ postView1}};
+            var wall2 = new WallView {User = "Alice", Posts = new[] {postView2}};
+            var walls = new[] {wall1, wall2};
+            var sut = new ConsoleDisplay(_formatter.Object, _console);
+            
+            sut.Show(walls);
+
+
+            Assert.AreEqual("Charlie - New York (pippo)", _console.Display.First());
+            Assert.AreEqual("Alice - Weather (pluto)", _console.Display.Last());
+            
+
+        }
+  }
 }
