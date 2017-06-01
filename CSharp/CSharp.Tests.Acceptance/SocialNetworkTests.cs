@@ -44,10 +44,10 @@ namespace CSharp.Tests.Acceptance
 		}
 			
 
-		[Given("(.*) posted \"(.*)\" to (?:his|her) wall (.*) minutes? ago")]
-		public void GivenAUserPosted(string user, string message, int delta)
+		[Given("(.*) posted \"(.*)\" to (?:his|her) wall (.*) (minutes?|seconds) ago")]
+		public void GivenAUserPosted(string user, string message, int delta, string unit)
 		{
-			TimeService.TestNow = _now.AddMinutes(-delta);
+			TimeService.TestNow = unit == "seconds" ? _now.AddSeconds(-delta) : _now.AddMinutes(-delta);
 			var cmdStr = $"{user} -> {message}";
 			_socialNetwork.Enter(cmdStr);
 			TimeService.TestNow = _now;

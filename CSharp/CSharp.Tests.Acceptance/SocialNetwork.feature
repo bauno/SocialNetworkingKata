@@ -20,10 +20,10 @@ Scenario: Reading Bob's posts
 
 
 Scenario: Subscriptions
-	Given Charlie posted "I'm in New York today! Anyone wants to have a coffee?" 2 seconds ago
-	And Charlie follows Alice
-	And Alice posted "I love the weather today" 5 minutes ago
-	When someone gives the command "Charlie Wall"
+    Gien Alice posted "I love the weather today" 5 minutes ago
+	And Charlie posted "I'm in New York today! Anyone wants to have a coffee?" 2 seconds ago
+	And Charlie follows Alice	
+	When someone enters the command "Charlie Wall"
 	Then he can read "I'm in New York today! Anyone wants to have a coffee? (2 seconds ago)"
 	And he can read  "I love the weather today (5 minutes ago)"
 
