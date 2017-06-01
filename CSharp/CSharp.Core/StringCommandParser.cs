@@ -8,8 +8,6 @@ namespace CSharp.Core
     public class StringCommandParser : CommandParser
     {
         private readonly IEnumerable<CommandFactory> _commandFactories;
-        private Regex _postCmd = new Regex(@"^(.*) -> (.*)$");
-        private Regex _readCmd = new Regex(@"^(\w+)$");
 
         public StringCommandParser(IEnumerable<CommandFactory> commandFactories)
         {

@@ -34,9 +34,11 @@ namespace CSharp.Tests.Acceptance
 		public void InitNetwork()
 		{
 			_now = DateTime.Now;
+			var readCommandFactory = new ReadCommandFactory();
+			var postCommandFactory = new PostCommandFactory();
 			var repository = new MemoryPostRepository();
 			var engine = new SocialEngine(repository);
-			var parser = new StringCommandParser();
+			var parser = new StringCommandParser(new CommandFactory[]{readCommandFactory, postCommandFactory});
 			var formatter = new PostTsStringFormatter();
 			_console = new FakeConsole();
 			var display = new ConsoleDisplay(formatter, _console);
