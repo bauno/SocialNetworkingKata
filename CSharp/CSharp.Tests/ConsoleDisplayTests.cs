@@ -3,6 +3,9 @@ using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using CSharp.Core;
+using CSharp.Core.Services;
+using CSharp.Core.Services.Interfaces;
+using CSharp.Core.Views;
 using Moq;
 using NUnit.Framework;
 

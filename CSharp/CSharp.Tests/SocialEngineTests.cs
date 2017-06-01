@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using CSharp.Core;
+using CSharp.Core.Entities.Interfaces;
+using CSharp.Core.Repositories.Interfaces;
+using CSharp.Core.Services;
+using CSharp.Core.Values;
+using CSharp.Core.Views;
 using Moq;
 using NUnit.Framework;
 

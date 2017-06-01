@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharp.Core;
+using CSharp.Core.Factories;
+using CSharp.Core.Factories.Interfaces;
+using CSharp.Core.Repositories;
+using CSharp.Core.Services;
+using CSharp.Core.Services.Interfaces;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 

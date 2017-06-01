@@ -1,5 +1,6 @@
 using System.CodeDom;
 using CSharp.Core;
+using CSharp.Core.Factories;
 using NUnit.Framework;
 
 namespace CSharp.Tests

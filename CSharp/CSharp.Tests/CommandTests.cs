@@ -1,6 +1,9 @@
 using System.CodeDom;
 using System.Linq;
 using CSharp.Core;
+using CSharp.Core.Commands;
+using CSharp.Core.Services.Interfaces;
+using CSharp.Core.Views;
 using Moq;
 using NUnit.Framework;
 

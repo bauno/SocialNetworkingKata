@@ -1,6 +1,10 @@
 using System;
 using System.CodeDom;
 using CSharp.Core;
+using CSharp.Core.Commands.Interfaces;
+using CSharp.Core.Exceptions;
+using CSharp.Core.Factories;
+using CSharp.Core.Factories.Interfaces;
 using Moq;
 using NUnit.Framework;
 

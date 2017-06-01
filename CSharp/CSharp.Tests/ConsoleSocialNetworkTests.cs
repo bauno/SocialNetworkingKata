@@ -1,5 +1,9 @@
 using System;
 using CSharp.Core;
+using CSharp.Core.Commands.Interfaces;
+using CSharp.Core.Factories.Interfaces;
+using CSharp.Core.Services;
+using CSharp.Core.Services.Interfaces;
 using Moq;
 using NUnit.Framework;
 

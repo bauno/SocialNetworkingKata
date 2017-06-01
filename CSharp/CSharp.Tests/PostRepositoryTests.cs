@@ -2,6 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using CSharp.Core;
+using CSharp.Core.Dtos;
+using CSharp.Core.Entities;
+using CSharp.Core.Repositories;
+using CSharp.Core.Repositories.Interfaces;
+using CSharp.Core.Services;
+using CSharp.Core.Values;
 using NUnit.Framework;
 
 namespace CSharp.Tests
