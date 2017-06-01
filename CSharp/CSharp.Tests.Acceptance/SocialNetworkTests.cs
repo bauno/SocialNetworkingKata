@@ -47,8 +47,7 @@ namespace CSharp.Tests.Acceptance
 			var display = new ConsoleDisplay(formatter, _console);
 			_socialNetwork = new ConsoleSocialNetwork(parser, engine, display);
 		}
-			
-
+					
 		[Given("(.*) posted \"(.*)\" to (?:his|her) wall (.*) (minutes?|seconds) ago")]
 		public void GivenAUserPosted(string user, string message, int delta, string unit)
 		{

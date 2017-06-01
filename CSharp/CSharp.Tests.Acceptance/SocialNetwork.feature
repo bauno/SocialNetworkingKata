@@ -29,7 +29,7 @@ Scenario: Multiple subscriptions
 	Given Bob posted "Damn! We lost" to his wall 2 minutes ago
 	And Bob posted "Good game though" to his wall 1 minutes ago
 	And Alice posted "I love the weather today" to her wall 15 minutes ago
-	And Charlie posted "I'm in New York today! Anyone wants to have a coffee?" 15 seconds ago
+	And Charlie posted "I'm in New York today! Anyone wants to have a coffee?" to his wall 15 seconds ago
 	And Charlie follows Alice
 	And Charlie follows Bob
 	When someone enters the command "Charlie wall"	

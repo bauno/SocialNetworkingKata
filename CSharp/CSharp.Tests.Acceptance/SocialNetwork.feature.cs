@@ -138,7 +138,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 31
  testRunner.And("Alice posted \"I love the weather today\" to her wall 15 minutes ago", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 32
- testRunner.And("Charlie posted \"I'm in New York today! Anyone wants to have a coffee?\" 15 seconds ago", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Charlie posted \"I'm in New York today! Anyone wants to have a coffee?\" to his wall 15 seconds ago", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 33
  testRunner.And("Charlie follows Alice", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 34

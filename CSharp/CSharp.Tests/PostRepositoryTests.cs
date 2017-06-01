@@ -59,7 +59,12 @@ namespace CSharp.Tests
             {
                 {
                     "pippo",
-                    new WallDto {User = "pippo", Posts = new[] {new PostDto {Content = "pluto", TimeStamp = now}}}
+                    new WallDto
+                    {
+                        User = "pippo",
+                        Posts = new[] {new PostDto {Content = "pluto", TimeStamp = now}},
+                        Follows = new[] {"alice"}
+                    }
                 }
             };
             var sut = new MemoryPostRepository(data, walls);
@@ -67,7 +72,7 @@ namespace CSharp.Tests
             Assert.AreEqual("pippo", wall.User);
             Assert.AreEqual("pluto", wall.Posts.Single().Content);
             Assert.AreEqual(now, wall.Posts.Single().TimeStamp);
-            
+            Assert.AreEqual("alice", wall.Follows.Single());
             
         }
 
