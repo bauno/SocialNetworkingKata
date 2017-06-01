@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace CSharp.Core
@@ -22,6 +23,11 @@ namespace CSharp.Core
                 .OrderByDescending(p => p.TimeStamp)
                 .ToList()
                 .ForEach(p => _console.PrintLine($"{p.Content} ({_formatter.NiceTs(TimeService.Now(), p.TimeStamp)})"));
+        }
+
+        public void Show(IEnumerable<WallView> walls)
+        {
+            throw new NotImplementedException();
         }
     }
 }

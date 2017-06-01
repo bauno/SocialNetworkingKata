@@ -6,5 +6,6 @@ namespace CSharp.Core
     {
         public string User { get; set; }
         public IEnumerable<PostDto> Posts { get; set; }
+        public IEnumerable<string> Follows { get; set; }
     }
 }

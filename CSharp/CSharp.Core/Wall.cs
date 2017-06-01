@@ -8,6 +8,7 @@ namespace CSharp.Core
     {
         private readonly string _user;
         private IList<Post> _posts;
+        private IList<string> _follows;
 
         public Wall(string user)
         {
@@ -15,6 +16,7 @@ namespace CSharp.Core
                 throw new ArgumentNullException(nameof(user));
             _user = user;
             _posts = new List<Post>();
+            _follows = new List<string>();
         }
         
         public void AddPost(Post post)
@@ -24,7 +26,7 @@ namespace CSharp.Core
 
         public void Follow(string whoToFollow)
         {
-            throw new NotImplementedException();
+            _follows.Add(whoToFollow);
         }
 
 
@@ -33,7 +35,8 @@ namespace CSharp.Core
             return new WallDto
             {
                 User = _user,
-                Posts = _posts.Select(p => new PostDto {Content = p.Content, TimeStamp = p.TimeStamp})
+                Posts = _posts.Select(p => new PostDto {Content = p.Content, TimeStamp = p.TimeStamp}),
+                Follows = _follows
             };
         }
 
@@ -41,6 +44,7 @@ namespace CSharp.Core
         {
             _posts = dto.Posts.Select(p => new Post(p.Content, p.TimeStamp))
                         .ToList();
+            _follows = dto.Follows.ToList();
         }
 
         

@@ -28,7 +28,9 @@ namespace CSharp.Tests
                 {
                     _firstPost,
                     _secondPost
-                }
+                },
+                Follows = new[]{"Pluto", "Topolino"}
+                
             };
             
             _sut = new Wall("pippo");
@@ -50,6 +52,17 @@ namespace CSharp.Tests
             
         }
 
+        [Test]
+        public void CanFollowUser()
+        {
+            _sut.Follow("pippo");
+            _sut.Follow("pluto");
+            var wDto = (Dto<WallDto, Wall>) _sut;
+            var res = wDto.ToDto();
+            Assert.AreEqual(_wallDto.User, res.User);
+            Assert.AreEqual("pippo", res.Follows.First());            
+            Assert.AreEqual("pluto", res.Follows.Last());            
+        }
         
 
         [Test]
@@ -70,6 +83,8 @@ namespace CSharp.Tests
             Assert.AreEqual(_wallDto.User, res.User);
             Assert.AreEqual(_wallDto.Posts.First().Content, res.Posts.First().Content);
             Assert.AreEqual(_wallDto.Posts.Last().Content, res.Posts.Last().Content);
+            Assert.AreEqual("Pluto", res.Follows.First());
+            Assert.AreEqual("Topolino", res.Follows.Last());
                                     
         }
         

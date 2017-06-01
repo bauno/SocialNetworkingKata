@@ -60,19 +60,22 @@ namespace CSharp.Tests
         [Test]
         public void CanExecWallCommand()
         {
-            var pippoWall = new WallView();
+            var pippoWall = new WallView {Follows = new[] {"pluto"}};
             var plutoWall = new WallView();
+            var walls = new[] {pippoWall, plutoWall};
             _socialNetwork.Setup(s => s.ReadWall("pippo"))
                 .Returns(pippoWall);
             _socialNetwork.Setup(s => s.ReadWall("pluto"))
                 .Returns(plutoWall);
-            
-            var cmd = new FollowCommand("pluto", "pippo");
+
+            var cmd = new WallCommand("pippo");
             cmd.SendTo(_socialNetwork.Object)
                 .ShowOn(_display.Object);
  
             _socialNetwork.Verify(s => s.ReadWall("pippo"));
-            _display.Verify(d => d.Show(pippoWall), Times.Once);            
+            _socialNetwork.Verify(s => s.ReadWall("pluto"));
+            _display.Verify(d => d.Show(walls), Times.Once);            
+                        
         }  
     }
 }

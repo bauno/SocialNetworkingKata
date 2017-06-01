@@ -9,10 +9,17 @@ namespace CSharp.Tests
     [TestFixture]
     public class PostRepositoryTests
     {
+        private WallDto _wallDto;
+
         [SetUp]
         public void Init()
         {
-            
+            _wallDto = new WallDto
+            {
+                User = "pippo",
+                Posts = new[] {new PostDto {Content = "pluto"}},
+                Follows = new[] {"qui", "quo"}
+            };
         }
 
         [Test]
@@ -29,8 +36,9 @@ namespace CSharp.Tests
         public void CanLoadAWall()
         {
             var data = new Dictionary<string, Post>();
+            
             var walls = new Dictionary<string, WallDto>{
-                {"pippo", new WallDto{User = "pippo", Posts = new[]{new PostDto{Content = "pluto"}}}}};
+                {"pippo", _wallDto}};
             var sut = new MemoryPostRepository(data, walls);
             var wall = sut.LoadOrCreateWallOf("pippo");
             var wDto = (Dto<WallDto,Wall>)wall;
@@ -82,9 +90,9 @@ namespace CSharp.Tests
             var data = new Dictionary<string, Post>();
             var walls = new Dictionary<string, WallDto>();
             var sut = new MemoryPostRepository(data, walls);
-            var dto = new WallDto {User = "pippo", Posts = new[] {new PostDto {Content = "pluto"}}};
+            
             var wall = new Wall("pippo");
-            ((Dto<WallDto, Wall>)wall).Load(dto);
+            ((Dto<WallDto, Wall>)wall).Load(_wallDto);
             sut.Save(wall);
             
             Assert.AreEqual("pippo", walls.Values.Single().User);
@@ -100,10 +108,15 @@ namespace CSharp.Tests
             var walls = new Dictionary<string, WallDto>
             {
                 {"pippo",
-                new WallDto {User = "pippo", Posts = new[] {new PostDto {Content = "topolino"}}}}
+                _wallDto}
             };
             var sut = new MemoryPostRepository(data, walls);
-            var dto = new WallDto {User = "pippo", Posts = new[] {new PostDto {Content = "pluto"}}};
+            var dto = new WallDto
+            {
+                User = "pippo",
+                Posts = new[] {new PostDto {Content = "pluto"}},
+                Follows = new[] {"topolino"}
+            };
             var wall = new Wall("pippo");
             ((Dto<WallDto, Wall>)wall).Load(dto);
             sut.Save(wall);
