@@ -1,6 +1,4 @@
 using System;
-using System.CodeDom;
-using CSharp.Core;
 using CSharp.Core.Commands.Interfaces;
 using CSharp.Core.Exceptions;
 using CSharp.Core.Factories;
@@ -56,8 +54,6 @@ namespace CSharp.Tests
             
             fac1.Verify(f1 => f1.Parse(cmdString), Times.Once);
             fac1.Verify(f2 => f2.Parse(cmdString), Times.Once);
-        }
-
-                 
+        }                 
     }
 }
