@@ -14,14 +14,21 @@ let parsePostCommand cmdStr =
         Post(user,message)
     else Invalid(cmdStr)
 
-let parse cmdString = 
-    
-    let (|PostStr|InvalidStr|) input =
-        if Regex.IsMatch(input, postPattern) then PostStr(input) 
-        else InvalidStr(input)
-    
-    match cmdString with
-    | PostStr input -> parsePostCommand input;
-    | _ -> Invalid(cmdString)
+let parseReadCommand cmdStr =
+  if Regex.IsMatch(cmdStr, readPattern) then
+    let matches = Regex.Match(cmdStr, readPattern)
+    let user = matches.Groups.[1].Value
+    Read(user)
+  else Invalid(cmdStr)
 
-    
+let parse cmdString =
+
+    let (|PostStr|ReadStr|InvalidStr|) input =
+        if Regex.IsMatch(input, postPattern) then PostStr(input)
+        elif Regex.IsMatch(input, readPattern) then ReadStr(input)
+        else InvalidStr(input)
+
+    match cmdString with
+    | PostStr input -> parsePostCommand input
+    | ReadStr input -> parseReadCommand input
+    | _ -> Invalid(cmdString)

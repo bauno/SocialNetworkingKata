@@ -17,12 +17,19 @@ let ``Another test``() =
     true |> should be True
 
 [<Fact>]
-let ``Can parse post command`` () =    
+let ``Can parse post command`` () =
     let cmdString = "Alice -> I love the wweather today!"
     cmdString |> parse
-    |> function    
+    |> function
     | Post (u, m) -> u |> should equal "Alice"
                      m |> should equal "I love the wweather today!"
     | _ -> failwith "Error"
 
-
+[<Fact>]
+let ``Can parse read command``() =
+  let cmdString = "Alice"
+  cmdString
+  |> parse
+  |> function
+  | Read u -> u |> should equal "Alice"
+  |_ -> failwith "Error"
