@@ -42,6 +42,7 @@
     <Compile Include="SocialNetwork.Commands.fs" />
     <Compile Include="SocialNetwork.Parser.fs" />
     <Compile Include="Properties/AssemblyInfo.fs" />
+    <Compile Include="SocialNetwork.repository.fs" />
     <None Include="Script.fsx" />
     <Compile Include="SocialNetwork.cmdExec.fs" />
   </ItemGroup>

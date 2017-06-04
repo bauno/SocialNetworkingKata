@@ -8,9 +8,8 @@ namespace CSharp.Core.Services
         public string NiceTs(DateTime now, DateTime postTs)
         {
             var delta = now.Subtract(postTs);
-            if (delta.TotalMinutes < 1)
-                return $"{(int)delta.TotalSeconds} seconds ago";
-            return $"{(int)delta.TotalMinutes} minutes ago";
+            return delta.TotalMinutes < 1 ? $"{(int)delta.TotalSeconds} seconds ago" : 
+                $"{(int)delta.TotalMinutes} minutes ago";
         }
     }
 }
