@@ -2,6 +2,7 @@ using System.CodeDom;
 using System.Linq;
 using CSharp.Core;
 using CSharp.Core.Commands;
+using CSharp.Core.Services;
 using CSharp.Core.Services.Interfaces;
 using CSharp.Core.Views;
 using Moq;
@@ -27,32 +28,20 @@ namespace CSharp.Tests
         {
             var cmd = new PostCommand("pippo", "pluto");
 
-            cmd.SendTo(_socialNetwork.Object);                
-            _socialNetwork.Verify(s => s.Post("pippo", "pluto"), Times.Once);            
+            var res = cmd.SendTo(_socialNetwork.Object);                
+            _socialNetwork.Verify(s => s.Post("pippo", "pluto"), Times.Once);
+            Assert.IsAssignableFrom<Nothing>(res);
         }
 
-        [Test]
-        public void CanExecReadCommand()
-        {
-            var wallView = new WallView();
-            _socialNetwork.Setup(s => s.ReadWall("pippo"))
-                .Returns(wallView);
-            
-            var cmd = new ReadCommand("pippo");
-            var res = cmd.Exec(_socialNetwork.Object);
-                
- 
-            _socialNetwork.Verify(s => s.ReadWall("pippo"));
-            Assert.AreEqual(wallView, res.First());
-        }
 
         [Test]
         public void CanExecFollowCommand()
         {
             var cmd = new FollowCommand("pippo", "pluto");
 
-            cmd.SendTo(_socialNetwork.Object);                
-            _socialNetwork.Verify(s => s.Follow("pippo", "pluto"), Times.Once);            
+            var res = cmd.SendTo(_socialNetwork.Object);                
+            _socialNetwork.Verify(s => s.Follow("pippo", "pluto"), Times.Once);  
+            Assert.IsAssignableFrom<Nothing>(res);
             
         }
         
@@ -69,14 +58,29 @@ namespace CSharp.Tests
                 .Returns(plutoWall);
 
             var cmd = new WallCommand("pippo");
-            var res = cmd.Exec(_socialNetwork.Object);
+            var res = cmd.SendTo(_socialNetwork.Object);
  
             _socialNetwork.Verify(s => s.ReadWall("pippo"));
             _socialNetwork.Verify(s => s.ReadWall("pluto"));
             
-            Assert.AreEqual(walls, res);
+            Assert.AreEqual(new WallsDisplay(walls), res);
                         
                         
         }  
+        
+        [Test]
+        public void CanExecReadCommand()
+        {
+            var wallView = new WallView();
+            _socialNetwork.Setup(s => s.ReadWall("pippo"))
+                .Returns(wallView);
+            
+            var cmd = new ReadCommand("pippo");
+            var res = cmd.SendTo(_socialNetwork.Object);
+                
+ 
+            _socialNetwork.Verify(s => s.ReadWall("pippo"));
+            Assert.AreEqual(new WallDisplay(wallView), res);
+        }
     }
 }

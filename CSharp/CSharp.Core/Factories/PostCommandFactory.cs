@@ -9,7 +9,7 @@ namespace CSharp.Core.Factories
     {
         private readonly Regex _postCmd = new Regex(@"^(.*) -> (.*)$");
         
-        public Message Parse(string cmdString)
+        public Command Parse(string cmdString)
         {
             if (_postCmd.IsMatch(cmdString))
             {

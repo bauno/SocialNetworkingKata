@@ -1,5 +1,6 @@
 ﻿using System;
 using CSharp.Core.Commands.Interfaces;
+using CSharp.Core.Services;
 using CSharp.Core.Services.Interfaces;
 
 namespace CSharp.Core.Commands
@@ -22,10 +23,10 @@ namespace CSharp.Core.Commands
             return $"Type: Follow; User: {_user}; Who: {_who}";
         }
 
-        public void SendTo(SocialNetwork socialNetwork)
+        public Displayable SendTo(SocialNetwork socialNetwork)
         {
             socialNetwork.Follow(_user, _who);
-            
+            return new Nothing();
         }
 
         public void ShowOn(Display display)

@@ -68,7 +68,7 @@ namespace CSharp.Tests
             var wall = new WallView {User = "Alice", Posts = new[]{ postView1, postView2}};
             var sut = new ConsoleDisplay(_formatter.Object, _console);
             
-            sut.Show(new []{wall});
+            sut.Show(wall);
 
 
             Assert.AreEqual("Content2 (pluto)", _console.Display.First());

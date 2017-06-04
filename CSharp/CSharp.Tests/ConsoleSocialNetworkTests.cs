@@ -32,38 +32,24 @@ namespace CSharp.Tests
         {
             var cmdString = "postCommand";
             var cmd = new Mock<Command>();
-            cmd.Setup(c => c.Type)
-                .Returns(MessageType.Command);
+            var display = new Mock<Displayable>();
             
             
             _parser.Setup(p => p.Parse(cmdString))
                 .Returns(cmd.Object);
+            cmd.Setup(c => c.SendTo(_engine.Object))
+                .Returns(display.Object);
                                   
-            
-            
 
             _sut.Enter(cmdString);
             
             cmd.Verify(c => c.SendTo(_engine.Object), Times.Once);
             
-        }
-
-        [Test]
-        public void CanExecQuery()
-        {
-            var queryString = "query";
-            var query = new Mock<Query>();
-            query.Setup(q => q.Type)
-                .Returns(MessageType.Query);
-
-            _parser.Setup(p => p.Parse(queryString))
-                .Returns(query.Object);
-            
-            _sut.Enter(queryString);
-            
-            query.Verify(q => q.Exec(_engine.Object), Times.Once);
+            display.Verify(d => d.ShowOn(_display.Object), Times.Once);
             
         }
+
+       
 
         
 

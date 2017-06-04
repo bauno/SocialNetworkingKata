@@ -16,7 +16,7 @@ namespace CSharp.Core.Factories
             _commandFactories = commandFactories;
         }
 
-        public Message Parse(string cmdString)
+        public Command Parse(string cmdString)
         {
             foreach (var commandFactory in _commandFactories)
             {

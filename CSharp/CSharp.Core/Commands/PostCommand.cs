@@ -1,4 +1,5 @@
 using CSharp.Core.Commands.Interfaces;
+using CSharp.Core.Services;
 using CSharp.Core.Services.Interfaces;
 
 namespace CSharp.Core.Commands
@@ -19,9 +20,10 @@ namespace CSharp.Core.Commands
             return $"Type: Post; User: {_user}; Post: {_message}";
         }
 
-        public void SendTo(SocialNetwork socialNetwork)
+        public Displayable SendTo(SocialNetwork socialNetwork)
         {
-            socialNetwork.Post(_user, _message);            
+            socialNetwork.Post(_user, _message);
+            return new Nothing();
         }
 
         public void ShowOn(Display display)
