@@ -7,7 +7,7 @@ using CSharp.Core.Views;
 
 namespace CSharp.Core.Commands
 {
-    public class WallCommand : Query, Command
+    public class WallCommand : Command
     {
         private readonly string _user;        
 
@@ -25,23 +25,6 @@ namespace CSharp.Core.Commands
 
             
         }
-        
-        public IEnumerable<WallView> Exec(SocialNetwork socialNetwork)
-        {
-            var walls = new List<WallView>();
-            var userWall = socialNetwork.ReadWall(_user);
-            walls.Add(userWall);
-            foreach (var user in userWall.Follows)
-            {
-                var wall = socialNetwork.ReadWall(user);
-                walls.Add(wall);
-            }
-            return walls;
-        }
-
-        
-
-        public MessageType Type => MessageType.Query;
 
         public Displayable SendTo(SocialNetwork socialNetwork)
         {

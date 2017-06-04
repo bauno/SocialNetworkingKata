@@ -2,7 +2,7 @@
 
 namespace CSharp.Core.Commands.Interfaces
 {
-    public interface Command : Message
+    public interface Command
     {
         Displayable SendTo(SocialNetwork socialNetwork);
     }

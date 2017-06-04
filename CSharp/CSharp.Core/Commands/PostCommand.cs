@@ -30,7 +30,5 @@ namespace CSharp.Core.Commands
         {
             
         }
-
-        public MessageType Type => MessageType.Command;
     }
 }
