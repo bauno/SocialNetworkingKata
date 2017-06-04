@@ -24,6 +24,8 @@ namespace CSharp.Core.Services
 
         public void Enter(string cmdString)
         {
+            Action<Message, SocialNetwork> sendMessage = (m, s) => ((Command) m).SendTo(s);
+            
             var message = _parser.Parse(cmdString);
             if (message.Type == MessageType.Command)
                 ((Command) message).SendTo(_engine);
@@ -33,5 +35,6 @@ namespace CSharp.Core.Services
                 _display.Show(res);
             }
         }
+        
     }
 }
