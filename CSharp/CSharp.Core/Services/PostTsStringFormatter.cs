@@ -9,7 +9,7 @@ namespace CSharp.Core.Services
         {
             var delta = now.Subtract(postTs);
             if (delta.TotalMinutes < 1)
-                return $"{delta.TotalSeconds} seconds ago";
+                return $"{(int)delta.TotalSeconds} seconds ago";
             return $"{(int)delta.TotalMinutes} minutes ago";
         }
     }

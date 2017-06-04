@@ -51,12 +51,17 @@ namespace CSharp.Core.Repositories
 
         public WallView ReadWallOf(string user)
         {
-            return new WallView
+            if (_walls.ContainsKey(user))
             {
-                User = user,
-                Posts = _walls[user].Posts.Select(p => new PostView {Content = p.Content, TimeStamp = p.TimeStamp}),
-                Follows = _walls[user].Follows
-            };
+                return new WallView
+                {
+                    User = user,
+                    Posts = _walls[user].Posts.Select(p => new PostView {Content = p.Content, TimeStamp = p.TimeStamp}),
+                    Follows = _walls[user].Follows
+                };
+            }
+            return new WallView();
+
         }
     }
 }

@@ -3,6 +3,7 @@
 
 open Fake
 open Fake.Testing
+open Fake.AssemblyInfoFile
 
 // Directories
 let buildDir  = "./build/"
@@ -23,9 +24,12 @@ Target "Clean" (fun _ ->
 )
 
 Target "Build" (fun _ ->
+    CreateFSharpAssemblyInfo "./Core/Properties/AssemblyInfo.fs"
+        [Attribute.InternalsVisibleTo "Tests" ]
+    !! "/**/*.fsproj"
     // compile all projects below src/app/
-    MSBuildDebug buildDir "Build" appReferences
-        |> Log "AppBuild-Output: "
+    |> MSBuildDebug buildDir "Build"
+    |> Log "AppBuild-Output: "
 )
 
 Target "Test" (fun _ ->

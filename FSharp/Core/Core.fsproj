@@ -37,10 +37,13 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TimeService.fs" />
     <Compile Include="SocialNetwork.Data.fs" />
     <Compile Include="SocialNetwork.Commands.fs" />
     <Compile Include="SocialNetwork.Parser.fs" />
+    <Compile Include="Properties/AssemblyInfo.fs" />
     <None Include="Script.fsx" />
+    <Compile Include="SocialNetwork.cmdExec.fs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <Choose>
