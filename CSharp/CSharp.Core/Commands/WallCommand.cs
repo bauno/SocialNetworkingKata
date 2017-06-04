@@ -6,40 +6,40 @@ using CSharp.Core.Views;
 
 namespace CSharp.Core.Commands
 {
-    public class WallCommand : Command
+    public class WallCommand : Query
     {
-        private readonly string _user;
-        private List<WallView> _walls;
+        private readonly string _user;        
 
 
         public override string ToString()
         {
             return $"Type: Wall; User: {_user}";
         }
+        
 
         public WallCommand(string user)
         {
             if (user == null) throw new ArgumentNullException(nameof(user));
             _user = user;
-            _walls = new List<WallView>();
+
             
         }
-
-        public Command SendTo(SocialNetwork socialNetwork)
+        
+        public IEnumerable<WallView> Exec(SocialNetwork socialNetwork)
         {
+            var walls = new List<WallView>();
             var userWall = socialNetwork.ReadWall(_user);
-            _walls.Add(userWall);
+            walls.Add(userWall);
             foreach (var user in userWall.Follows)
             {
                 var wall = socialNetwork.ReadWall(user);
-                _walls.Add(wall);
+                walls.Add(wall);
             }
-            return this;
+            return walls;
         }
 
-        public void ShowOn(Display display)
-        {
-            display.Show(_walls);
-        }
+        
+
+        public MessageType Type => MessageType.Query;
     }
 }

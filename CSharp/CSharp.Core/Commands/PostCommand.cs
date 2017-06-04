@@ -19,16 +19,16 @@ namespace CSharp.Core.Commands
             return $"Type: Post; User: {_user}; Post: {_message}";
         }
 
-        public Command SendTo(SocialNetwork socialNetwork)
+        public void SendTo(SocialNetwork socialNetwork)
         {
-            socialNetwork.Post(_user, _message);
-            return this;
-
+            socialNetwork.Post(_user, _message);            
         }
 
         public void ShowOn(Display display)
         {
             
         }
+
+        public MessageType Type => MessageType.Command;
     }
 }

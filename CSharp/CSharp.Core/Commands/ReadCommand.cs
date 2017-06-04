@@ -1,13 +1,13 @@
-﻿using CSharp.Core.Commands.Interfaces;
+﻿using System.Collections.Generic;
+using CSharp.Core.Commands.Interfaces;
 using CSharp.Core.Services.Interfaces;
 using CSharp.Core.Views;
 
 namespace CSharp.Core.Commands
 {
-    public class ReadCommand : Command
+    public class ReadCommand : Query
     {
         private readonly string _user;
-        private WallView _wall;
 
         public ReadCommand(string user)
         {
@@ -19,15 +19,11 @@ namespace CSharp.Core.Commands
             return $"Type: Read; User: {_user}";
         }
 
-        public Command SendTo(SocialNetwork socialNetwork)
+        public IEnumerable<WallView> Exec(SocialNetwork socialNetwork)
         {
-            _wall = socialNetwork.ReadWall(_user);
-            return this;
+            return new[] {socialNetwork.ReadWall(_user)};
         }
 
-        public void ShowOn(Display display)
-        {
-            display.Show(_wall);
-        }
+        public MessageType Type => MessageType.Query;
     }
 }

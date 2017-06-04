@@ -19,7 +19,7 @@ namespace CSharp.Core.Services
             _console = console;
         }
 
-        public void Show(WallView wall)
+        private void Show(WallView wall)
         {            
             wall.Posts                
                 .OrderByDescending(p => p.TimeStamp)
@@ -29,16 +29,21 @@ namespace CSharp.Core.Services
 
         public void Show(IEnumerable<WallView> walls)
         {
-            var posts = from wall in walls
-                from post in wall.Posts
-                orderby post.TimeStamp descending 
-                select new {wall.User, post.Content, post.TimeStamp };
-
-            foreach (var post in posts)
+            if (walls.Count() == 1)
+                Show(walls.First());
+            else
             {
-                _console.PrintLine(
-                    $"{post.User} - {post.Content} ({_formatter.NiceTs(TimeService.Now(), post.TimeStamp)})");
-            }                                               
+                var posts = from wall in walls
+                    from post in wall.Posts
+                    orderby post.TimeStamp descending
+                    select new {wall.User, post.Content, post.TimeStamp};
+
+                foreach (var post in posts)
+                {
+                    _console.PrintLine(
+                        $"{post.User} - {post.Content} ({_formatter.NiceTs(TimeService.Now(), post.TimeStamp)})");
+                }
+            }
         }
     }
 }

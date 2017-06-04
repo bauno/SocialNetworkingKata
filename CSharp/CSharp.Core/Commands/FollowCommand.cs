@@ -22,15 +22,17 @@ namespace CSharp.Core.Commands
             return $"Type: Follow; User: {_user}; Who: {_who}";
         }
 
-        public Command SendTo(SocialNetwork socialNetwork)
+        public void SendTo(SocialNetwork socialNetwork)
         {
             socialNetwork.Follow(_user, _who);
-            return this;
+            
         }
 
         public void ShowOn(Display display)
         {
             
         }
+
+        public MessageType Type => MessageType.Command;
     }
 }

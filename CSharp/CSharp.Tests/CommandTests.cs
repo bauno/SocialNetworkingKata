@@ -26,11 +26,9 @@ namespace CSharp.Tests
         public void CanExecPostCommand()
         {
             var cmd = new PostCommand("pippo", "pluto");
-            
-            cmd.SendTo(_socialNetwork.Object)
-                .ShowOn(_display.Object);
-            _socialNetwork.Verify(s => s.Post("pippo", "pluto"), Times.Once);
-            _display.Verify(d => d.Show(It.IsAny<WallView>()), Times.Never);
+
+            cmd.SendTo(_socialNetwork.Object);                
+            _socialNetwork.Verify(s => s.Post("pippo", "pluto"), Times.Once);            
         }
 
         [Test]
@@ -41,22 +39,21 @@ namespace CSharp.Tests
                 .Returns(wallView);
             
             var cmd = new ReadCommand("pippo");
-            cmd.SendTo(_socialNetwork.Object)
-                .ShowOn(_display.Object);
+            var res = cmd.Exec(_socialNetwork.Object);
+                
  
             _socialNetwork.Verify(s => s.ReadWall("pippo"));
-            _display.Verify(d => d.Show(wallView), Times.Once);
+            Assert.AreEqual(wallView, res.First());
         }
 
         [Test]
         public void CanExecFollowCommand()
         {
             var cmd = new FollowCommand("pippo", "pluto");
+
+            cmd.SendTo(_socialNetwork.Object);                
+            _socialNetwork.Verify(s => s.Follow("pippo", "pluto"), Times.Once);            
             
-            cmd.SendTo(_socialNetwork.Object)
-                .ShowOn(_display.Object);
-            _socialNetwork.Verify(s => s.Follow("pippo", "pluto"), Times.Once);
-            _display.Verify(d => d.Show(It.IsAny<WallView>()), Times.Never);
         }
         
         
@@ -72,12 +69,13 @@ namespace CSharp.Tests
                 .Returns(plutoWall);
 
             var cmd = new WallCommand("pippo");
-            cmd.SendTo(_socialNetwork.Object)
-                .ShowOn(_display.Object);
+            var res = cmd.Exec(_socialNetwork.Object);
  
             _socialNetwork.Verify(s => s.ReadWall("pippo"));
             _socialNetwork.Verify(s => s.ReadWall("pluto"));
-            _display.Verify(d => d.Show(walls), Times.Once);            
+            
+            Assert.AreEqual(walls, res);
+                        
                         
         }  
     }

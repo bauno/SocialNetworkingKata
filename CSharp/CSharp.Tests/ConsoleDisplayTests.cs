@@ -1,8 +1,6 @@
 using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
-using CSharp.Core;
 using CSharp.Core.Services;
 using CSharp.Core.Services.Interfaces;
 using CSharp.Core.Views;
@@ -70,7 +68,7 @@ namespace CSharp.Tests
             var wall = new WallView {User = "Alice", Posts = new[]{ postView1, postView2}};
             var sut = new ConsoleDisplay(_formatter.Object, _console);
             
-            sut.Show(wall);
+            sut.Show(new []{wall});
 
 
             Assert.AreEqual("Content2 (pluto)", _console.Display.First());

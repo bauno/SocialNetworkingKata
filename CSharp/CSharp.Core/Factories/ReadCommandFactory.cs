@@ -8,7 +8,7 @@ namespace CSharp.Core.Factories
     public class ReadCommandFactory : CommandFactory
     {
         private readonly Regex _readCmd = new Regex(@"^(\w+)$");
-        public Command Parse(string cmdString)
+        public Message Parse(string cmdString)
         {
             if (_readCmd.IsMatch(cmdString))
             {

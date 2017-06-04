@@ -4,6 +4,6 @@ namespace CSharp.Core.Factories.Interfaces
 {
     public interface CommandFactory
     {
-        Command Parse(string cmdString);
+        Message Parse(string cmdString);
     }
 }

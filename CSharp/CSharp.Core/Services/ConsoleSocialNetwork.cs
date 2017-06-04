@@ -1,4 +1,5 @@
 ﻿using System;
+using CSharp.Core.Commands.Interfaces;
 using CSharp.Core.Factories.Interfaces;
 using CSharp.Core.Services.Interfaces;
 
@@ -23,9 +24,14 @@ namespace CSharp.Core.Services
 
         public void Enter(string cmdString)
         {
-            _parser.Parse(cmdString)
-                .SendTo(_engine)
-                .ShowOn(_display);
+            var message = _parser.Parse(cmdString);
+            if (message.Type == MessageType.Command)
+                ((Command) message).SendTo(_engine);
+            else
+            {
+                var res = ((Query) message).Exec(_engine);
+                _display.Show(res);
+            }
         }
     }
 }
