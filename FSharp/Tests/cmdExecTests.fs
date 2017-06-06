@@ -35,8 +35,8 @@ let ``Can display post on display``() =
         User = "pippo"; 
         Follows = list.Empty
         Posts = [
-            {Content = "Cazzo"; TimeStamp = now.AddSeconds(-10.0); User = "pippo"}
-            {Content = "Figa"; TimeStamp = now.AddSeconds(-5.0); User = "pippo"}
+                    {Content = "Cazzo"; TimeStamp = now.AddSeconds(-10.0); User = "pippo"}
+                    {Content = "Figa"; TimeStamp = now.AddSeconds(-5.0); User = "pippo"}
         ]
     }
 
@@ -56,16 +56,16 @@ let ``Can display walls`` () =
         User = "pippo"; 
         Follows = list.Empty
         Posts = [
-            {Content = "Cazzo"; TimeStamp = now.AddSeconds(-10.0); User="pippo"}
-            {Content = "Figa"; TimeStamp = now.AddSeconds(-5.0); User="pippo"}
+                    {Content = "qui"; TimeStamp = now.AddSeconds(-10.0); User="pippo"}
+                    {Content = "quo"; TimeStamp = now.AddSeconds(-5.0); User="pippo"}
         ]
     }
     let wall2 = {
         User = "pluto"; 
         Follows = list.Empty
         Posts = [
-            {Content = "paperino"; TimeStamp = now.AddSeconds(-2.0); User = "pluto"}
-            {Content = "topolino"; TimeStamp = now.AddSeconds(-1.0); User = "pluto"}
+                    {Content = "paperino"; TimeStamp = now.AddSeconds(-2.0); User = "pluto"}
+                    {Content = "topolino"; TimeStamp = now.AddSeconds(-1.0); User = "pluto"}
         ]
     }
     let walls = [wall1; wall2]
@@ -77,8 +77,8 @@ let ``Can display walls`` () =
 
     lines.[0] |> should equal "pluto - topolino (1 seconds ago)"
     lines.[1] |> should equal "pluto - paperino (2 seconds ago)"
-    lines.[2] |> should equal "pippo - Figa (5 seconds ago)"
-    lines.[3] |> should equal "pippo - Cazzo (10 seconds ago)"
+    lines.[2] |> should equal "pippo - quo (5 seconds ago)"
+    lines.[3] |> should equal "pippo - qui (10 seconds ago)"
 
 
 
