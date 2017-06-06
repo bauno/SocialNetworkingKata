@@ -11,3 +11,15 @@ type Command =
     | Read of string
     | Wall of string
 
+
+type Result = 
+    | Done
+    | Continue of Command
+
+let bind f result = 
+    match result with
+    | Done -> Done
+    | Continue cmd -> cmd |> f
+
+
+let inline (>>=) result f = bind f result

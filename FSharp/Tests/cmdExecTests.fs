@@ -3,6 +3,8 @@ module CmdExec.Test
 open SocialNetwork.Commands
 open SocialNetwork.Data
 open SocialNetwork.CmdExec
+open Microsoft.FSharp.Reflection
+
 
 open Xunit
 open FsUnit.Xunit
@@ -11,7 +13,7 @@ open System
 open System.Collections.Generic
 open System.Linq
 
-
+[<Fact>]
 let ``Can write to a wall`` () =
     
     let now = DateTime.Now
@@ -47,35 +49,30 @@ let ``Can display post on display``() =
     lines.Last() |> should equal "Cazzo (10 seconds ago)"
 
 
-[<Fact>]
-let ``Can execute post command``() =
-    let cmd = Post("Pippo", "Pluto")
-
-    let mutable posted = false
-
-    let post user message = 
-       user |> should equal "Pippo"
-       message |> should equal "Pluto"
-       posted <- true
-
-    cmd |> exec' post ignore
-
-    posted |> should be True
            
+
 [<Fact>]
-let ``Can execute read command``() =
-    let cmd = Read("Pippo")
+let ``Can execute command`` () = 
+    let mutable called = false
+    let rop = fun cmd -> called <- true        
 
-    let mutable r = false
+    exec' rop "pippo" 
 
-    let read user = 
-       user |> should equal "Pippo"       
-       r <- true
-    
-    let post user message = 
-        failwith "Error"
-    
-    cmd |> exec' post read
+    called |> should be True
 
-    r |> should be True
-           
+[<Fact>]          
+let ``Can execute post comand rop``() =
+    let rop = (fun a b -> ())
+    let cmd = Post("pippo","pluto")
+    post' rop cmd |> should equal Done
+
+
+[<Fact>]          
+let ``Can execute read comand rop``() =
+    let rop = ignore    
+    let cmd = Read("pippo")
+    read' rop cmd |> should equal Done
+
+
+
+

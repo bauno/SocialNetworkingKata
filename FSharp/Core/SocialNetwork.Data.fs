@@ -2,6 +2,7 @@ module SocialNetwork.Data
 
 open System
 
+
 type Post ={
     Content: string
     TimeStamp: DateTime

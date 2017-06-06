@@ -20,18 +20,19 @@ let displayOn display wall =
     |> Seq.iter (fun p -> display (sprintf "%s (%s)" p.Content p.NiceTime))
 
 
-let exec'' parser post cmdStr = 
-    cmdStr
-    |> parser
-    |> function
-    | Post (user, message) -> post user message    
-    | Read user -> user |> loadOrCreateWallOf |> displayOn display
-    | _ -> failwith "Invalid command!"
 
+let exec' rop cmd =
+    rop cmd
 
-let exec' post read cmd =
-    cmd
-    |> function
-    | Post(user, message) -> post user message    
-    | Read user -> read user
-    | _ -> failwith "Error"
+let post' rop cmd =
+    match cmd with
+    | Post(user, message) -> rop message user    
+                             Done
+    | _ -> Continue cmd
+
+let read' rop cmd = 
+    match cmd with
+    | Read user -> rop user
+                   Done
+    | _ -> Continue cmd
+
