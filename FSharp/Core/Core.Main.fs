@@ -5,33 +5,33 @@ open SocialNetwork.Repository
 open SocialNetwork.Commands
 open SocialNetwork.Parser
 
-let follow cmd =
+let private follow cmd =
     let followRop followed =
         loadOrCreateWallOf
         >> addFollowed followed
         >> save
     follow' followRop cmd
 
-let wall cmd =     
+let private wall cmd =     
     let wallRop =
         loadWalls' loadOrCreateWallOf
         >> showOn' display
     wall' wallRop cmd       
 
-let post cmd = 
+let private post cmd = 
     let postRop message = 
         loadOrCreateWallOf
         >> write message
         >> save
     post' postRop cmd
 
-let read cmd = 
+let private read cmd = 
     let readRop =         
         loadOrCreateWallOf
         >> displayOn' display
     read' readRop cmd
 
-let exec cmd =
+let private exec cmd =
     let execRop cmd =
         cmd
         |> post
