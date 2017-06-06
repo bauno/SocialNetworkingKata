@@ -6,6 +6,7 @@ open System
 type Post ={
     Content: string
     TimeStamp: DateTime
+    User: string
 }
 
 
@@ -18,4 +19,5 @@ type Wall = {
 type PostView = {
     Content: string
     NiceTime: string    
+    User: string
 }

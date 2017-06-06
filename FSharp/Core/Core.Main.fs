@@ -5,6 +5,19 @@ open SocialNetwork.Repository
 open SocialNetwork.Commands
 open SocialNetwork.Parser
 
+let follow cmd =
+    let followRop followed =
+        loadOrCreateWallOf
+        >> addFollowed followed
+        >> save
+    follow' followRop cmd
+
+let wall cmd =     
+    let wallRop =
+        loadWalls' loadOrCreateWallOf
+        >> showOn' display
+    wall' wallRop cmd       
+
 let post cmd = 
     let postRop message = 
         loadOrCreateWallOf
@@ -15,12 +28,14 @@ let post cmd =
 let read cmd = 
     let readRop =         
         loadOrCreateWallOf
-        >> displayOn display
+        >> displayOn' display
     read' readRop cmd
 
 let exec cmd =
     let execRop cmd =
         cmd
         |> post
-        |> (bind read)
+        >>= read
+        >>= follow
+        >>= wall
     exec' execRop cmd    

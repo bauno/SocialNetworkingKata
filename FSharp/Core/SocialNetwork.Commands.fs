@@ -1,8 +1,11 @@
 module SocialNetwork.Commands
 open SocialNetwork.Data
 
-let postPattern = @"^(.*) -> (.*)$"
+let postPattern = @"^(\w+) -> (.*)$"
 let readPattern = @"^(\w+)$"
+
+let wallPattern = @"^(\w+) wall$"
+let followPattern = @"^(\w+) follows (\w+)$"
 
 type Command =
     | Post of string*string

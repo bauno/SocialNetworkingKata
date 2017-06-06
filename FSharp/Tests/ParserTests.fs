@@ -25,3 +25,22 @@ let ``Can parse read command``() =
   |> function
   | Read u -> u |> should equal "Alice"
   |_ -> failwith "Error"
+
+[<Fact>]
+let ``Can parse wall command``() = 
+  let cmdString = "Alice wall"
+  cmdString
+  |> parse
+  |> function
+  | Wall u -> u |> should equal "Alice"
+  |_ -> failwith "Error"
+
+[<Fact>]
+let ``Can parse follow command``() = 
+  let cmdString = "Alice follows Bob"
+  cmdString
+  |> parse
+  |> function
+  | Follows(u,w) -> u |> should equal "Alice"
+                    w |> should equal "Bob"
+  |_ -> failwith "Error"  
