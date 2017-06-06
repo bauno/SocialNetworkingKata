@@ -3,3 +3,6 @@ FsUnit
 xunit
 fsunit.xunit
 chessie
+TickSpec
+specflow
+tickSpec.xUnit

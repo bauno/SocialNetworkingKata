@@ -1,45 +1,36 @@
-// Define your library scripting code here
+#r "../build/Core.dll"
 
-type Post = {
-    User: string
-    Content: string
-    TimeStamp: System.DateTime
-}
+open SocialNetwork.CmdExec
+open SocialNetwork.Parser
+open SocialNetwork.Commands
+open Core.Main
+open Microsoft.FSharp.Reflection
 
-type Command =
-    | Post of string*string
-    | Wall of string
-    | Invalid of string
-
-
-let parse (cmdStr:string) =
-    Post("pippo","pluto")
-
-let post name message =
-    printfn "%s says: %s" name message
-    {User="Pippo"; Content = "pluto"; TimeStamp = System.DateTime.Now}
-
-let exec = 
-    function
-    | Post (name,message) -> post name message |> Some
-    | _ -> None
+let toString (x:'a) = 
+    match FSharpValue.GetUnionFields(x, typeof<'a>) with
+    | case, _ -> case.Name
 
 
-let save post =
-    printfn "The post of %s containing %s is saved" post.User post.Content
-    post |> Some
+FSharpType.GetUnionCases typeof<Command>
+|> Array.iter (fun case -> printfn "%s" case.Name)
 
-    
-
-let bind f x = 
-    match x with
-    |Some x -> f x
-    |None -> x
+// let functions =  ["Post", execPost; "Read", execRead] |> dict
+let functions =  ["Post", post] |> dict
 
 
+open System.Collections.Generic
+let exec' (functions: IDictionary<string,(string -> string -> unit)>) cmdStr = 
+     let cmd = cmdStr    
+              |> parse    
+              |> toString 
+     //I hate this             
+     functions.Item cmd
 
-let rop = parse >> exec >> bind save
+let exec = exec' functions
 
-let res = "Bauno" |> parse |> exec |> bind save
+let postStr = "Alice -> Love"
 
-let res2 = "Bauno" |> rop
+exec postStr
+
+post "Alice" "love"
+

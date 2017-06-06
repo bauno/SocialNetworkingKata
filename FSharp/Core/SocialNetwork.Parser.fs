@@ -21,12 +21,12 @@ let parseReadCommand cmdStr =
     Read(user)
   else Invalid(cmdStr)
 
-let parse cmdString =
-
-    let (|PostStr|ReadStr|InvalidStr|) input =
+let (|PostStr|ReadStr|InvalidStr|) input =
         if Regex.IsMatch(input, postPattern) then PostStr(input)
         elif Regex.IsMatch(input, readPattern) then ReadStr(input)
         else InvalidStr(input)
+
+let parse cmdString =
 
     match cmdString with
     | PostStr input -> parsePostCommand input

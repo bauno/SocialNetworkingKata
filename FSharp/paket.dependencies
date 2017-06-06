@@ -8,3 +8,6 @@ nuget xunit
 nuget fsunit.xunit
 nuget xunit.runner.console
 nuget chessie
+nuget TickSpec
+nuget specflow
+nuget tickSpec.xUnit

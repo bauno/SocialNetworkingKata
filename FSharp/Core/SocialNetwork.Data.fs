@@ -13,3 +13,8 @@ type Wall = {
     Follows: string list
     Posts: Post list    
 }
+
+type PostView = {
+    Content: string
+    NiceTime: string    
+}
