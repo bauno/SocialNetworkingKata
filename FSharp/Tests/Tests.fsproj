@@ -56,6 +56,7 @@
     </Compile>
     <Compile Include="ParserTests.fs" />
     <Compile Include="cmdExecTests.fs" />
+    <Compile Include="repositoryTests.fs" />
     <Compile Include="TimeServiceTests.fs" />
     <Compile Include="acceptanceTests.fs" />
   </ItemGroup>
