@@ -1,4 +1,4 @@
-module SocialNetwork.Data
+module internal SocialNetwork.Data
 
 open System
 

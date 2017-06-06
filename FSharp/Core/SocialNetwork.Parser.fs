@@ -1,4 +1,4 @@
-module SocialNetwork.Parser
+module internal SocialNetwork.Parser
 
 open SocialNetwork.Commands
 

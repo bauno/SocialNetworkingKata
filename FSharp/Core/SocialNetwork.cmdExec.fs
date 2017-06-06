@@ -1,4 +1,4 @@
-module SocialNetwork.CmdExec
+module internal SocialNetwork.CmdExec
 
 open SocialNetwork.Commands
 open SocialNetwork.Parser
@@ -67,4 +67,4 @@ let showOn' display walls =
     |> List.sortByDescending (fun p -> p.TimeStamp)
     |> List.map(fun p -> {Content=p.Content; NiceTime = TimeService.NiceTime(p.TimeStamp); User = p.User} 
                          |> fun p -> (sprintf "%s - %s (%s)" p.User p.Content p.NiceTime))    
-    |> List.iter display     
+    |> List.iter display

@@ -1,4 +1,4 @@
-module SocialNetwork.Repository
+module internal SocialNetwork.Repository
 
 open System.Collections.Generic
 

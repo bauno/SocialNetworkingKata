@@ -38,4 +38,7 @@ let exec cmd =
         >>= read
         >>= follow
         >>= wall
-    exec' execRop cmd    
+    exec' execRop cmd |> ignore 
+
+let enter =
+    parse >> exec    

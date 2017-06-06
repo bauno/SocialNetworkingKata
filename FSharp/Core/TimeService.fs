@@ -1,4 +1,4 @@
-module TimeService
+module internal TimeService
 
 open System
 

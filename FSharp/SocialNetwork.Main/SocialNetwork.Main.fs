@@ -1,9 +1,7 @@
 module SocialNetwork.Main
 
-open SocialNetwork.CmdExec
 open SocialNetwork.Commands
 open SocialNetwork.Core
-open SocialNetwork.Parser
 
 
 [<EntryPoint>]
@@ -13,8 +11,8 @@ let main argv =
         prompt()
         System.Console.ReadLine()
         |> function
-        | "q" -> exit(0)        
-        | cmd -> cmd |> parse |> exec |> ignore          
+        | "q" -> exit 0
+        | cmd -> cmd |> enter
         readLine()
     readLine()
     0 // return an integer exit code
