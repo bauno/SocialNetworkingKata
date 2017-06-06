@@ -26,3 +26,20 @@ let ``Can crud wall`` () =
     savedWall.Follows |> should equal ["pluto"]
     savedWall.Posts |> should equal [post]
 
+    let newPost = {Content = "Cazzo"; TimeStamp = now.AddSeconds(-10.0)}
+
+    let updatedWall = {
+        savedWall with 
+                  Posts = savedWall.Posts @ [newPost]; 
+                  Follows = savedWall.Follows @ ["paperino"]
+                  }
+
+    save updatedWall
+
+    let lastWall = loadOrCreateWallOf user
+
+    lastWall.User |> should equal user
+    lastWall.Follows |> should equal ["pluto"; "paperino"]
+    lastWall.Posts |> should equal [post; newPost]
+     
+
