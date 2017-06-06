@@ -19,11 +19,11 @@ let ``Can write to a wall`` () =
     let now = DateTime.Now
     TimeService.testNow <- Some now
     
-    let post = {Content = "Figa"; TimeStamp = now.AddSeconds(-20.0); User = "Bauno"}
+    let post = {Content = "Quo"; TimeStamp = now.AddSeconds(-20.0); User = "Bauno"}
     let wall = {User = "Bauno"; Follows = list.Empty; Posts = [post] }
     
-    let writtenWAll = write "Cazzo" wall    
-    let modWall = {wall with Posts = wall.Posts@[{Content = "Cazzo"; TimeStamp = now; User = "Bauno"}]}
+    let writtenWAll = write "Qui" wall    
+    let modWall = {wall with Posts = wall.Posts@[{Content = "Qui"; TimeStamp = now; User = "Bauno"}]}
 
     writtenWAll |> should equal modWall
 
@@ -35,8 +35,8 @@ let ``Can display post on display``() =
         User = "pippo"; 
         Follows = list.Empty
         Posts = [
-                    {Content = "Cazzo"; TimeStamp = now.AddSeconds(-10.0); User = "pippo"}
-                    {Content = "Figa"; TimeStamp = now.AddSeconds(-5.0); User = "pippo"}
+                    {Content = "Qui"; TimeStamp = now.AddSeconds(-10.0); User = "pippo"}
+                    {Content = "Quo"; TimeStamp = now.AddSeconds(-5.0); User = "pippo"}
         ]
     }
 
@@ -45,8 +45,8 @@ let ``Can display post on display``() =
 
     displayOn' display wall
 
-    lines.First() |> should equal "Figa (5 seconds ago)"
-    lines.Last() |> should equal "Cazzo (10 seconds ago)"
+    lines.First() |> should equal "Quo (5 seconds ago)"
+    lines.Last() |> should equal "Qui (10 seconds ago)"
 
 [<Fact>]
 let ``Can display walls`` () =

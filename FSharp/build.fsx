@@ -46,8 +46,8 @@ Target "Deploy" (fun _ ->
 // Build order
 "Clean"
   ==> "Build"
-  ==> "Deploy"
   ==> "Test"
+  ==> "Deploy"
 
 // start build
 RunTargetOrDefault "Test"
