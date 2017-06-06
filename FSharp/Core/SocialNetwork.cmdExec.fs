@@ -20,8 +20,7 @@ let displayOn' display wall =
     |> Seq.iter (fun p -> display (sprintf "%s (%s)" p.Content p.NiceTime))
 
 
-let addFollowed followed (wall:Wall) =
-    printfn "Adding %s to follower %s" followed wall.User
+let addFollowed followed (wall:Wall) =    
     {wall with Follows = wall.Follows @ [followed]}
 
 
