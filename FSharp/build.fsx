@@ -35,6 +35,8 @@ Target "Build" (fun _ ->
 Target "Test" (fun _ ->
     !! "/**/build/Tests.dll"
     |> xUnit2 (fun p -> { p with HtmlOutputPath = Some (buildDir @@ "xunit.html") })
+    !! "/**/build/Tests.dll"
+    |> NUnit3 (id)
 )
 
 Target "Deploy" (fun _ ->

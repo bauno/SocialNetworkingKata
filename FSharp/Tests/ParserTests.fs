@@ -2,7 +2,6 @@ module Tests
 
 open Xunit
 open FsUnit.Xunit
-open Chessie.ErrorHandling
 open SocialNetwork.Parser
 open SocialNetwork.Commands
 

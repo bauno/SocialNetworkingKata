@@ -7,7 +7,5 @@ nuget FsUnit
 nuget xunit
 nuget fsunit.xunit
 nuget xunit.runner.console
-nuget chessie
-nuget TickSpec
-nuget specflow
-nuget tickSpec.xUnit
+nuget nunit
+nuget nunit.console
