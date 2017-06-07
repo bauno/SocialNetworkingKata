@@ -30,7 +30,7 @@ let private read cmd =
         loadOrCreateWallOf
         >> displayOn' display
     read' readRop cmd
-
+    
 let private exec cmd =
     let execRop cmd =
         cmd
