@@ -37,18 +37,17 @@ let ``minutes ago``(user,message,minutes:int) continuation =
   continuation
 
 let ``When I enter``(user) continuation =
+    printfn "user: %s" user
     enter user
     continuation()
 
-let ``Then I can read`` displayedMessage continuation = 
+let ``Then I can read``(displayedMessage) = 
+    printfn "displayed message: %s" displayedMessage
     displayedMessage |> should equal "I love the weather today (5 minutes ago)"
 
 // [<Test>]
-let ``I Can read Alice posts``() =
-    ``Given`` "Alice" ``posted`` "I love the weather today" ``to her wall`` 5 ``minutes ago``
-    // ``When I enter`` "Alice"
-    // ``Then I can read`` "I love the weather today (5 minutes ago)"
-
+// let ``I Can read Alice posts``() =
+//     ``Given`` "Alice" ``posted`` "I love the weather today" ``to her wall`` 5 ``minutes ago`` ``When I enter`` "Alice" ``Then I can read`` "I love the weather today (5 minutes ago)" 
 let ``Given I am dumb`` (times) continuation =
     continuation(times)
 
@@ -58,6 +57,6 @@ let ``Then I can be more dumb``(times) =
 let ``bucks`` (times) continuation =
     continuation(times)
 
-[<Test>]
+// [<Test>]
 let ``I can be dumb`` () =
     ``Given I am dumb`` 5 ``bucks`` ``Then I can be more dumb``
