@@ -40,10 +40,11 @@ let read' rop cmd =
     | _ -> Continue cmd
 
 let follow' rop cmd =
-    match cmd with
+    cmd
+    |> function
     | Follows (user, whoToFollow) -> rop whoToFollow user
                                      Done
-    |_ -> Continue cmd
+    | otherCommand -> Continue otherCommand    
 
 
 let wall' rop cmd = 
