@@ -12,6 +12,9 @@ let mutable index = 0
 
 let fakeDisplay line = 
     lines.Add(line)
+
+let mutable enter = init' fakeDisplay
+
     
 let ``Given`` (user) continuation =
     continuation (user)

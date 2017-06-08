@@ -3,19 +3,11 @@ module AcceptanceTests
 open NUnit.Framework
 open Acceptance.Steps
 
-// Scenario: Reading Alice's posts
-// Given Alice posted "I love the weather today" to her wall 5 minutes ago
-// When someone enters the command "Alice"
-// Then he can read "I love the weather today (5 minutes ago)"
-
 [<SetUp>]
 let init() =     
     lines.Clear()
     index <- 0
-    SocialNetwork.Core.fakeDisplay <- Some fakeDisplay
-    SocialNetwork.Repository.clear()
-
-
+    SocialNetwork.Repository.clear()    
 
 [<Test>]
 let ``I Can read Alice posts``() =
