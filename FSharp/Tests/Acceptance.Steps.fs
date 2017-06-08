@@ -8,6 +8,7 @@ open NUnit.Framework
 open FsUnit.Xunit
 
 let mutable lines = new List<string>()
+let mutable index = 0
 
 let fakeDisplay line = 
     lines.Add(line)
@@ -48,6 +49,9 @@ let ``When I enter``(user) =
     enter user    
 
 let ``Then I can read`` displayedMessage =     
-    lines.First() |> should equal displayedMessage
+    lines.[index] |> should equal displayedMessage
+    index <- index + 1
+
 let ``And I can read`` displayedMessage =     
-    lines.Last() |> should equal displayedMessage
+    lines.[index] |> should equal displayedMessage
+    index <- index + 1

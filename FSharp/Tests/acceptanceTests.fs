@@ -11,7 +11,9 @@ open Acceptance.Steps
 [<SetUp>]
 let init() = 
     lines.Clear()
+    index <- 0
     SocialNetwork.Core.fakeDisplay <- Some fakeDisplay
+
 
 
 [<Test>]
