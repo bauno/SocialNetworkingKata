@@ -57,7 +57,7 @@ let loadWalls' loadWall user =
     let others = wall.Follows 
                  |> Seq.map loadWall
                  |> Seq.toList
-    [wall]@others
+    [wall]@others    
 
 
 let showOn' display walls = 

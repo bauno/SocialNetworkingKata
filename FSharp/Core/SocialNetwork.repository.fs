@@ -15,3 +15,5 @@ let loadOrCreateWallOf user =
     if data.ContainsKey(user)
     then data.[user]
     else {User = user; Follows = list.Empty; Posts = list.Empty}
+
+let internal clear () = data.Clear()
