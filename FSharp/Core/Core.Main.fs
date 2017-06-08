@@ -5,6 +5,14 @@ open SocialNetwork.Repository
 open SocialNetwork.Commands
 open SocialNetwork.Parser
 
+let mutable internal fakeDisplay: ((string -> unit) option)  = None
+
+let display () = 
+    match fakeDisplay with
+    | Some d -> d
+    | None -> SocialNetwork.CmdExec.display
+              
+
 let private follow cmd =
     let followRop followed =
         loadOrCreateWallOf
@@ -15,7 +23,7 @@ let private follow cmd =
 let private wall cmd =     
     let wallRop =
         loadWalls' loadOrCreateWallOf
-        >> showOn' display
+        >> showOn' (display())
     wall' wallRop cmd       
 
 let private post cmd = 
@@ -28,7 +36,7 @@ let private post cmd =
 let private read cmd = 
     let readRop =         
         loadOrCreateWallOf
-        >> displayOn' display
+        >> displayOn' (display())
     read' readRop cmd
     
 let private exec cmd =
