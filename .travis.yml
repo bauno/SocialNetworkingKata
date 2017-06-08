@@ -1,5 +1,5 @@
 language: csharp
-solution: CSharp.sln
+#solution: CSharp.sln
 #install:
 #  - nuget install NUnit.Runners -Version 3.6.1 -OutputDirectory testrunner
 #env:
