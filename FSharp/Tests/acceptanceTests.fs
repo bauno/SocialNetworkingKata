@@ -21,48 +21,48 @@ let fakeDisplay line =
 
 [<SetUp>]
 let init() = 
+    lines.Clear()
     SocialNetwork.Core.fakeDisplay <- Some fakeDisplay
-    let now = DateTime.Now
-    let postTs = now.AddMinutes(-5.0)
-    TimeService.testNow <- Some postTs
-
-let ``Given`` (user:string) continuation =
+    
+let ``Given`` (user) continuation =
     continuation (user)
+
+let ``And`` (user) continuation = 
+    continuation(user)    
 
 let ``posted`` (user) message continuation =
     continuation (user,message)
 
-let ``to her wall`` (user,message:string) minutes continuation =
+let ``to the wall`` (user,message) minutes continuation =
     continuation(user,message,minutes)
 
-let ``minutes ago``(user,message,minutes:int) continuation =
-  
+let ``minutes ago``(user,message,(minutes:int)) =
+  let now = DateTime.Now
+  let delta = (float)(-minutes)
+  let postTs = now.AddMinutes(delta)
+  TimeService.testNow <- Some postTs
   enter (sprintf "%s -> %s" user message )
-  TimeService.testNow <- None
-  continuation
+  TimeService.testNow <- Some now
 
-let ``When I enter``(user) continuation =
-    enter user
-    continuation()
+let ``When I enter``(user) =
+    enter user    
 
-let ``Then I can read`` () displayedMessage =     
+let ``Then I can read`` displayedMessage =     
     lines.First() |> should equal displayedMessage
-
+let ``And I can read`` displayedMessage =     
+    lines.Last() |> should equal displayedMessage
 
 
 [<Test>]
 let ``I Can read Alice posts``() =
-    ``Given`` "Alice" ``posted`` "I love the weather today" ``to her wall`` 5 ``minutes ago`` ``When I enter`` "Alice" ``Then I can read`` "I love the weather today (5 minutes ago)"
+    ``Given`` "Alice" ``posted`` "I love the weather today" ``to the wall`` 5 ``minutes ago`` 
+    ``When I enter`` "Alice" 
+    ``Then I can read`` "I love the weather today (5 minutes ago)"
 
-let ``Given I am dumb`` (times) continuation =
-    continuation(times)
-
-let ``Then I can be more dumb``(times) =
-    times |> should equal 5
-
-let ``bucks`` (times) continuation =
-    continuation(times)
-
-// [<Test>]
-let ``I can be dumb`` () =
-    ``Given I am dumb`` 5 ``bucks`` ``Then I can be more dumb``
+[<Test>]
+let ``I Can read Bob's posts``() =
+    ``Given`` "Bob" ``posted`` "Damn! We lost!" ``to the wall`` 2 ``minutes ago`` 
+    ``And`` "Bob" ``posted`` "Good game though" ``to the wall`` 1 ``minutes ago``     
+    ``When I enter`` "Bob" 
+    ``Then I can read`` "Good game though (1 minutes ago)"
+    ``And I can read`` "Damn! We lost! (2 minutes ago)"
