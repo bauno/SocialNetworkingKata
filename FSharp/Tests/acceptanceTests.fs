@@ -1,56 +1,17 @@
 module AcceptanceTests
 
-open FsUnit.Xunit
-open Xunit
-open System
-open System.Collections.Generic
-open System.Linq
 open NUnit.Framework
-open SocialNetwork.Core
-
+open Acceptance.Steps
 
 // Scenario: Reading Alice's posts
 // Given Alice posted "I love the weather today" to her wall 5 minutes ago
 // When someone enters the command "Alice"
 // Then he can read "I love the weather today (5 minutes ago)"
 
-let mutable lines = new List<string>()
-
-let fakeDisplay line = 
-    lines.Add(line)
-
 [<SetUp>]
 let init() = 
     lines.Clear()
     SocialNetwork.Core.fakeDisplay <- Some fakeDisplay
-    
-let ``Given`` (user) continuation =
-    continuation (user)
-
-let ``And`` (user) continuation = 
-    continuation(user)    
-
-let ``posted`` (user) message continuation =
-    continuation (user,message)
-
-let ``to the wall`` (user,message) minutes continuation =
-    continuation(user,message,minutes)
-
-let ``minutes ago``(user,message,(minutes:int)) =
-  let now = DateTime.Now
-  let delta = (float)(-minutes)
-  let postTs = now.AddMinutes(delta)
-  TimeService.testNow <- Some postTs
-  enter (sprintf "%s -> %s" user message )
-  TimeService.testNow <- Some now
-
-let ``When I enter``(user) =
-    enter user    
-
-let ``Then I can read`` displayedMessage =     
-    lines.First() |> should equal displayedMessage
-let ``And I can read`` displayedMessage =     
-    lines.Last() |> should equal displayedMessage
 
 
 [<Test>]
@@ -66,3 +27,12 @@ let ``I Can read Bob's posts``() =
     ``When I enter`` "Bob" 
     ``Then I can read`` "Good game though (1 minutes ago)"
     ``And I can read`` "Damn! We lost! (2 minutes ago)"
+
+[<Test>]
+let ``I Can subscribe to posts``() =
+    ``Given`` "Alice" ``posted`` "I love the weather today" ``to the wall`` 5 ``minutes ago`` 
+    ``And`` "Charlie" ``posted`` "I'm in New York today! Anyone wants to have a coffee?" ``to the wall`` 2 ``seconds ago``     
+    ``And`` "Charlie" ``follows`` "Alice"
+    ``When I enter`` "Charlie wall" 
+    ``Then I can read`` "Charlie - I'm in New York today! Anyone wants to have a coffee? (2 seconds ago)"
+    ``And I can read`` "Alice - I love the weather today (5 minutes ago)"
