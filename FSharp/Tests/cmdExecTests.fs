@@ -5,15 +5,14 @@ open SocialNetwork.Data
 open SocialNetwork.CmdExec
 open Microsoft.FSharp.Reflection
 
-
-open Xunit
-open FsUnit.Xunit
+open NUnit.Framework
+open FsUnit
 
 open System
 open System.Collections.Generic
 open System.Linq
 
-[<Fact>]
+[<Test>]
 let ``Can write to a wall`` () =
     
     let now = DateTime.Now
@@ -27,7 +26,7 @@ let ``Can write to a wall`` () =
 
     writtenWAll |> should equal modWall
 
-[<Fact>]
+[<Test>]
 let ``Can display post on display``() =
     let now = DateTime.Now
     TimeService.testNow <- Some now
@@ -48,7 +47,7 @@ let ``Can display post on display``() =
     lines.First() |> should equal "Quo (5 seconds ago)"
     lines.Last() |> should equal "Qui (10 seconds ago)"
 
-[<Fact>]
+[<Test>]
 let ``Can display walls`` () =
     let now = DateTime.Now
     TimeService.testNow <- Some now
@@ -83,7 +82,7 @@ let ``Can display walls`` () =
 
 
 
-[<Fact>]    
+[<Test>]    
 let ``Can load my Wall and that of all my followers`` () =
     let pippo = {User = "pippo"; Follows = ["pluto"; "paperino"]; Posts = list.Empty}
     let pluto = {User = "pluto"; Follows = List.Empty; Posts = List.Empty}
@@ -101,7 +100,7 @@ let ``Can load my Wall and that of all my followers`` () =
 
 
 
-[<Fact>]
+[<Test>]
 let ``Can follow other user``() =
     let user = "pippo"
     let followed = "pluto"
@@ -111,7 +110,7 @@ let ``Can follow other user``() =
 
            
 
-[<Fact>]
+[<Test>]
 let ``Can execute command`` () = 
     let mutable called = false
     let rop = fun cmd -> called <- true        
@@ -120,7 +119,7 @@ let ``Can execute command`` () =
 
     called |> should be True
 
-[<Fact>]          
+[<Test>]          
 let ``Can execute post comand rop``() =
     let mutable called = false
     let rop = (fun a b -> called <- true; b |> should equal "pippo"; a |> should equal "pluto")
@@ -129,7 +128,7 @@ let ``Can execute post comand rop``() =
     called |> should be True
 
 
-[<Fact>]          
+[<Test>]          
 let ``Can execute read comand rop``() =
     let mutable called = false
     let rop = fun r -> (called <- true; r |> should equal "pippo")
@@ -138,7 +137,7 @@ let ``Can execute read comand rop``() =
     called |> should be True
 
 
-[<Fact>]
+[<Test>]
 let ``Can Execute follow command``() =
     let mutable called = false
     let rop = fun a b -> called <-true
@@ -146,7 +145,7 @@ let ``Can Execute follow command``() =
     follow' rop cmd |> should equal Done
     called |> should be True
 
-[<Fact>]
+[<Test>]
 let ``Can execute wall Command``() =
     let mutable called = false
     let rop = fun a -> ( called <- true; a |> should equal "pippo")

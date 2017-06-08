@@ -5,7 +5,7 @@ open System.Collections.Generic
 open System.Linq
 open SocialNetwork.Core
 open NUnit.Framework
-open FsUnit.Xunit
+open FsUnit
 
 let mutable lines = new List<string>()
 let mutable index = 0

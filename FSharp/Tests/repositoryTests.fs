@@ -3,10 +3,11 @@ module Repository.Test
 open SocialNetwork.Repository
 open SocialNetwork.Data
 
-open Xunit
-open FsUnit.Xunit
+open FsUnit
+open NUnit.Framework
 
-[<Fact>]
+
+[<Test>]
 let ``Can crud wall`` () =
     let user = "pippo";
     let emptyWall = loadOrCreateWallOf user

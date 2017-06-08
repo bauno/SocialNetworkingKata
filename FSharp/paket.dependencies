@@ -4,8 +4,5 @@ source https://www.nuget.org/api/v2
 nuget FAKE
 nuget FSharp.Core
 nuget FsUnit
-nuget xunit
-nuget fsunit.xunit
-nuget xunit.runner.console
 nuget nunit
 nuget nunit.console

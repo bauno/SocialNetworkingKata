@@ -1,12 +1,12 @@
 module Tests
 
-open Xunit
-open FsUnit.Xunit
+open NUnit.Framework
+open FsUnit
 open SocialNetwork.Parser
 open SocialNetwork.Commands
 
 
-[<Fact>]
+[<Test>]
 let ``Can parse post command`` () =
     let cmdString = "Alice -> I love the wweather today!"
     cmdString 
@@ -16,7 +16,7 @@ let ``Can parse post command`` () =
                      m |> should equal "I love the wweather today!"
     | _ -> failwith "Error"
 
-[<Fact>]
+[<Test>]
 let ``Can parse read command``() =
   let cmdString = "Alice"
   cmdString
@@ -25,7 +25,7 @@ let ``Can parse read command``() =
   | Read u -> u |> should equal "Alice"
   |_ -> failwith "Error"
 
-[<Fact>]
+[<Test>]
 let ``Can parse wall command``() = 
   let cmdString = "Alice wall"
   cmdString
@@ -34,7 +34,7 @@ let ``Can parse wall command``() =
   | Wall u -> u |> should equal "Alice"
   |_ -> failwith "Error"
 
-[<Fact>]
+[<Test>]
 let ``Can parse follow command``() = 
   let cmdString = "Alice follows Bob"
   cmdString

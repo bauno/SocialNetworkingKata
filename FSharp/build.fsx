@@ -32,9 +32,7 @@ Target "Build" (fun _ ->
     |> Log "AppBuild-Output: "
 )
 
-Target "Test" (fun _ ->
-    !! "/**/build/Tests.dll"
-    |> xUnit2 (fun p -> { p with HtmlOutputPath = Some (buildDir @@ "xunit.html") })
+Target "Test" (fun _ ->    
     !! "/**/build/Tests.dll"
     |> NUnit3 (id)
 )
