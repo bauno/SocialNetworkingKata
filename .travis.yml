@@ -1,15 +1,15 @@
 language: csharp
-solution: CSharp.sln
+#solution: CSharp.sln
 install:
   - nuget install NUnit.Runners -Version 3.6.1 -OutputDirectory testrunner
-env:
-  - TEST_DIR=CSharp
+#env:
+#  - TEST_DIR=CSharp
 script:
-#  - cd FSharp
-#  - ./build.sh
-  - cd $TEST_DIR
-  - nuget restore $TEST_DIR.sln
-  - xbuild /p:Configuration=Release CSharp.sln
-  - mono ../testrunner/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe ./CSharp.Tests/bin/Release/CSharp.Tests.dll
-  - mono ../testrunner/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe ./CSharp.Tests.Acceptance/bin/Release/CSharp.Tests.Acceptance.dll
+  - cd FSharp
+  - ./build.sh
+#  - cd $TEST_DIR
+#  - nuget restore $TEST_DIR.sln
+#  - xbuild /p:Configuration=Release CSharp.sln
+#  - mono ../testrunner/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe ./CSharp.Tests/bin/Release/CSharp.Tests.dll
+#  - mono ../testrunner/NUnit.ConsoleRunner.3.6.1/tools/nunit3-console.exe ./CSharp.Tests.Acceptance/bin/Release/CSharp.Tests.Acceptance.dll
   
