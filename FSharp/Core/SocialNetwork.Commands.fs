@@ -19,10 +19,8 @@ type Result =
     | Done
     | Continue of Command
 
-let bind f result = 
+
+let inline (>>=) result f =
     match result with
     | Done -> Done
-    | Continue cmd -> cmd |> f
-
-
-let inline (>>=) result f = bind f result
+    | Continue cmd -> f cmd

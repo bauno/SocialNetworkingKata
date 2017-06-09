@@ -18,7 +18,7 @@ let ``Can crud wall`` () =
 
     let now = System.DateTime.Now
     TimeService.testNow <- Some now    
-    let post = {Content = "Figa"; TimeStamp = now; User = "pippo"}
+    let post = {Content = "topolino"; TimeStamp = now; User = "pippo"}
     let fullWall = {emptyWall with Follows = ["pluto"]; Posts = [post]}
     save fullWall
     let savedWall = loadOrCreateWallOf user
@@ -27,7 +27,7 @@ let ``Can crud wall`` () =
     savedWall.Follows |> should equal ["pluto"]
     savedWall.Posts |> should equal [post]
 
-    let newPost = {Content = "Cazzo"; TimeStamp = now.AddSeconds(-10.0); User = "pippo"}
+    let newPost = {Content = "clarabella"; TimeStamp = now.AddSeconds(-10.0); User = "pippo"}
 
     let updatedWall = {
         savedWall with 
