@@ -33,6 +33,14 @@ let post' rop cmd =
                              Done
     | _ -> Continue cmd
 
+let invalid cmd = 
+    match cmd with
+    | Invalid cmd -> printfn "The command '%s' is invalid" cmd
+                     Done
+    |_ -> Continue cmd                 
+
+
+
 let read' rop cmd = 
     match cmd with
     | Read user -> rop user

@@ -39,6 +39,7 @@ let internal init' display =
             >>= read
             >>= follow
             >>= wall
+            >>= invalid
         exec' execRop cmd |> ignore 
     parse >> exec        
 
