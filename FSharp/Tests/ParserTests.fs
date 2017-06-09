@@ -4,6 +4,7 @@ open NUnit.Framework
 open FsUnit
 open SocialNetwork.Parser
 open SocialNetwork.Commands
+open SocialNetwork.Data
 
 
 [<Test>]
@@ -12,8 +13,8 @@ let ``Can parse post command`` () =
     cmdString 
     |> parse
     |> function
-    | Post (u, m) -> u |> should equal "Alice"
-                     m |> should equal "I love the wweather today!"
+    | Post (u, m) -> u |> should equal (User("Alice"))
+                     m |> should equal (Message("I love the wweather today!"))
     | _ -> failwith "Error"
 
 [<Test>]
@@ -22,7 +23,7 @@ let ``Can parse read command``() =
   cmdString
   |> parse
   |> function
-  | Read u -> u |> should equal "Alice"
+  | Read u -> u |> should equal (User("Alice"))
   |_ -> failwith "Error"
 
 [<Test>]
@@ -31,7 +32,7 @@ let ``Can parse wall command``() =
   cmdString
   |> parse
   |> function
-  | Wall u -> u |> should equal "Alice"
+  | Wall u -> u |> should equal (User("Alice"))
   |_ -> failwith "Error"
 
 [<Test>]
@@ -40,6 +41,6 @@ let ``Can parse follow command``() =
   cmdString
   |> parse
   |> function
-  | Follows(u,w) -> u |> should equal "Alice"
-                    w |> should equal "Bob"
+  | Follows(u,w) -> u |> should equal (User("Alice"))
+                    w |> should equal (Followed("Bob"))
   |_ -> failwith "Error"  

@@ -12,8 +12,9 @@ let save (wall: Wall) =
     else data.Add(wall.User, wall)
 
 let loadOrCreateWallOf user = 
-    if data.ContainsKey(user)
-    then data.[user]
-    else {User = user; Follows = list.Empty; Posts = list.Empty}
+    let (User u) = user
+    if data.ContainsKey(u)
+    then data.[u]
+    else {User = u; Follows = list.Empty; Posts = list.Empty}
 
 let internal clear () = data.Clear()

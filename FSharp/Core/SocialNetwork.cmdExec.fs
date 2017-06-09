@@ -6,8 +6,9 @@ open SocialNetwork.Repository
 open SocialNetwork.Data
 open TimeService
 
-let write message wall =  
-  {wall with Posts = wall.Posts @ [{Content = message; TimeStamp = TimeService.Now(); User = wall.User}]}  
+let write message wall = 
+  let (Message m) = message
+  {wall with Posts = wall.Posts @ [{Content = m; TimeStamp = TimeService.Now(); User = wall.User}]}  
     
 
 let display line = 
@@ -20,8 +21,10 @@ let displayOn' display wall =
     |> Seq.iter (fun p -> display (sprintf "%s (%s)" p.Content p.NiceTime))
 
 
-let addFollowed followed (wall:Wall) =    
-    {wall with Follows = wall.Follows @ [followed]}
+let addFollowed (followed:Followed) (wall:Wall) =    
+    // let follow = match followed with Followed f -> f
+    let (Followed f) = followed
+    {wall with Follows = wall.Follows @ [f]}
 
 
 let exec' rop cmd =
@@ -61,10 +64,10 @@ let wall' rop cmd =
                    Done
     |_ -> Continue cmd                      
 
-let loadWalls' loadWall user = 
+let loadWalls' loadWall (user: User) = 
     let wall = loadWall user
     let others = wall.Follows 
-                 |> Seq.map loadWall
+                 |> Seq.map (User >> loadWall)
                  |> Seq.toList
     [wall]@others    
 

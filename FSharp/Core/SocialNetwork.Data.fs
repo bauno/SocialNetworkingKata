@@ -1,6 +1,12 @@
-module internal SocialNetwork.Data
+module SocialNetwork.Data
 
 open System
+
+type User= User of string
+
+type Followed = Followed of string
+
+type Message = Message of string
 
 
 type Post ={
