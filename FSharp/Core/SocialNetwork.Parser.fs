@@ -4,6 +4,7 @@ open SocialNetwork.Commands
 
 open System
 open System.Text.RegularExpressions
+open SocialNetwork.Data
 
 
 let parsePostCommand cmdStr =
@@ -12,14 +13,14 @@ let parsePostCommand cmdStr =
         let follower = matches.Groups.[1].Value
         let user = matches.Groups.[1].Value
         let message = matches.Groups.[2].Value
-        Post(user,message)
+        Post(User(user),Message(message))
     else Invalid(cmdStr)
 
 let parseReadCommand cmdStr =
   if Regex.IsMatch(cmdStr, readPattern) then
     let matches = Regex.Match(cmdStr, readPattern)
     let user = matches.Groups.[1].Value
-    Read(user)
+    Read(User(user))
   else Invalid(cmdStr)
 
 let parseFollowCommand cmdStr = 
@@ -27,14 +28,14 @@ let parseFollowCommand cmdStr =
         let matches = Regex.Match(cmdStr, followPattern)
         let follower = matches.Groups.[1].Value
         let followed = matches.Groups.[2].Value
-        Follows(follower, followed)
+        Follows(follower |> User, Followed(followed))
     else Invalid(cmdStr)
 
 let parseWallCommand cmdStr =     
     if Regex.IsMatch(cmdStr, wallPattern) then
         let matches = Regex.Match(cmdStr, wallPattern)
         let user = matches.Groups.[1].Value
-        Wall(user)
+        Wall(User(user))
     else Invalid(cmdStr)
 
 let (|PostStr|ReadStr|WallStr|FollowStr|InvalidStr|) input =

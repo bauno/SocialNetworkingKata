@@ -1,18 +1,30 @@
-module internal SocialNetwork.Data
+module SocialNetwork.Data
 
 open System
+
+type User= User of string
+
+let xUser (User user) = user
+
+type Followed = Followed of string
+
+let xFollowed (Followed f) = f
+
+type Message = Message of string
+
+let xMessage (Message m) = m
 
 
 type Post ={
     Content: string
     TimeStamp: DateTime
-    User: string
+    User: User
 }
 
 
 type Wall = {
-    User: string
-    Follows: string list
+    User: User    
+    Follows: Followed list
     Posts: Post list    
 }
 

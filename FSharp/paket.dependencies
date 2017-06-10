@@ -1,11 +1,6 @@
-source https://dotnet.myget.org/F/dotnet-core/api/v3/index.json
-source https://dotnet.myget.org/F/cli-deps/api/v3/index.json
 source https://www.nuget.org/api/v2
 nuget FAKE
 nuget FSharp.Core
 nuget FsUnit
-nuget xunit
-nuget fsunit.xunit
-nuget xunit.runner.console
 nuget nunit
 nuget nunit.console
