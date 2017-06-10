@@ -36,7 +36,7 @@ let ``seconds ago`` (user, message, seconds) =
     enter (sprintf "%s -> %s" user message )
     TimeService.testNow <- Some now
 
-let ``minutes ago``(user,message,(minutes:int)) =
+let ``minutes ago``(user,message,minutes) =
   let now = DateTime.Now
   let delta = (float)minutes
   let postTs = now.AddMinutes(-delta)
