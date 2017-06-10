@@ -7,8 +7,7 @@ open SocialNetwork.Data
 open TimeService
 
 let write message wall = 
-  let (Message m) = message
-  {wall with Posts = wall.Posts @ [{Content = m; TimeStamp = TimeService.Now(); User = wall.User}]}  
+  {wall with Posts = wall.Posts @ [{Content = xMessage message; TimeStamp = TimeService.Now(); User = wall.User}]}  
     
 
 let display line = 

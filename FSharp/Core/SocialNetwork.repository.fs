@@ -12,7 +12,7 @@ let save (wall: Wall) =
     else data.Add(wall.User, wall)
 
 let loadOrCreateWallOf user = 
-    let u = SocialNetwork.Data.user user 
+    let u = xUser user 
     if data.ContainsKey(u)
     then data.[u]
     else {User = u; Follows = list.Empty; Posts = list.Empty}
