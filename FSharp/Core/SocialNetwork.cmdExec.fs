@@ -20,10 +20,8 @@ let displayOn' display wall =
     |> Seq.iter (fun p -> display (sprintf "%s (%s)" p.Content p.NiceTime))
 
 
-let addFollowed (followed:Followed) (wall:Wall) =    
-    // let follow = match followed with Followed f -> f
-    let (Followed f) = followed
-    {wall with Follows = wall.Follows @ [f |> Followed]}
+let addFollowed followed wall =        
+    {wall with Follows = wall.Follows @ [followed]}
 
 
 let exec' rop cmd =
