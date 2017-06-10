@@ -18,11 +18,11 @@ let ``Can write to a wall`` () =
     let now = DateTime.Now
     TimeService.testNow <- Some now
     
-    let post = {Content = "Quo"; TimeStamp = now.AddSeconds(-20.0); User = "Bauno"}
-    let wall = {User = "Bauno"; Follows = list.Empty; Posts = [post] }
+    let post = {Content = "Quo"; TimeStamp = now.AddSeconds(-20.0); User = "Bauno"|> User}
+    let wall = {User = "Bauno"|> User; Follows = list.Empty; Posts = [post] }
     
     let writtenWAll = write (Message("Qui")) wall    
-    let modWall = {wall with Posts = wall.Posts@[{Content = "Qui"; TimeStamp = now; User = "Bauno"}]}
+    let modWall = {wall with Posts = wall.Posts@[{Content = "Qui"; TimeStamp = now; User = "Bauno"|> User}]}
 
     writtenWAll |> should equal modWall
 
@@ -31,11 +31,11 @@ let ``Can display post on display``() =
     let now = DateTime.Now
     TimeService.testNow <- Some now
     let wall = {
-        User = "pippo"; 
+        User = "pippo" |> User; 
         Follows = list.Empty
         Posts = [
-                    {Content = "Qui"; TimeStamp = now.AddSeconds(-10.0); User = "pippo"}
-                    {Content = "Quo"; TimeStamp = now.AddSeconds(-5.0); User = "pippo"}
+                    {Content = "Qui"; TimeStamp = now.AddSeconds(-10.0); User = "pippo"|> User}
+                    {Content = "Quo"; TimeStamp = now.AddSeconds(-5.0); User = "pippo"|> User}
         ]
     }
 
@@ -52,19 +52,19 @@ let ``Can display walls`` () =
     let now = DateTime.Now
     TimeService.testNow <- Some now
     let wall1 = {
-        User = "pippo"; 
+        User = "pippo"|> User; 
         Follows = list.Empty
         Posts = [
-                    {Content = "qui"; TimeStamp = now.AddSeconds(-10.0); User="pippo"}
-                    {Content = "quo"; TimeStamp = now.AddSeconds(-5.0); User="pippo"}
+                    {Content = "qui"; TimeStamp = now.AddSeconds(-10.0); User="pippo"|> User}
+                    {Content = "quo"; TimeStamp = now.AddSeconds(-5.0); User="pippo"|> User}
         ]
     }
     let wall2 = {
-        User = "pluto"; 
+        User = "pluto"|> User; 
         Follows = list.Empty
         Posts = [
-                    {Content = "paperino"; TimeStamp = now.AddSeconds(-2.0); User = "pluto"}
-                    {Content = "topolino"; TimeStamp = now.AddSeconds(-1.0); User = "pluto"}
+                    {Content = "paperino"; TimeStamp = now.AddSeconds(-2.0); User = "pluto"|> User}
+                    {Content = "topolino"; TimeStamp = now.AddSeconds(-1.0); User = "pluto"|> User}
         ]
     }
     let walls = [wall1; wall2]
@@ -84,9 +84,9 @@ let ``Can display walls`` () =
 
 [<Test>]    
 let ``Can load my Wall and that of all my followers`` () =
-    let pippo = {User = "pippo"; Follows = ["pluto"; "paperino"]; Posts = list.Empty}
-    let pluto = {User = "pluto"; Follows = List.Empty; Posts = List.Empty}
-    let paperino = {pluto with User = "paperino"}
+    let pippo = {User = "pippo"|> User; Follows = ["pluto" |> Followed; "paperino" |> Followed]; Posts = list.Empty}
+    let pluto = {User = "pluto"|> User; Follows = List.Empty; Posts = List.Empty}
+    let paperino = {pluto with User = "paperino"|> User}
 
     let loadWall user = 
         let (User u) = user
@@ -105,8 +105,8 @@ let ``Can load my Wall and that of all my followers`` () =
 let ``Can follow other user``() =
     let user = "pippo"
     let followed = "pluto"
-    let wall = {User = user; Follows = ["paperino"]; Posts = list.Empty}
-    addFollowed (Followed(followed)) wall |> should equal {wall with Follows = ["paperino"; "pluto"]}
+    let wall = {User = user|> User; Follows = ["paperino" |> Followed]; Posts = list.Empty}
+    addFollowed (Followed(followed)) wall |> should equal {wall with Follows = ["paperino" |> Followed; "pluto" |> Followed]}
     
 
            

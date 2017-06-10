@@ -16,14 +16,14 @@ let display line =
 let displayOn' display wall =
     wall.Posts
     |> Seq.sortByDescending(fun p -> p.TimeStamp)
-    |> Seq.map(fun p -> {Content = p.Content; NiceTime = p.TimeStamp |> TimeService.NiceTime; User = wall.User})
+    |> Seq.map(fun p -> {Content = p.Content; NiceTime = p.TimeStamp |> TimeService.NiceTime; User = wall.User |> xUser})
     |> Seq.iter (fun p -> display (sprintf "%s (%s)" p.Content p.NiceTime))
 
 
 let addFollowed (followed:Followed) (wall:Wall) =    
     // let follow = match followed with Followed f -> f
     let (Followed f) = followed
-    {wall with Follows = wall.Follows @ [f]}
+    {wall with Follows = wall.Follows @ [f |> Followed]}
 
 
 let exec' rop cmd =
@@ -65,8 +65,8 @@ let wall' rop cmd =
 
 let loadWalls' loadWall (user: User) = 
     let wall = loadWall user
-    let others = wall.Follows 
-                 |> Seq.map (User >> loadWall)
+    let others = wall.Follows                     
+                 |> Seq.map (xFollowed >> User >> loadWall)
                  |> Seq.toList
     [wall]@others    
 
@@ -76,6 +76,6 @@ let showOn' display walls =
     walls
     |> List.collect (fun wall -> wall.Posts)
     |> List.sortByDescending (fun p -> p.TimeStamp)
-    |> List.map(fun p -> {Content=p.Content; NiceTime = TimeService.NiceTime(p.TimeStamp); User = p.User} 
+    |> List.map(fun p -> {Content=p.Content; NiceTime = TimeService.NiceTime(p.TimeStamp); User = p.User |> xUser} 
                          |> fun p -> (sprintf "%s - %s (%s)" p.User p.Content p.NiceTime))    
     |> List.iter display

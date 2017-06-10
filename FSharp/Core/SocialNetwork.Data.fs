@@ -18,13 +18,13 @@ let xMessage (Message m) = m
 type Post ={
     Content: string
     TimeStamp: DateTime
-    User: string
+    User: User
 }
 
 
 type Wall = {
-    User: string
-    Follows: string list
+    User: User    
+    Follows: Followed list
     Posts: Post list    
 }
 
