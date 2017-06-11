@@ -12,12 +12,14 @@ let internal init' display =
             >> addFollowed followed
             >> save
         follow' followRop cmd
+    
 
-    let wall cmd =     
-        let wallRop =
-            loadWalls' loadOrCreateWallOf
+    let wall cmd =
+        let wallrop =
+            loadOrCreateWallOf
+            >> loadWalls' loadOrCreateWallOf
             >> showOn' display
-        wall' wallRop cmd       
+        wall' wallrop cmd
 
     let post cmd = 
         let postRop message = 

@@ -97,7 +97,7 @@ let ``Can load my Wall and that of all my followers`` () =
         | _ -> failwith "error"
     
 
-    loadWalls' loadWall (User("pippo")) |> should equal [pippo; pluto; paperino]
+    loadWalls' loadWall pippo |> should equal [pippo; pluto; paperino]
 
 
 

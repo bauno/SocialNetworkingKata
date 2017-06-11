@@ -61,12 +61,13 @@ let wall' rop cmd =
                    Done
     |_ -> Continue cmd                      
 
-let loadWalls' loadWall (user: User) = 
-    let wall = loadWall user
-    let others = wall.Follows                     
+
+
+let loadWalls' loadWall wall = 
+    let others = wall.Follows
                  |> Seq.map (xFollowed >> User >> loadWall)
                  |> Seq.toList
-    [wall]@others    
+    [wall]@others
 
 
 let showOn' display walls = 
