@@ -16,7 +16,7 @@ let xMessage (Message m) = m
 
 
 type Post ={
-    Content: string
+    Content: Message
     TimeStamp: DateTime
     User: User
 }

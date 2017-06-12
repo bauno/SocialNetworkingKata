@@ -18,11 +18,11 @@ let ``Can write to a wall`` () =
     let now = DateTime.Now
     TimeService.testNow <- Some now
     
-    let post = {Content = "Quo"; TimeStamp = now.AddSeconds(-20.0); User = "Bauno"|> User}
+    let post = {Content = Message "Quo"; TimeStamp = now.AddSeconds(-20.0); User = "Bauno"|> User}
     let wall = {User = "Bauno"|> User; Follows = list.Empty; Posts = [post] }
     
     let writtenWAll = write (Message("Qui")) wall    
-    let modWall = {wall with Posts = wall.Posts@[{Content = "Qui"; TimeStamp = now; User = "Bauno"|> User}]}
+    let modWall = {wall with Posts = wall.Posts@[{Content = Message "Qui"; TimeStamp = now; User = "Bauno"|> User}]}
 
     writtenWAll |> should equal modWall
 
@@ -34,8 +34,8 @@ let ``Can display post on display``() =
         User = "pippo" |> User; 
         Follows = list.Empty
         Posts = [
-                    {Content = "Qui"; TimeStamp = now.AddSeconds(-10.0); User = "pippo"|> User}
-                    {Content = "Quo"; TimeStamp = now.AddSeconds(-5.0); User = "pippo"|> User}
+                    {Content = Message"Qui"; TimeStamp = now.AddSeconds(-10.0); User = "pippo"|> User}
+                    {Content = Message"Quo"; TimeStamp = now.AddSeconds(-5.0); User = "pippo"|> User}
         ]
     }
 
@@ -55,16 +55,16 @@ let ``Can display walls`` () =
         User = "pippo"|> User; 
         Follows = list.Empty
         Posts = [
-                    {Content = "qui"; TimeStamp = now.AddSeconds(-10.0); User="pippo"|> User}
-                    {Content = "quo"; TimeStamp = now.AddSeconds(-5.0); User="pippo"|> User}
+                    {Content = Message"qui"; TimeStamp = now.AddSeconds(-10.0); User="pippo"|> User}
+                    {Content = Message"quo"; TimeStamp = now.AddSeconds(-5.0); User="pippo"|> User}
         ]
     }
     let wall2 = {
         User = "pluto"|> User; 
         Follows = list.Empty
         Posts = [
-                    {Content = "paperino"; TimeStamp = now.AddSeconds(-2.0); User = "pluto"|> User}
-                    {Content = "topolino"; TimeStamp = now.AddSeconds(-1.0); User = "pluto"|> User}
+                    {Content = Message"paperino"; TimeStamp = now.AddSeconds(-2.0); User = "pluto"|> User}
+                    {Content = Message"topolino"; TimeStamp = now.AddSeconds(-1.0); User = "pluto"|> User}
         ]
     }
     let walls = [wall1; wall2]
