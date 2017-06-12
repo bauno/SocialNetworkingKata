@@ -44,7 +44,6 @@
     <Compile Include="Properties/AssemblyInfo.fs" />
     <Compile Include="SocialNetwork.repository.fs" />
     <Compile Include="SocialNetwork.cmdExec.fs" />
-    <None Include="Script.fsx" />
     <Compile Include="Core.Main.fs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
