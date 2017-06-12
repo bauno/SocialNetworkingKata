@@ -4,18 +4,16 @@ open System.Collections.Generic
 
 open SocialNetwork.Data
 
-let private data = new Dictionary<string, Wall>()
+let private data = new Dictionary<User, Wall>()
 
-let save (wall: Wall) =
-    let user = wall.User |> xUser
-    if data.ContainsKey(user)
-        then data.[user] <- wall                          
-    else data.Add(user, wall)
+let save (wall: Wall) =    
+    if data.ContainsKey(wall.User)
+        then data.[wall.User] <- wall                          
+    else data.Add(wall.User, wall)
 
 let loadOrCreateWallOf user = 
-    let u = xUser user 
-    if data.ContainsKey(u)
-    then data.[u]
+    if data.ContainsKey(user)
+    then data.[user]
     else {User = user; Follows = list.Empty; Posts = list.Empty}
 
 let internal clear () = data.Clear()

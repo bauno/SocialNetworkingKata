@@ -9,10 +9,10 @@ open NUnit.Framework
 
 [<Test>]
 let ``Can crud wall`` () =
-    let user = "pippo";
-    let emptyWall = user |> User |>  loadOrCreateWallOf 
+    let user = User "pippo";
+    let emptyWall = user  |>  loadOrCreateWallOf 
 
-    emptyWall.User |> xUser |> should equal user    
+    emptyWall.User |>  should equal user    
     emptyWall.Follows |> should be Empty   
     emptyWall.Posts |> should be Empty
 
@@ -21,9 +21,9 @@ let ``Can crud wall`` () =
     let post = {Content = "topolino"; TimeStamp = now; User = "pippo" |> User}
     let fullWall = {emptyWall with Follows = ["pluto" |> Followed]; Posts = [post]}
     save fullWall
-    let savedWall = user |> User |> loadOrCreateWallOf     
+    let savedWall = user |> loadOrCreateWallOf     
 
-    savedWall.User |> xUser |> should equal user
+    savedWall.User  |> should equal user
     savedWall.Follows |> should equal ["pluto" |> Followed]
     savedWall.Posts |> should equal [post]
 
@@ -37,9 +37,9 @@ let ``Can crud wall`` () =
 
     save updatedWall
 
-    let lastWall = loadOrCreateWallOf (User(user))
+    let lastWall = loadOrCreateWallOf user
 
-    lastWall.User |> xUser |> should equal user
+    lastWall.User  |> should equal user
     lastWall.Follows |> should equal ["pluto" |> Followed; "paperino" |> Followed]
     lastWall.Posts |> should equal [post; newPost]
      
