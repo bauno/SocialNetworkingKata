@@ -25,10 +25,6 @@ namespace CSharp.Core.Commands
             socialNetwork.Post(_user, _message);
             return new Nothing();
         }
-
-        public void ShowOn(Display display)
-        {
-            
-        }
+        
     }
 }

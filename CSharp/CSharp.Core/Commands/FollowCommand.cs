@@ -28,10 +28,6 @@ namespace CSharp.Core.Commands
             socialNetwork.Follow(_user, _who);
             return new Nothing();
         }
-
-        public void ShowOn(Display display)
-        {
-            
-        }
+       
     }
 }
