@@ -6,9 +6,9 @@ type User= User of string
 
 let xUser (User user) = user
 
-type Followed = Followed of string
+type Followed = Followed of User
 
-let xFollowed (Followed f) = f
+let xFollowed (Followed f) = f 
 
 type Message = Message of string
 

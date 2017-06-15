@@ -28,7 +28,7 @@ let parseFollowCommand cmdStr =
         let matches = Regex.Match(cmdStr, followPattern)
         let follower = matches.Groups.[1].Value
         let followed = matches.Groups.[2].Value
-        Follows(follower |> User, Followed(followed))
+        Follows(follower |> User, Followed(User(followed)))
     else Invalid(cmdStr)
 
 let parseWallCommand cmdStr =     

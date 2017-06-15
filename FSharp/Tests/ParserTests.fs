@@ -42,5 +42,5 @@ let ``Can parse follow command``() =
   |> parse
   |> function
   | Follows(u,w) -> u |> xUser |> should equal "Alice"
-                    w |> xFollowed |> should equal "Bob"
+                    w |> xFollowed |> should equal (User("Bob"))
   |_ -> failwith "Error"  

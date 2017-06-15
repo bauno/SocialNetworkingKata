@@ -65,7 +65,7 @@ let wall' rop cmd =
 
 let loadWalls' loadWall wall = 
     let others = wall.Follows
-                 |> Seq.map (xFollowed >> User >> loadWall)
+                 |> Seq.map (xFollowed >> loadWall)
                  |> Seq.toList
     [wall]@others
 

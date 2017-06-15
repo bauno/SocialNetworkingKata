@@ -84,7 +84,7 @@ let ``Can display walls`` () =
 
 [<Test>]    
 let ``Can load my Wall and that of all my followers`` () =
-    let pippo = {User = "pippo"|> User; Follows = ["pluto" |> Followed; "paperino" |> Followed]; Posts = list.Empty}
+    let pippo = {User = "pippo"|> User; Follows = ["pluto" |> User |> Followed; "paperino" |> User |> Followed]; Posts = list.Empty}
     let pluto = {User = "pluto"|> User; Follows = List.Empty; Posts = List.Empty}
     let paperino = {pluto with User = "paperino"|> User}
 
@@ -104,9 +104,9 @@ let ``Can load my Wall and that of all my followers`` () =
 [<Test>]
 let ``Can follow other user``() =
     let user = "pippo"
-    let followed = "pluto"
-    let wall = {User = user|> User; Follows = ["paperino" |> Followed]; Posts = list.Empty}
-    addFollowed (Followed(followed)) wall |> should equal {wall with Follows = ["paperino" |> Followed; "pluto" |> Followed]}
+    let followed = User("pluto")
+    let wall = {User = user|> User; Follows = [User("paperino") |> Followed]; Posts = list.Empty}
+    addFollowed (Followed(followed)) wall |> should equal {wall with Follows = ["paperino" |> User |> Followed; "pluto" |> User |> Followed]}
     
 
            
@@ -142,7 +142,7 @@ let ``Can execute read comand rop``() =
 let ``Can Execute follow command``() =
     let mutable called = false
     let rop = fun a b -> called <-true
-    let cmd = Follows(User("pippo"), Followed( "pluto"))
+    let cmd = Follows(User("pippo"), Followed( "pluto" |> User))
     follow' rop cmd |> should equal Done
     called |> should be True
 
