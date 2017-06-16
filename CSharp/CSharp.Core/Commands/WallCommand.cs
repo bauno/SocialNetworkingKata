@@ -22,7 +22,6 @@ namespace CSharp.Core.Commands
         {
             if (user == null) throw new ArgumentNullException(nameof(user));
             _user = user;
-
             
         }
 

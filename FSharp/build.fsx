@@ -32,7 +32,7 @@ Target "Build" (fun _ ->
     |> Log "AppBuild-Output: "
 )
 
-Target "Test" (fun _ ->    
+Target "Test" (fun _ ->
     !! "/**/build/Tests.dll"
     |> NUnit3 (id)
 )
