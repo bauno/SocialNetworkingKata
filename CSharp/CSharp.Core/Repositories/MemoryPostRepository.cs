@@ -14,14 +14,13 @@ namespace CSharp.Core.Repositories
     {
         private readonly Dictionary<string, WallDto> _walls;
 
-        public MemoryPostRepository(Dictionary<string, Post> data, Dictionary<string, WallDto> walls)
-        {
-            if (data == null) throw new ArgumentNullException(nameof(data));
+        public MemoryPostRepository(Dictionary<string, WallDto> walls)
+        {            
             if (walls == null) throw new ArgumentNullException(nameof(walls));
             _walls = walls;
         }
 
-        public MemoryPostRepository() : this(new Dictionary<string, Post>(), new Dictionary<string, WallDto>())
+        public MemoryPostRepository() : this(new Dictionary<string, WallDto>())
         {
             
         }

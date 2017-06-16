@@ -31,9 +31,8 @@ namespace CSharp.Tests
         [Test]
 
         public void ConstructorTests()
-        {
-            Assert.Throws<ArgumentNullException>(() => new MemoryPostRepository(null, new Dictionary<string, WallDto>() ));
-            Assert.Throws<ArgumentNullException>(() => new MemoryPostRepository(new Dictionary<string, Post>(), null));
+        {            
+            Assert.Throws<ArgumentNullException>(() => new MemoryPostRepository(null));
         }
                      
         
@@ -45,7 +44,7 @@ namespace CSharp.Tests
             
             var walls = new Dictionary<string, WallDto>{
                 {"pippo", _wallDto}};
-            var sut = new MemoryPostRepository(data, walls);
+            var sut = new MemoryPostRepository(walls);
             var wall = sut.LoadOrCreateWallOf("pippo");
             var wDto = (Dto<WallDto,Wall>)wall;
             var dto = wDto.ToDto();
@@ -73,7 +72,7 @@ namespace CSharp.Tests
                     }
                 }
             };
-            var sut = new MemoryPostRepository(data, walls);
+            var sut = new MemoryPostRepository(walls);
             var wall = sut.ReadWallOf("pippo");            
             Assert.AreEqual("pippo", wall.User);
             Assert.AreEqual("pluto", wall.Posts.Single().Content);
@@ -87,7 +86,7 @@ namespace CSharp.Tests
         {
             var data = new Dictionary<string, Post>();
             var walls = new Dictionary<string, WallDto>();
-            var sut = new MemoryPostRepository(data, walls);
+            var sut = new MemoryPostRepository(walls);
             var wall = sut.LoadOrCreateWallOf("pippo");
             var wDto = (Dto<WallDto,Wall>)wall;
             var dto = wDto.ToDto();
@@ -100,7 +99,7 @@ namespace CSharp.Tests
         {
             var data = new Dictionary<string, Post>();
             var walls = new Dictionary<string, WallDto>();
-            var sut = new MemoryPostRepository(data, walls);
+            var sut = new MemoryPostRepository(walls);
             
             var wall = new Wall("pippo");
             ((Dto<WallDto, Wall>)wall).Load(_wallDto);
@@ -121,7 +120,7 @@ namespace CSharp.Tests
                 {"pippo",
                 _wallDto}
             };
-            var sut = new MemoryPostRepository(data, walls);
+            var sut = new MemoryPostRepository(walls);
             var dto = new WallDto
             {
                 User = "pippo",
