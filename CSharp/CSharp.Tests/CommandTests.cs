@@ -32,6 +32,17 @@ namespace CSharp.Tests
             _socialNetwork.Verify(s => s.Post("pippo", "pluto"), Times.Once);
             Assert.IsAssignableFrom<Nothing>(res);
         }
+        
+        [Test]
+        public void CanExecMessageCommand()
+        {
+            var cmd = new MesssageCommand("pippo", "pluto", "Messaggio!!");
+            var res = cmd.SendTo(_socialNetwork.Object);
+            _socialNetwork.Verify(s => s.SendMessage("pippo","pluto", "Messaggio!!"));
+            Assert.IsAssignableFrom<Nothing>(res);
+            
+
+        }
 
 
         [Test]
@@ -82,5 +93,7 @@ namespace CSharp.Tests
             _socialNetwork.Verify(s => s.ReadWall("pippo"));
             Assert.AreEqual(new WallDisplay(wallView), res);
         }
+
+     
     }
 }

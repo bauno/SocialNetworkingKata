@@ -36,5 +36,10 @@ namespace CSharp.Core.Services
         {
             return _repository.ReadWallOf(user);
         }
+
+        public void SendMessage(string sender, string to, string message)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
