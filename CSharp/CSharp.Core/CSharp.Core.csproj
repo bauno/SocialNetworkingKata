@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Commands\FollowCommand.cs" />
     <Compile Include="Commands\Interfaces\Command.cs" />
+    <Compile Include="Commands\MesssageCommand.cs" />
     <Compile Include="Commands\PostCommand.cs" />
     <Compile Include="Commands\ReadCommand.cs" />
     <Compile Include="Commands\WallCommand.cs" />

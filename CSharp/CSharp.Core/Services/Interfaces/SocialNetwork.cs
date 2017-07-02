@@ -10,5 +10,6 @@ namespace CSharp.Core.Services.Interfaces
         WallView ReadWall(string user);
 
 
+        void SendMessage(string sender, string to, string message);
     }
 }
