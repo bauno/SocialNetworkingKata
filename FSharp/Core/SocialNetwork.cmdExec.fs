@@ -27,39 +27,38 @@ let addFollowed followed wall =
 let exec' rop cmd =
     rop cmd
 
-let post' rop cmd =
-    match cmd with
+let post' rop =
+    function
     | Post(user, message) -> rop message user
                              Done
-    | _ -> Continue cmd
+    | cmd -> Continue cmd
 
-let invalid cmd =
-    match cmd with
+let invalid =
+    function
     | Invalid cmd -> printfn "The command '%s' is invalid" cmd
                      Done
-    |_ -> Continue cmd
+    |cmd -> Continue cmd
 
 
 
-let read' rop cmd =
-    match cmd with
+let read' rop =
+    function
     | Read user -> rop user
                    Done
-    | _ -> Continue cmd
+    | cmd -> Continue cmd
 
-let follow' rop cmd =
-    cmd
-    |> function
+let follow' rop =
+    function
     | Follows (user, whoToFollow) -> rop whoToFollow user
                                      Done
     | otherCommand -> Continue otherCommand
 
 
-let wall' rop cmd =
-    match cmd with
+let wall' rop  =
+    function
     | Wall user -> rop user
                    Done
-    |_ -> Continue cmd
+    |cmd -> Continue cmd
 
 
 

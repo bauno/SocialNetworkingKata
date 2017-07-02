@@ -10,7 +10,7 @@ let init() =
     SocialNetwork.Repository.clear()    
 
 [<Test>]
-let ``I Can read Alice posts``() =
+let ``I Can read Alice's posts``() =
     ``Given`` "Alice" ``posted`` "I love the weather today" ``to the wall`` 5 ``minutes ago`` 
     ``When I enter`` "Alice" 
     ``Then I can read`` "I love the weather today (5 minutes ago)"
