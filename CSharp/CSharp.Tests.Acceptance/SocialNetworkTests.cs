@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharp.Core;
 using CSharp.Core.Factories;
 using CSharp.Core.Factories.Interfaces;
 using CSharp.Core.Repositories;
@@ -8,6 +7,7 @@ using CSharp.Core.Services;
 using CSharp.Core.Services.Interfaces;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
+using CSharpFunctionalExtensions;
 
 namespace CSharp.Tests.Acceptance
 {
@@ -57,8 +57,8 @@ namespace CSharp.Tests.Acceptance
 		public void GivenAUserPosted(string user, string message, int delta, string unit)
 		{
 			TimeService.TestNow = unit == "seconds" ? _now.AddSeconds(-delta) : _now.AddMinutes(-delta);
-			var cmdStr = $"{user} -> {message}";
-			_socialNetwork.Enter(cmdStr);
+			var cmdStr = $"{user} -> {message}";			
+			var res = _socialNetwork.Enter(cmdStr);
 			TimeService.TestNow = _now;
 
 		}

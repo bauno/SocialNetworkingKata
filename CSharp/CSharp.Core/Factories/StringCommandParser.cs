@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharp.Core.Commands.Interfaces;
 using CSharp.Core.Exceptions;
 using CSharp.Core.Factories.Interfaces;
+using CSharpFunctionalExtensions;
 
 namespace CSharp.Core.Factories
 {
@@ -12,18 +13,17 @@ namespace CSharp.Core.Factories
 
         public StringCommandParser(IEnumerable<CommandFactory> commandFactories)
         {
-            if (commandFactories == null) throw new ArgumentNullException(nameof(commandFactories));
             _commandFactories = commandFactories;
         }
 
-        public Command Parse(string cmdString)
+        public Maybe<Command> Parse(string cmdString)
         {
             foreach (var commandFactory in _commandFactories)
             {
                 var command = commandFactory.Parse(cmdString);
-                if (command != null) return command;
+                if (command.HasValue) return command;
             }
-            throw new InvalidCommandException(cmdString);
+            return null;
         }
     }
 }

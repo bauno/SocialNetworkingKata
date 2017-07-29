@@ -1,8 +1,8 @@
 using System;
 using CSharp.Core.Commands.Interfaces;
-using CSharp.Core.Exceptions;
 using CSharp.Core.Factories;
 using CSharp.Core.Factories.Interfaces;
+using CSharpFunctionalExtensions;
 using Moq;
 using NUnit.Framework;
 
@@ -28,11 +28,11 @@ namespace CSharp.Tests
             
             var fac2 = new Mock<CommandFactory>();
             fac2.Setup(f2 => f2.Parse(cmdString))
-                .Returns(cmd.Object);
+                .Returns(Maybe<Command>.From(cmd.Object));
             
             var sut = new StringCommandParser(new[]{fac1.Object, fac2.Object});
             
-            Assert.AreEqual(cmd.Object, sut.Parse(cmdString));
+            Assert.AreEqual(cmd.Object, sut.Parse(cmdString).Value);
             
         }
 
@@ -50,7 +50,7 @@ namespace CSharp.Tests
             
             var sut = new StringCommandParser(new[]{fac1.Object, fac2.Object});
             
-            Assert.Throws<InvalidCommandException>(() => sut.Parse(cmdString));
+            Assert.IsTrue(sut.Parse(cmdString).HasNoValue);
             
             fac1.Verify(f1 => f1.Parse(cmdString), Times.Once);
             fac1.Verify(f2 => f2.Parse(cmdString), Times.Once);

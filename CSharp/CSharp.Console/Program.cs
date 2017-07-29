@@ -3,6 +3,7 @@ using CSharp.Core.Factories;
 using CSharp.Core.Factories.Interfaces;
 using CSharp.Core.Repositories;
 using CSharp.Core.Services;
+using CSharpFunctionalExtensions;
 
 namespace CSharp.Console
 {
@@ -17,15 +18,10 @@ namespace CSharp.Console
                 System.Console.Write("Enter command (or 'q' to quit):");
                 var cmdStr = System.Console.ReadLine();
                 if (cmdStr == "q") return;
-                try
-                {
-                    socialNetwork.Enter(cmdStr);
-                }
-                catch (InvalidCommandException e)
-                {
-                    System.Console.WriteLine(e.Message);
-                }                                
-                
+                socialNetwork.Enter(cmdStr)
+                    .OnFailure(msg => System.Console.WriteLine(msg));
+
+
             }
         }
 

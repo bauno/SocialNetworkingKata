@@ -11,8 +11,7 @@ namespace CSharp.Core.Services
         private readonly PostRepository _repository;
 
         public SocialEngine(PostRepository repository)
-        {
-            if (repository == null) throw new ArgumentNullException(nameof(repository));
+        {            
             _repository = repository;
             
         }

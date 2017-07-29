@@ -1,7 +1,9 @@
-﻿namespace CSharp.Core.Services.Interfaces
+﻿using CSharpFunctionalExtensions;
+
+namespace CSharp.Core.Services.Interfaces
 {
     public interface IConsoleSocialNetwork
     {
-        void Enter(string cmdString);
+        Result Enter(string cmdString);
     }
 }

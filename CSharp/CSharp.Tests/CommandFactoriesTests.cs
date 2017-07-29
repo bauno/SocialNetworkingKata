@@ -1,5 +1,3 @@
-using System.CodeDom;
-using CSharp.Core;
 using CSharp.Core.Factories;
 using NUnit.Framework;
 
@@ -52,7 +50,7 @@ namespace CSharp.Tests
         {
 
             var sut = new FollowCommandFactory();
-            Assert.IsNull(sut.Parse(cmdString));
+            Assert.IsTrue(sut.Parse(cmdString).HasNoValue);
         }
         
         [TestCase("Alice")]
@@ -62,7 +60,7 @@ namespace CSharp.Tests
         {
 
             var sut = new WallCommandFactory();
-            Assert.IsNull(sut.Parse(cmdString));
+            Assert.IsTrue(sut.Parse(cmdString).HasNoValue);
         }
 
         [TestCase("Alice")]
@@ -72,7 +70,7 @@ namespace CSharp.Tests
         {
 
            var sut = new PostCommandFactory();
-           Assert.IsNull(sut.Parse(cmdString));
+           Assert.IsTrue(sut.Parse(cmdString).HasNoValue);
         }
         
         [TestCase("Alice -> I love the weather today")]
@@ -82,7 +80,7 @@ namespace CSharp.Tests
         {
 
             var sut = new ReadCommandFactory();
-            Assert.IsNull(sut.Parse(cmdString));
+            Assert.IsTrue(sut.Parse(cmdString).HasNoValue);
         }
 
 

@@ -4,6 +4,7 @@ using CSharp.Core.Commands.Interfaces;
 using CSharp.Core.Factories.Interfaces;
 using CSharp.Core.Services;
 using CSharp.Core.Services.Interfaces;
+using CSharpFunctionalExtensions;
 using Moq;
 using NUnit.Framework;
 
@@ -36,7 +37,7 @@ namespace CSharp.Tests
             
             
             _parser.Setup(p => p.Parse(cmdString))
-                .Returns(cmd.Object);
+                .Returns(Maybe<Command>.From(cmd.Object));
             cmd.Setup(c => c.SendTo(_engine.Object))
                 .Returns(display.Object);
                                   

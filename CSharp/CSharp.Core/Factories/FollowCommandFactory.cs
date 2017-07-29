@@ -2,6 +2,7 @@
 using CSharp.Core.Commands;
 using CSharp.Core.Commands.Interfaces;
 using CSharp.Core.Factories.Interfaces;
+using CSharpFunctionalExtensions;
 
 namespace CSharp.Core.Factories
 {
@@ -9,7 +10,7 @@ namespace CSharp.Core.Factories
     {
         private readonly Regex _followRegex = new Regex(@"^(\w+) follows (\w+)$");
         
-        public Command Parse(string cmdString)
+        public Maybe<Command> Parse(string cmdString)
         {
             if (_followRegex.IsMatch(cmdString))
             {
