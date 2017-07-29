@@ -20,8 +20,6 @@ namespace CSharp.Console
                 if (cmdStr == "q") return;
                 socialNetwork.Enter(cmdStr)
                     .OnFailure(msg => System.Console.WriteLine(msg));
-
-
             }
         }
 

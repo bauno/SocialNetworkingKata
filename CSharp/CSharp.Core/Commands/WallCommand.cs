@@ -19,8 +19,7 @@ namespace CSharp.Core.Commands
         
 
         public WallCommand(string user)
-        {
-            if (user == null) throw new ArgumentNullException(nameof(user));
+        {            
             _user = user;
             
         }

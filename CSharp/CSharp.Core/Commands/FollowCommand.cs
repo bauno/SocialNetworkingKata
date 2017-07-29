@@ -12,8 +12,6 @@ namespace CSharp.Core.Commands
 
         public FollowCommand(string user, string who)
         {
-            if (user == null) throw new ArgumentNullException(nameof(user));
-            if (who == null) throw new ArgumentNullException(nameof(who));
             _user = user;
             _who = who;
         }
