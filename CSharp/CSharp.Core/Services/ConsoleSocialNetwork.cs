@@ -1,5 +1,4 @@
-﻿using System;
-using CSharp.Core.Factories.Interfaces;
+﻿using CSharp.Core.Factories.Interfaces;
 using CSharp.Core.Services.Interfaces;
 using CSharpFunctionalExtensions;
 
