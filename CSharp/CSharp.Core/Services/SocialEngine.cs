@@ -38,7 +38,9 @@ namespace CSharp.Core.Services
 
         public void SendMessage(string sender, string to, string message)
         {
-            throw new NotImplementedException();
+            var wall = _repository.LoadOrCreateWallOf(to);
+            wall.SendMessage(new UserMessage{From = sender, Message = message});
+            _repository.Save(wall);
         }
     }
 }

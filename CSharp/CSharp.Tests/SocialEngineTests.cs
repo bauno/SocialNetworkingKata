@@ -65,6 +65,35 @@ namespace CSharp.Tests
                                     
         }
 
+
+        [Test]
+        public void CanSendMessage()
+        {
+            
+            var wall = new Mock<IWall>();
+
+            var message = new UserMessage {From = "Alice", Message = "ciao"};
+            var messages = new List<UserMessage>();
+
+
+            wall.Setup(w => w.SendMessage(It.IsAny<UserMessage>()))
+                .Callback<UserMessage>(m => messages.Add(m));
+            
+
+            _repository.Setup(r => r.LoadOrCreateWallOf("Bob"))
+                .Returns(wall.Object);
+                
+            _sut.SendMessage("Alice","Bob","ciao");    
+          
+            
+            
+            Assert.AreEqual("Alice", messages.Single().From);
+            Assert.AreEqual("ciao",messages.Single().Message);
+            
+            
+           
+        }
+
         [Test]
         public void CanReadWall()
         {

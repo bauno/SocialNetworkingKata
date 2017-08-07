@@ -6,5 +6,6 @@ namespace CSharp.Core.Entities.Interfaces
     {
         void AddPost(Post post);
         void Follow(string whoToFollow);
+        void SendMessage(UserMessage message);
     }
 }

@@ -1,9 +1,10 @@
 ﻿using CSharp.Core.Services.Interfaces;
+using CSharpFunctionalExtensions;
 
 namespace CSharp.Core.Commands.Interfaces
 {
     public interface Command
     {
-        Displayable SendTo(SocialNetwork socialNetwork);
+        Maybe<Displayable> SendTo(SocialNetwork socialNetwork);
     }
 }

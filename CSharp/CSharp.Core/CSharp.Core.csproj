@@ -79,6 +79,7 @@
     <Compile Include="Services\WallDisplay.cs" />
     <Compile Include="Services\WallsDisplay.cs" />
     <Compile Include="Values\Post.cs" />
+    <Compile Include="Values\UserMessage.cs" />
     <Compile Include="Views\PostView.cs" />
     <Compile Include="Views\WallView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

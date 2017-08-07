@@ -19,7 +19,6 @@ namespace CSharp.Core.Services
                         return false;
                 }
                 return true;
-
             }
             return false;
         }

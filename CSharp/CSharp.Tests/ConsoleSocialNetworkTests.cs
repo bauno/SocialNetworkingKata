@@ -39,7 +39,7 @@ namespace CSharp.Tests
             _parser.Setup(p => p.Parse(cmdString))
                 .Returns(Maybe<Command>.From(cmd.Object));
             cmd.Setup(c => c.SendTo(_engine.Object))
-                .Returns(display.Object);
+                .Returns(Maybe<Displayable>.From(display.Object));
                                   
 
             _sut.Enter(cmdString);

@@ -33,6 +33,11 @@ namespace CSharp.Core.Entities
             _follows.Add(whoToFollow);
         }
 
+        public void SendMessage(UserMessage message)
+        {
+            throw new NotImplementedException();
+        }
+
 
         WallDto Dto<WallDto, Wall>.ToDto()
         {

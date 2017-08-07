@@ -21,7 +21,12 @@ namespace CSharp.Core.Services
         {
             return _parser.Parse(cmdString)
                 .ToResult($"Cannot parse command: {cmdString}")
-                .OnSuccess(cmd => cmd.SendTo(_engine).ShowOn(_display));
+                .OnSuccess(cmd =>
+                {
+                     cmd.SendTo(_engine)
+                        .ToResult("Nothing to display")
+                        .OnSuccess(d => d.ShowOn(_display));
+                });
         }
         
     }
