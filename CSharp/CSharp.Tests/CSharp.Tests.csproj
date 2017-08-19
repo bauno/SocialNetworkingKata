@@ -59,7 +59,6 @@
     <Compile Include="CommandTests.cs" />
     <Compile Include="ConsoleDisplayTests.cs" />
     <Compile Include="ConsoleSocialNetworkTests.cs" />
-    <Compile Include="MonadTests.cs" />
     <Compile Include="PostRepositoryTests.cs" />
     <Compile Include="PostTimeStampFormatterTests.cs" />
     <Compile Include="SocialEngineTests.cs" />
