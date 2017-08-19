@@ -3,6 +3,7 @@ using CSharp.Core.Commands;
 using CSharp.Core.Commands.Interfaces;
 using CSharp.Core.Factories.Interfaces;
 using CSharpFunctionalExtensions;
+using LanguageExt;
 
 namespace CSharp.Core.Factories
 {
@@ -10,7 +11,7 @@ namespace CSharp.Core.Factories
     {
         private readonly Regex _postCmd = new Regex(@"^(.*) -> (.*)$");
         
-        public Maybe<Command> Parse(string cmdString)
+        public Option<Command> Parse(string cmdString)
         {
             if (_postCmd.IsMatch(cmdString))
             {

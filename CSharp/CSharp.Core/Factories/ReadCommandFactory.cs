@@ -3,13 +3,14 @@ using CSharp.Core.Commands;
 using CSharp.Core.Commands.Interfaces;
 using CSharp.Core.Factories.Interfaces;
 using CSharpFunctionalExtensions;
+using LanguageExt;
 
 namespace CSharp.Core.Factories
 {
     public class ReadCommandFactory : CommandFactory
     {
         private readonly Regex _readCmd = new Regex(@"^(\w+)$");
-        public Maybe<Command> Parse(string cmdString)
+        public Option<Command> Parse(string cmdString)
         {
             if (_readCmd.IsMatch(cmdString))
             {

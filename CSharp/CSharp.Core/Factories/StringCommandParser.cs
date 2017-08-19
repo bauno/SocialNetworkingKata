@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using CSharp.Core.Commands.Interfaces;
-using CSharp.Core.Exceptions;
 using CSharp.Core.Factories.Interfaces;
-using CSharpFunctionalExtensions;
+using LanguageExt;
 
 namespace CSharp.Core.Factories
 {
@@ -16,14 +15,17 @@ namespace CSharp.Core.Factories
             _commandFactories = commandFactories;
         }
 
-        public Maybe<Command> Parse(string cmdString)
+        public Either<string, Command> Parse(string cmdString)
         {
             foreach (var commandFactory in _commandFactories)
             {
-                var command = commandFactory.Parse(cmdString);
-                if (command.HasValue) return command;
+                var cmd = commandFactory
+                    .Parse(cmdString)
+                    .Some(c => c)
+                    .None(() => new InvalidCommand());
+                if (cmd.Type != CommandType.Invalid) return cmd;
             }
-            return null;
+            return $"Cannot parse command: {cmdString}";
         }
     }
 }

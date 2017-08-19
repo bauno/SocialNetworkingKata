@@ -1,10 +1,10 @@
 ﻿using CSharp.Core.Commands.Interfaces;
-using CSharpFunctionalExtensions;
+using LanguageExt;
 
 namespace CSharp.Core.Factories.Interfaces
 {
     public interface CommandParser
     {
-        Maybe<Command> Parse(string cmdString);
+        Either<string, Command> Parse(string cmdString);
     }
 }
