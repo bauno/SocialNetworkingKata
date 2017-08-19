@@ -2,6 +2,7 @@ using CSharp.Core.Commands.Interfaces;
 using CSharp.Core.Services;
 using CSharp.Core.Services.Interfaces;
 using CSharpFunctionalExtensions;
+using LanguageExt;
 
 namespace CSharp.Core.Commands
 {
@@ -18,7 +19,7 @@ namespace CSharp.Core.Commands
             _message = message;
         }
 
-        public Maybe<Displayable> SendTo(SocialNetwork socialNetwork)
+        public override Option<Displayable> SendTo(SocialNetwork socialNetwork)
         {
             socialNetwork.SendMessage(_from, _to, _message);
             return null;

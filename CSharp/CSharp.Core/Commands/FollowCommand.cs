@@ -3,6 +3,7 @@ using CSharp.Core.Commands.Interfaces;
 using CSharp.Core.Services;
 using CSharp.Core.Services.Interfaces;
 using CSharpFunctionalExtensions;
+using LanguageExt;
 
 namespace CSharp.Core.Commands
 {
@@ -22,7 +23,7 @@ namespace CSharp.Core.Commands
             return $"Type: Follow; User: {_user}; Who: {_who}";
         }
 
-        public Maybe<Displayable> SendTo(SocialNetwork socialNetwork)
+        public override Option<Displayable> SendTo(SocialNetwork socialNetwork)
         {
             socialNetwork.Follow(_user, _who);
             return null;

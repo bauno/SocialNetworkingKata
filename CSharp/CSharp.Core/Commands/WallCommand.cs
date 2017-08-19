@@ -6,6 +6,7 @@ using CSharp.Core.Services;
 using CSharp.Core.Services.Interfaces;
 using CSharp.Core.Views;
 using CSharpFunctionalExtensions;
+using LanguageExt;
 
 namespace CSharp.Core.Commands
 {
@@ -26,7 +27,7 @@ namespace CSharp.Core.Commands
             
         }
 
-        public Maybe<Displayable> SendTo(SocialNetwork socialNetwork)
+        public override Option<Displayable> SendTo(SocialNetwork socialNetwork)
         {
             var walls = new List<WallView>();
             var userWall = socialNetwork.ReadWall(_user);

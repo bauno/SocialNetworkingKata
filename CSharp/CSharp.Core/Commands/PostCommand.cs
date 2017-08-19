@@ -2,6 +2,7 @@ using CSharp.Core.Commands.Interfaces;
 using CSharp.Core.Services;
 using CSharp.Core.Services.Interfaces;
 using CSharpFunctionalExtensions;
+using LanguageExt;
 
 namespace CSharp.Core.Commands
 {
@@ -21,7 +22,7 @@ namespace CSharp.Core.Commands
             return $"Type: Post; User: {_user}; Post: {_message}";
         }
 
-        public Maybe<Displayable> SendTo(SocialNetwork socialNetwork)
+        public override Option<Displayable> SendTo(SocialNetwork socialNetwork)
         {
             socialNetwork.Post(_user, _message);
             return null;

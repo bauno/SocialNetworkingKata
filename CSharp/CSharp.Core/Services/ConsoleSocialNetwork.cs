@@ -19,14 +19,26 @@ namespace CSharp.Core.Services
 
         public Result Enter(string cmdString)
         {
-            return _parser.Parse(cmdString)
-                .ToResult($"Cannot parse command: {cmdString}")
-                .OnSuccess(cmd =>
-                {
-                     cmd.SendTo(_engine)
-                        .ToResult("Nothing to display")
-                        .OnSuccess(d => d.ShowOn(_display));
-                });
+            var res = _parser.Parse(cmdString);
+
+            var x = res.Map(command => command.SendTo(_engine));
+            var y = x.IfRight(option => option.Some(o => o.ShowOn(_display)));
+            
+            var res1 = res.Bind(command => command.SendTo(_engine));
+            var b = res1.IfRight(d => d.ShowOn(_display));
+
+            var rs = from command in _parser.Parse(cmdString)
+                     from d in command.SendTo(_engine) 
+                select display.ShowOn(_display);
+                
+            
+            
+            var res2 = b.Bind(disp => disp.ShowOn(_display));
+//                .Bind(cmd => cmd.SendTo(_engine));
+//                .Bind(d => d.ShowOn(_display));
+
+
+
         }
         
     }

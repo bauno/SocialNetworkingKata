@@ -31,7 +31,8 @@ namespace CSharp.Console
             var builder = new ContainerBuilder();
             builder.RegisterAssemblyTypes(Assembly.GetAssembly(typeof(SocialEngine)))
                 .AsImplementedInterfaces();
-            return builder.Build().Resolve<IConsoleSocialNetwork>();
+            return builder
+                .Build().Resolve<IConsoleSocialNetwork>();
         }
     }
 }
