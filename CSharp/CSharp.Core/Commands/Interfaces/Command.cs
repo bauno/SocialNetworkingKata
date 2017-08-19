@@ -1,5 +1,4 @@
 ﻿using CSharp.Core.Services.Interfaces;
-using CSharpFunctionalExtensions;
 using LanguageExt;
 
 namespace CSharp.Core.Commands.Interfaces

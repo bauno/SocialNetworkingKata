@@ -7,7 +7,6 @@ using CSharp.Core.Services;
 using CSharp.Core.Services.Interfaces;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
-using CSharpFunctionalExtensions;
 
 namespace CSharp.Tests.Acceptance
 {

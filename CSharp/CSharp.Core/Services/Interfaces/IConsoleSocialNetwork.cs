@@ -1,5 +1,4 @@
-﻿using CSharpFunctionalExtensions;
-using LanguageExt;
+﻿using LanguageExt;
 
 namespace CSharp.Core.Services.Interfaces
 {

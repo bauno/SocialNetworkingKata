@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using CSharp.Core.Factories.Interfaces;
 using CSharp.Core.Services.Interfaces;
-using CSharpFunctionalExtensions;
 using LanguageExt;
 using static LanguageExt.Prelude;
 

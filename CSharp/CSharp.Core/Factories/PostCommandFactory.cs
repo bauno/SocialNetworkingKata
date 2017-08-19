@@ -2,7 +2,6 @@
 using CSharp.Core.Commands;
 using CSharp.Core.Commands.Interfaces;
 using CSharp.Core.Factories.Interfaces;
-using CSharpFunctionalExtensions;
 using LanguageExt;
 
 namespace CSharp.Core.Factories

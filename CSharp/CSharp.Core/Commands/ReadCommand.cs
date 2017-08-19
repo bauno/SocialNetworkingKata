@@ -1,7 +1,6 @@
 ﻿using CSharp.Core.Commands.Interfaces;
 using CSharp.Core.Services;
 using CSharp.Core.Services.Interfaces;
-using CSharpFunctionalExtensions;
 using LanguageExt;
 
 namespace CSharp.Core.Commands
