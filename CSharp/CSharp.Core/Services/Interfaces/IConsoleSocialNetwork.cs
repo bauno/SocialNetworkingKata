@@ -1,9 +1,10 @@
 ﻿using CSharpFunctionalExtensions;
+using LanguageExt;
 
 namespace CSharp.Core.Services.Interfaces
 {
     public interface IConsoleSocialNetwork
     {
-        Result Enter(string cmdString);
+        Option<string> Enter(string cmdString);
     }
 }

@@ -1,5 +1,6 @@
 using CSharp.Core.Services.Interfaces;
 using CSharp.Core.Views;
+using LanguageExt;
 
 namespace CSharp.Core.Services
 {
@@ -30,9 +31,10 @@ namespace CSharp.Core.Services
             _wall = wall;
         }
         
-        public void ShowOn(Display display)
+        public override Unit ShowOn(Display display)
         {
             display.Show(_wall);
+            return Unit.Default;
         }
     }
 }

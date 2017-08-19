@@ -2,7 +2,6 @@
 using Autofac;
 using CSharp.Core.Services;
 using CSharp.Core.Services.Interfaces;
-using CSharpFunctionalExtensions;
 using static System.Console;
 
 namespace CSharp.Console
@@ -15,7 +14,7 @@ namespace CSharp.Console
             var cmdStr = ReadLine();
             if (cmdStr == "q") return;
             socialNetwork.Enter(cmdStr)
-                .OnFailure(msg => WriteLine(msg));
+                .IfSome(msg => WriteLine(msg));
             RunSocialNetwork(socialNetwork);
         }
         

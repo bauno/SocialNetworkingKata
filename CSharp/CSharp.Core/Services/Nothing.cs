@@ -1,12 +1,13 @@
 using CSharp.Core.Services.Interfaces;
+using LanguageExt;
 
 namespace CSharp.Core.Services
 {
     public class Nothing : Displayable
     {
-        public void ShowOn(Display display)
+        public override Unit ShowOn(Display display)
         {
-            
+            return Unit.Default;
         }
     }
 }

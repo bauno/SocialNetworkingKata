@@ -30,7 +30,7 @@ namespace CSharp.Tests
 
             var res = cmd.SendTo(_socialNetwork.Object);                
             _socialNetwork.Verify(s => s.Post("pippo", "pluto"), Times.Once);
-            Assert.IsTrue(res.HasNoValue);
+            Assert.IsTrue(res.IsNone);
         }
         
         [Test]
@@ -39,7 +39,7 @@ namespace CSharp.Tests
             var cmd = new MesssageCommand("pippo", "pluto", "Messaggio!!");
             var res = cmd.SendTo(_socialNetwork.Object);
             _socialNetwork.Verify(s => s.SendMessage("pippo","pluto", "Messaggio!!"));
-            Assert.IsTrue(res.HasNoValue);
+            Assert.IsTrue(res.IsNone);
             
 
         }
@@ -52,7 +52,7 @@ namespace CSharp.Tests
 
             var res = cmd.SendTo(_socialNetwork.Object);                
             _socialNetwork.Verify(s => s.Follow("pippo", "pluto"), Times.Once);  
-            Assert.IsTrue(res.HasNoValue);
+            Assert.IsTrue(res.IsNone);
         }
         
         
@@ -72,10 +72,8 @@ namespace CSharp.Tests
  
             _socialNetwork.Verify(s => s.ReadWall("pippo"));
             _socialNetwork.Verify(s => s.ReadWall("pluto"));
-            
-            Assert.AreEqual(new WallsDisplay(walls), res.Value);
-                        
-                        
+
+            res.IfSome(d => Assert.AreEqual(new WallsDisplay(walls), d));            
         }  
         
         [Test]
@@ -90,7 +88,9 @@ namespace CSharp.Tests
                 
  
             _socialNetwork.Verify(s => s.ReadWall("pippo"));
-            Assert.AreEqual(new WallDisplay(wallView), res.Value);
+            var display = new WallDisplay(wallView);
+            res.IfSome(d => Assert.AreEqual(display, d));
+            
         }
 
      

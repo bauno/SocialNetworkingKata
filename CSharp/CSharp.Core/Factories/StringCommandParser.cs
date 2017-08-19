@@ -25,7 +25,7 @@ namespace CSharp.Core.Factories
                     .None(() => new InvalidCommand());
                 if (cmd.Type != CommandType.Invalid) return cmd;
             }
-            return $"Cannot parse command: {cmdString}";
+            return $"Cannot parse command: '{cmdString}'";
         }
     }
 }

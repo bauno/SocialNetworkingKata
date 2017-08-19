@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using CSharp.Core.Services.Interfaces;
 using CSharp.Core.Views;
+using LanguageExt;
 
 namespace CSharp.Core.Services
 {
@@ -45,9 +46,10 @@ namespace CSharp.Core.Services
             
         }
 
-        public void ShowOn(Display display)
+        public override Unit ShowOn(Display display)
         {
             display.Show(_walls);
+            return Unit.Default;
         }
     }
 }

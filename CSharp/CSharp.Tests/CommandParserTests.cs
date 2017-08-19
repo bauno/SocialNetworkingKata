@@ -2,9 +2,9 @@ using System;
 using CSharp.Core.Commands.Interfaces;
 using CSharp.Core.Factories;
 using CSharp.Core.Factories.Interfaces;
-using CSharpFunctionalExtensions;
 using Moq;
 using NUnit.Framework;
+using static LanguageExt.Prelude;
 
 namespace CSharp.Tests
 {
@@ -24,15 +24,19 @@ namespace CSharp.Tests
             var cmd = new Mock<Command>(); 
             var fac1 = new Mock<CommandFactory>();
             fac1.Setup(f1 => f1.Parse(cmdString))
-                .Returns<Command>(null);
+                .Returns(None);
             
             var fac2 = new Mock<CommandFactory>();
             fac2.Setup(f2 => f2.Parse(cmdString))
-                .Returns(Maybe<Command>.From(cmd.Object));
+                .Returns(cmd.Object);
             
-            var sut = new StringCommandParser(new[]{fac1.Object, fac2.Object});
+            var sut = new StringCommandParser(new[]{fac2.Object, fac2.Object});
+
+            var res = sut.Parse(cmdString);
             
-            Assert.AreEqual(cmd.Object, sut.Parse(cmdString).Value);
+            
+            sut.Parse(cmdString)
+                .Match(c => Assert.AreEqual(cmd.Object, c), err => Assert.Fail("Failing...and I don't know why"));
             
         }
 
@@ -49,8 +53,10 @@ namespace CSharp.Tests
                 .Returns<Command>(null);
             
             var sut = new StringCommandParser(new[]{fac1.Object, fac2.Object});
-            
-            Assert.IsTrue(sut.Parse(cmdString).HasNoValue);
+
+            sut.Parse(cmdString)
+                .Match(c => Assert.Fail(), 
+                    err => Assert.AreEqual("Cannot parse command: 'pippo'", err));
             
             fac1.Verify(f1 => f1.Parse(cmdString), Times.Once);
             fac1.Verify(f2 => f2.Parse(cmdString), Times.Once);

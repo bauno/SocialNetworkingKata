@@ -1,4 +1,5 @@
 ﻿using System.Runtime.InteropServices.ComTypes;
+using System.Xml.Schema;
 using LanguageExt;
 using NUnit.Framework;
 using static LanguageExt.Prelude;
@@ -25,10 +26,19 @@ namespace CSharp.Tests
 
         }
 
+        Either<string, int> Pippo(Option<int> value)
+        {
+            return value.ToEither("Error: no value");
+        }
+        
         [Test]
         public void CanUseEither()
         {
-            
+            var some = Some(1);
+            var none = None;
+
+            var x = some.ToEither("Error: no value");
+            var y = x.Bind<double>(i => i * 5.0);
         }
     }
 }

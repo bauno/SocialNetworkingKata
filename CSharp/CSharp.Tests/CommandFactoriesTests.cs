@@ -1,4 +1,5 @@
 using CSharp.Core.Factories;
+using LanguageExt;
 using NUnit.Framework;
 
 namespace CSharp.Tests
@@ -12,7 +13,8 @@ namespace CSharp.Tests
             var cmdString = "Alice -> I love the weather today";
             var expected = "Type: Post; User: Alice; Post: I love the weather today";
             var sut = new PostCommandFactory();
-            Assert.AreEqual(expected, sut.Parse(cmdString).ToString());
+            
+            sut.Parse(cmdString).IfSome(cmd => Assert.AreEqual(expected, cmd.ToString()));
         }
 
         [Test]
@@ -21,17 +23,18 @@ namespace CSharp.Tests
             var cmdString = "Alice";            
             var expected = "Type: Read; User: Alice";
             var sut = new ReadCommandFactory();
-            Assert.AreEqual(expected, sut.Parse(cmdString).ToString());
+            sut.Parse(cmdString).IfSome(cmd => Assert.AreEqual(expected, cmd.ToString()));
         }
 
         [Test]
-        public void WallCommandFactoryCanParseWallCommand()
+        public void  WallCommandFactoryCanParseWallCommand()
         {
             var cmdString = "Charlie wall";
             var expected = "Type: Wall; User: Charlie";
             var sut = new WallCommandFactory();
-            Assert.AreEqual(expected, sut.Parse(cmdString).ToString());
-            
+            sut.Parse(cmdString)
+                .IfSome(cmd => Assert.AreEqual(expected, cmd.ToString()));
+
         }
         
         [Test]
@@ -40,7 +43,9 @@ namespace CSharp.Tests
             var cmdString = "Charlie follows Alice";
             var expected = "Type: Follow; User: Charlie; Who: Alice";
             var sut = new FollowCommandFactory();
-            Assert.AreEqual(expected, sut.Parse(cmdString).ToString());
+            var res = sut.Parse(cmdString);
+            
+            sut.Parse(cmdString).IfSome(cmd => Assert.AreEqual(expected, cmd.ToString()));
         }
         
         [TestCase("Alice")]
@@ -50,7 +55,7 @@ namespace CSharp.Tests
         {
 
             var sut = new FollowCommandFactory();
-            Assert.IsTrue(sut.Parse(cmdString).HasNoValue);
+            Assert.IsTrue(sut.Parse(cmdString).IsNone);
         }
         
         [TestCase("Alice")]
@@ -60,7 +65,7 @@ namespace CSharp.Tests
         {
 
             var sut = new WallCommandFactory();
-            Assert.IsTrue(sut.Parse(cmdString).HasNoValue);
+            Assert.IsTrue(sut.Parse(cmdString).IsNone);
         }
 
         [TestCase("Alice")]
@@ -70,7 +75,7 @@ namespace CSharp.Tests
         {
 
            var sut = new PostCommandFactory();
-           Assert.IsTrue(sut.Parse(cmdString).HasNoValue);
+           Assert.IsTrue(sut.Parse(cmdString).IsNone);
         }
         
         [TestCase("Alice -> I love the weather today")]
@@ -80,7 +85,7 @@ namespace CSharp.Tests
         {
 
             var sut = new ReadCommandFactory();
-            Assert.IsTrue(sut.Parse(cmdString).HasNoValue);
+            Assert.IsTrue(sut.Parse(cmdString).IsNone);
         }
 
 

@@ -1,7 +1,9 @@
-﻿namespace CSharp.Core.Services.Interfaces
+﻿using LanguageExt;
+
+namespace CSharp.Core.Services.Interfaces
 {
-    public interface Displayable
+    public abstract class Displayable
     {
-        void ShowOn(Display display);
+        public abstract Unit ShowOn(Display display);
     }
 }
