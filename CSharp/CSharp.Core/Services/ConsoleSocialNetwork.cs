@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Net.NetworkInformation;
 using CSharp.Core.Factories.Interfaces;
 using CSharp.Core.Services.Interfaces;
 using LanguageExt;
@@ -21,13 +22,10 @@ namespace CSharp.Core.Services
 
         public Option<string> Enter(string cmdString)
         {
-            var x = _parser.Parse(cmdString);
-            var y = x.Map(cmd => cmd.SendTo(_engine));
-            var z = y.Bind<Unit>(option => option.IfSome(d => d.ShowOn(_display)));
-
-
-            var w = z.Match(u => None, Some);
-            return w;
+            return _parser.Parse(cmdString)
+                .Map(cmd => cmd.SendTo(_engine))
+                .Bind<Unit>(option => option.IfSome(d => d.ShowOn(_display)))
+                .Match(u => None, err => Some(err));
         }
         
     }
