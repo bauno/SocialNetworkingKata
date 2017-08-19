@@ -2,6 +2,7 @@
 using CSharp.Core.Services;
 using CSharp.Core.Services.Interfaces;
 using CSharpFunctionalExtensions;
+using Optional;
 
 namespace CSharp.Core.Commands
 {
@@ -19,9 +20,9 @@ namespace CSharp.Core.Commands
             return $"Type: Read; User: {_user}";
         }
 
-        public Maybe<Displayable> SendTo(SocialNetwork socialNetwork)
+        public Option<Displayable> SendTo(SocialNetwork socialNetwork)
         {
-            return new WallDisplay(socialNetwork.ReadWall(_user));
+            return Option.Some<Displayable>(new WallDisplay(socialNetwork.ReadWall(_user)));
         }
     }
 }

@@ -42,6 +42,9 @@
     <Reference Include="Moq, Version=4.7.10.0, Culture=neutral, PublicKeyToken=69f491c39445e920">
       <HintPath>..\packages\Moq.4.7.10\lib\net45\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="Optional, Version=3.2.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Optional.3.2.0\lib\net45\Optional.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />

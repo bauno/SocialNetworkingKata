@@ -6,6 +6,7 @@ using CSharp.Core.Services;
 using CSharp.Core.Services.Interfaces;
 using CSharp.Core.Views;
 using CSharpFunctionalExtensions;
+using Optional;
 
 namespace CSharp.Core.Commands
 {
@@ -26,13 +27,13 @@ namespace CSharp.Core.Commands
             
         }
 
-        public Maybe<Displayable> SendTo(SocialNetwork socialNetwork)
+        public Option<Displayable> SendTo(SocialNetwork socialNetwork)
         {
             var walls = new List<WallView>();
             var userWall = socialNetwork.ReadWall(_user);
             walls.Add(userWall);
             walls.AddRange(userWall.Follows.Select(socialNetwork.ReadWall));
-            return new WallsDisplay(walls);
+            return Option.Some<Displayable>(new WallsDisplay(walls));
         }
     }
 }

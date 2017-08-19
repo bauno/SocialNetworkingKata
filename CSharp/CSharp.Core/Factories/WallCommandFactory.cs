@@ -3,6 +3,7 @@ using CSharp.Core.Commands;
 using CSharp.Core.Commands.Interfaces;
 using CSharp.Core.Factories.Interfaces;
 using CSharpFunctionalExtensions;
+using Optional;
 
 namespace CSharp.Core.Factories
 {
@@ -11,15 +12,15 @@ namespace CSharp.Core.Factories
         private readonly Regex _wallRegex = new Regex(@"^(.*) wall$");
            
 
-        public Maybe<Command> Parse(string cmdString)
+        public Option<Command> Parse(string cmdString)
         {
             if (_wallRegex.IsMatch(cmdString))
             {
                 var matches = _wallRegex.Matches(cmdString);
                 var user = matches[0].Groups[1].Value;                
-                return new WallCommand(user);
+                return Option.Some<Command>(new WallCommand(user));
             }
-            return null;
+            return Option.None<Command>();
         }
     }
 }

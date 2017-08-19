@@ -36,6 +36,12 @@
     <Reference Include="CSharpFunctionalExtensions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\packages\CSharpFunctionalExtensions.1.7.1\lib\netstandard1.0\CSharpFunctionalExtensions.dll</HintPath>
     </Reference>
+    <Reference Include="Optional, Version=3.2.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Optional.3.2.0\lib\net45\Optional.dll</HintPath>
+    </Reference>
+    <Reference Include="Optional.Utilities, Version=1.1.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Optional.Utilities.1.1.0\lib\net45\Optional.Utilities.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />

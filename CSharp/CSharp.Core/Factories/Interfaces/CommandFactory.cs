@@ -1,10 +1,11 @@
 ﻿using CSharp.Core.Commands.Interfaces;
 using CSharpFunctionalExtensions;
+using Optional;
 
 namespace CSharp.Core.Factories.Interfaces
 {
     public interface CommandFactory
     {
-        Maybe<Command> Parse(string cmdString);
+        Option<Command> Parse(string cmdString);
     }
 }

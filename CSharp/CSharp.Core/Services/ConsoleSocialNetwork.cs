@@ -1,6 +1,9 @@
-﻿using CSharp.Core.Factories.Interfaces;
+﻿using System.Runtime.InteropServices;
+using CSharp.Core.Commands.Interfaces;
+using CSharp.Core.Factories.Interfaces;
 using CSharp.Core.Services.Interfaces;
 using CSharpFunctionalExtensions;
+using Optional;
 
 namespace CSharp.Core.Services
 {
@@ -17,16 +20,22 @@ namespace CSharp.Core.Services
             _display = display;
         }
 
-        public Result Enter(string cmdString)
+        public void Enter(string cmdString)
         {
-            return _parser.Parse(cmdString)
-                .ToResult($"Cannot parse command: {cmdString}")
-                .OnSuccess(cmd =>
-                {
-                     cmd.SendTo(_engine)
-                        .ToResult("Nothing to display")
-                        .OnSuccess(d => d.ShowOn(_display));
-                });
+            var res = _parser.Parse(cmdString);
+            var m = res.Match(c => Option.Some<Option<Displayable>, string>(c.SendTo(_engine)), 
+                err => Option.None<Option<Displayable>,string>(err));
+            var res2 = m.Match(d => d.MatchSome(displayable => displayable.ShowOn(_display)),
+                err => Option.None<string>());
+
+
+
+
+
+
+
+
+
         }
         
     }
