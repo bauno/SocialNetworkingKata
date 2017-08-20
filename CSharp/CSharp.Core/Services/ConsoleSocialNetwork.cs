@@ -26,7 +26,6 @@ namespace CSharp.Core.Services
                 .Map(cmd => cmd.SendTo(_engine))
                 .Bind<Unit>(option => option.IfSome(d => d.ShowOn(_display)))
                 .Match(u => None, Some);
-        }
-        
+        }        
     }
 }

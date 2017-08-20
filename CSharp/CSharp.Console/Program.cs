@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using Autofac;
 using CSharp.Core.Services;
 using CSharp.Core.Services.Interfaces;
@@ -14,14 +15,21 @@ namespace CSharp.Console
             var cmdStr = ReadLine();
             if (cmdStr == "q") return;
             socialNetwork.Enter(cmdStr)
-                .IfSome(msg => WriteLine(msg));
+                .IfSome(err => PrintError(err));
             RunSocialNetwork(socialNetwork);
+        }
+
+        private static void PrintError(string error)
+        {
+            var currentColor = ForegroundColor;
+            ForegroundColor = ConsoleColor.Red;
+            WriteLine("Error: {0}", error);
+            ForegroundColor = currentColor;
         }
         
         
         public static void Main(string[] args)
         {            
-
             RunSocialNetwork(InitSocialNetwork());
         }
 
