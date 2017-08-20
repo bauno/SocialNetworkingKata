@@ -19,16 +19,7 @@ namespace CSharp.Core.Factories
         public Either<string, Command> Parse(string cmdString)
         {
             foreach (var commandFactory in _commandFactories)
-            {
-//                var pluto =
-//                    match((from factory in _commandFactories
-//                            from command in factory.Parse(cmdString)
-//                            where (command.Type != CommandType.Invalid)
-//                            select command).SingleOrDefault(),
-//                        command => Some(command),
-//                        () => None);
-//                    
-                
+            {                
                 var cmd = commandFactory
                     .Parse(cmdString)                    
                     .Some(c => c)
