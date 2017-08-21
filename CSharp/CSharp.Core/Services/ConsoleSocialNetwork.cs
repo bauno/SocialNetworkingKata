@@ -24,7 +24,7 @@ namespace CSharp.Core.Services
         {
             return _parser.Parse(cmdString)
                 .Map(cmd => cmd.SendTo(_engine))
-                .Bind<Unit>(option => option.IfSome(d => d.ShowOn(_display)))
+                .Map(option => option.IfSome(d => d.ShowOn(_display)))
                 .Match(u => None, Some);
         }        
     }
