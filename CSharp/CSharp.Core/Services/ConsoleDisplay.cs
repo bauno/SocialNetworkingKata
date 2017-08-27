@@ -12,7 +12,9 @@ namespace CSharp.Core.Services
         private readonly ITextConsole _console;
 
         public ConsoleDisplay(PostTsFormatter formatter, ITextConsole console)
-        {            
+        {
+            if (formatter == null) throw new ArgumentNullException(nameof(formatter));
+            if (console == null) throw new ArgumentNullException(nameof(console));
             _formatter = formatter;
             _console = console;
         }

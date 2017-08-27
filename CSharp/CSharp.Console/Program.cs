@@ -11,12 +11,14 @@ namespace CSharp.Console
     {
         private static void RunSocialNetwork(IConsoleSocialNetwork socialNetwork)
         {
-            Write("Enter command (or 'q' to quit): ");
-            var cmdStr = ReadLine();
-            if (cmdStr == "q") return;
-            socialNetwork.Enter(cmdStr)
-                .IfSome(err => PrintError(err));
-            RunSocialNetwork(socialNetwork);
+            while (true)
+            {
+                Write("Enter command (or 'q' to quit): ");
+                var cmdStr = ReadLine();
+                if (cmdStr == "q") return;
+                socialNetwork.Enter(cmdStr)
+                    .IfSome(err => PrintError(err));
+            }
         }
 
         private static void PrintError(string error)
@@ -29,7 +31,7 @@ namespace CSharp.Console
         
         
         public static void Main(string[] args)
-        {            
+        {                       
             RunSocialNetwork(InitSocialNetwork());
         }
 

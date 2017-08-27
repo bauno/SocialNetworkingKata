@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net.NetworkInformation;
 using CSharp.Core.Factories.Interfaces;
 using CSharp.Core.Services.Interfaces;
@@ -15,6 +16,9 @@ namespace CSharp.Core.Services
 
         public ConsoleSocialNetwork(CommandParser parser, SocialNetwork engine, Display display)
         {
+            if (parser == null) throw new ArgumentNullException(nameof(parser));
+            if (engine == null) throw new ArgumentNullException(nameof(engine));
+            if (display == null) throw new ArgumentNullException(nameof(display));
             _parser = parser;
             _engine = engine;
             _display = display;

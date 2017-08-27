@@ -15,7 +15,8 @@ namespace CSharp.Core.Repositories
         private readonly Dictionary<string, WallDto> _walls;
 
         public MemoryPostRepository(Dictionary<string, WallDto> walls)
-        {                        
+        {
+            if (walls == null) throw new ArgumentNullException(nameof(walls));
             _walls = walls;
         }
 

@@ -10,7 +10,7 @@ namespace CSharp.Core.Factories
     {
         private readonly Regex _followRegex = new Regex(@"^(\w+) follows (\w+)$");
         
-        public Option<Command> Parse(string cmdString)
+        public override Option<Command> Parse(string cmdString)
         {
             if (_followRegex.IsMatch(cmdString))
             {

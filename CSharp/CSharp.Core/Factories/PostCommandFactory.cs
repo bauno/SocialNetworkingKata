@@ -10,7 +10,7 @@ namespace CSharp.Core.Factories
     {
         private readonly Regex _postCmd = new Regex(@"^(.*) -> (.*)$");
         
-        public Option<Command> Parse(string cmdString)
+        public override Option<Command> Parse(string cmdString)
         {
             if (_postCmd.IsMatch(cmdString))
             {
