@@ -7,6 +7,7 @@ using CSharp.Core.Entities.Interfaces;
 using CSharp.Core.Repositories.Interfaces;
 using CSharp.Core.Values;
 using CSharp.Core.Views;
+using LanguageExt;
 
 namespace CSharp.Core.Repositories
 {
@@ -25,13 +26,14 @@ namespace CSharp.Core.Repositories
             
         }
 
-        public void Save(IWall wall)
+        public Unit Save(IWall wall)
         {
             var dto = ((Dto<WallDto, Wall>) wall).ToDto();
             if (_walls.ContainsKey(dto.User))
             {
                 _walls[dto.User] = dto;
             }else _walls.Add(dto.User, dto);
+            return Unit.Default;
         }
 
         public IWall LoadOrCreateWallOf(string user)

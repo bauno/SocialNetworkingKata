@@ -2,6 +2,7 @@ using System;
 using CSharp.Core.Commands.Interfaces;
 using CSharp.Core.Factories;
 using CSharp.Core.Factories.Interfaces;
+using LanguageExt;
 using Moq;
 using NUnit.Framework;
 using static LanguageExt.Prelude;
@@ -24,11 +25,11 @@ namespace CSharp.Tests
             var cmd = new Mock<Command>();            
             var fac1 = new Mock<CommandFactory>();
             fac1.Setup(f1 => f1.Parse(cmdString))
-                .Returns(None);
+                .Returns(Option<Command>.None);
             
             var fac2 = new Mock<CommandFactory>();
             fac2.Setup(f2 => f2.Parse(cmdString))
-                .Returns(cmd.Object);
+                .Returns(Option<Command>.Some(cmd.Object));
             
             var sut = new StringCommandParser(new[]{fac2.Object, fac2.Object});
 
@@ -41,11 +42,11 @@ namespace CSharp.Tests
             var cmdString = "pippo";             
             var fac1 = new Mock<CommandFactory>();
             fac1.Setup(f1 => f1.Parse(cmdString))
-                .Returns<Command>(null);
+                .Returns(Option<Command>.None);
             
             var fac2 = new Mock<CommandFactory>();
             fac2.Setup(f2 => f2.Parse(cmdString))
-                .Returns<Command>(null);
+                .Returns(Option<Command>.None);
             
             var sut = new StringCommandParser(new[]{fac1.Object, fac2.Object});
 

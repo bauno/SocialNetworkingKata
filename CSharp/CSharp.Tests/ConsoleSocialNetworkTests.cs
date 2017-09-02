@@ -4,9 +4,10 @@ using CSharp.Core.Commands.Interfaces;
 using CSharp.Core.Factories.Interfaces;
 using CSharp.Core.Services;
 using CSharp.Core.Services.Interfaces;
+using LanguageExt;
 using Moq;
 using NUnit.Framework;
-
+using static LanguageExt.Prelude;
 namespace CSharp.Tests
 {
     [TestFixture]
@@ -36,7 +37,7 @@ namespace CSharp.Tests
             
             
             _parser.Setup(p => p.Parse(cmdString))
-                .Returns(cmd.Object);
+                .Returns(Right<string,Command>(cmd.Object));
             cmd.Setup(c => c.SendTo(_engine.Object))
                 .Returns(display.Object);
                                   

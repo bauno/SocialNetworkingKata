@@ -19,7 +19,7 @@ namespace CSharp.Core.Commands
             return $"Type: Read; User: {_user}";
         }
 
-        public override Option<Displayable> SendTo(SocialNetwork socialNetwork)
+        public Option<Displayable> SendTo(SocialNetwork socialNetwork)
         {
             return new WallDisplay(socialNetwork.ReadWall(_user));
         }

@@ -22,7 +22,7 @@ namespace CSharp.Core.Commands
             return $"Type: Follow; User: {_user}; Who: {_who}";
         }
 
-        public override Option<Displayable> SendTo(SocialNetwork socialNetwork)
+        public Option<Displayable> SendTo(SocialNetwork socialNetwork)
         {
             socialNetwork.Follow(_user, _who);
             return null;

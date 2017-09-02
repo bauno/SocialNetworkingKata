@@ -3,8 +3,8 @@ using LanguageExt;
 
 namespace CSharp.Core.Commands.Interfaces
 {
-    public abstract class Command
+    public interface Command
     {
-        public abstract Option<Displayable> SendTo(SocialNetwork socialNetwork);
+        Option<Displayable> SendTo(SocialNetwork socialNetwork);
     }
 }

@@ -26,7 +26,7 @@ namespace CSharp.Core.Commands
             
         }
 
-        public override Option<Displayable> SendTo(SocialNetwork socialNetwork)
+        public Option<Displayable> SendTo(SocialNetwork socialNetwork)
         {
             var walls = new List<WallView>();
             var userWall = socialNetwork.ReadWall(_user);

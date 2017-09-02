@@ -20,7 +20,7 @@ namespace CSharp.Core.Commands
             return $"Type: Post; User: {_user}; Post: {_message}";
         }
 
-        public override Option<Displayable> SendTo(SocialNetwork socialNetwork)
+        public Option<Displayable> SendTo(SocialNetwork socialNetwork)
         {
             socialNetwork.Post(_user, _message);
             return null;

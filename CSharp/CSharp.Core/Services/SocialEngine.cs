@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Runtime.Remoting.Messaging;
 using CSharp.Core.Repositories.Interfaces;
 using CSharp.Core.Services.Interfaces;
 using CSharp.Core.Values;
 using CSharp.Core.Views;
+using LanguageExt;
 
 namespace CSharp.Core.Services
 {
@@ -24,11 +26,12 @@ namespace CSharp.Core.Services
             
         }
 
-        public void Follow(string user, string whoToFollow)
+        public Unit Follow(string user, string whoToFollow)
         {
             var wall = _repository.LoadOrCreateWallOf(user);
             wall.Follow(whoToFollow);
-            _repository.Save(wall);
+            return _repository.Save(wall)
+                .Apply(u => Unit.Default);            
         }
 
         public WallView ReadWall(string user)

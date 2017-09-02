@@ -17,7 +17,7 @@ namespace CSharp.Core.Commands
             _message = message;
         }
 
-        public override Option<Displayable> SendTo(SocialNetwork socialNetwork)
+        public Option<Displayable> SendTo(SocialNetwork socialNetwork)
         {
             socialNetwork.SendMessage(_from, _to, _message);
             return null;
