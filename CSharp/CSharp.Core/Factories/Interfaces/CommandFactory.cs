@@ -3,8 +3,8 @@ using LanguageExt;
 
 namespace CSharp.Core.Factories.Interfaces
 {
-    public abstract class CommandFactory
+    public interface CommandFactory
     {
-        public abstract Option<Command> Parse(string cmdString);
+        Option<Command> Parse(string cmdString);
     }
 }

@@ -11,7 +11,7 @@ namespace CSharp.Core.Factories
         private readonly Regex _wallRegex = new Regex(@"^(.*) wall$");
            
 
-        public override Option<Command> Parse(string cmdString)
+        public Option<Command> Parse(string cmdString)
         {
             if (_wallRegex.IsMatch(cmdString))
             {

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.IO;
-using System.Net.NetworkInformation;
 using CSharp.Core.Factories.Interfaces;
 using CSharp.Core.Services.Interfaces;
 using LanguageExt;

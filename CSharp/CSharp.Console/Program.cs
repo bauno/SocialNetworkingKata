@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using Autofac;
+using CSharp.Core.Factories.Interfaces;
 using CSharp.Core.Services;
 using CSharp.Core.Services.Interfaces;
 using static System.Console;
@@ -38,8 +39,9 @@ namespace CSharp.Console
         private static IConsoleSocialNetwork InitSocialNetwork()
         {
             var builder = new ContainerBuilder();
-            builder.RegisterAssemblyTypes(Assembly.GetAssembly(typeof(SocialEngine)))
-                .AsImplementedInterfaces();
+            builder.RegisterAssemblyTypes(Assembly.GetAssembly(typeof(CommandFactory)))
+                .AsImplementedInterfaces();            
+            
             return builder
                 .Build().Resolve<IConsoleSocialNetwork>();
         }

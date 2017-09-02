@@ -9,7 +9,7 @@ namespace CSharp.Core.Factories
     public class ReadCommandFactory : CommandFactory
     {
         private readonly Regex _readCmd = new Regex(@"^(\w+)$");
-        public override Option<Command> Parse(string cmdString)
+        public Option<Command> Parse(string cmdString)
         {
             if (_readCmd.IsMatch(cmdString))
             {
