@@ -78,7 +78,6 @@
     <Compile Include="Services\Interfaces\ITextConsole.cs" />
     <Compile Include="Services\Interfaces\PostTsFormatter.cs" />
     <Compile Include="Services\Interfaces\SocialNetwork.cs" />
-    <Compile Include="Services\Nothing.cs" />
     <Compile Include="Services\PostTsStringFormatter.cs" />
     <Compile Include="Services\SocialEngine.cs" />
     <Compile Include="Services\TextConsole.cs" />
