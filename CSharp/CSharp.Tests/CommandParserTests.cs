@@ -21,9 +21,7 @@ namespace CSharp.Tests
         public void WillCallFactoriesToParseCommand()
         {
             var cmdString = "pippo";
-            var cmd = new Mock<Command>();
-            cmd.Setup(c => c.Type)
-                .Returns(CommandType.Other);
+            var cmd = new Mock<Command>();            
             var fac1 = new Mock<CommandFactory>();
             fac1.Setup(f1 => f1.Parse(cmdString))
                 .Returns(None);
