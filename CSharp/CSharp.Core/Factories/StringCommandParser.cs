@@ -13,28 +13,27 @@ namespace CSharp.Core.Factories
 {
     public class StringCommandParser : CommandParser
     {
-        private readonly Seq<CommandFactory> _commandFactories;
+        private readonly IEnumerable<CommandFactory> _commandFactories;
 
         public StringCommandParser(IEnumerable<CommandFactory> commandFactories)
         {
             if (commandFactories == null) throw new ArgumentNullException(nameof(commandFactories));
-            _commandFactories = commandFactories.ToSeq();
+            _commandFactories = commandFactories;
         }
         
 
-        private Either<string, Command> Parse(Seq<CommandFactory> commandFactories, string cmdString)
+        private Either<string, Command> Parse(ISeq<CommandFactory> commandFactories, string cmdString)
         {
             return commandFactories.Match(
                 () => Left<string, Command>($"Cannot parse command: '{cmdString}'"),
-                (x, xs) => x.Parse(cmdString)
+                (factory, remainder) => factory.Parse(cmdString)
                     .Some(Right<string, Command>)
-                    .None(() => Parse(xs,cmdString )));
+                    .None(() => Parse(remainder,cmdString )));
         }
         
-
         public Either<string, Command> Parse(string cmdString)
         {
-            return Parse(_commandFactories, cmdString);
+            return Parse(_commandFactories.ToSeq(), cmdString);
         }
     }
 }
