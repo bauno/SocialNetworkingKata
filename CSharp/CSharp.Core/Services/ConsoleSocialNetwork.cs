@@ -1,6 +1,7 @@
 ﻿using System;
 using CSharp.Core.Factories.Interfaces;
 using CSharp.Core.Services.Interfaces;
+using System.Linq;
 using LanguageExt;
 using static LanguageExt.Prelude;
 
@@ -23,10 +24,12 @@ namespace CSharp.Core.Services
         }
 
         public Option<string> Enter(string cmdString)
-        {
-            return _parser.Parse(cmdString)
+        {            
+            return _parser
+                .Parse(cmdString)
                 .Map(cmd => cmd.SendTo(_engine))                
-                .MapT(d => d.ShowOn(_display))
+                .MapT(somethingToDisplay => somethingToDisplay
+                    .ShowOn(_display))
                 .Match(u => None, Some);
         }        
     }

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Xml.Serialization;
 using CSharp.Core.Commands.Interfaces;
 using CSharp.Core.Factories.Interfaces;
 using LanguageExt;
@@ -20,15 +17,14 @@ namespace CSharp.Core.Factories
             if (commandFactories == null) throw new ArgumentNullException(nameof(commandFactories));
             _commandFactories = commandFactories;
         }
-        
-
+              
         private Either<string, Command> Parse(ISeq<CommandFactory> commandFactories, string cmdString)
         {
             return commandFactories.Match(
                 () => Left<string, Command>($"Cannot parse command: '{cmdString}'"),
-                (factory, remainder) => factory.Parse(cmdString)
+                (x, xs) => x.Parse(cmdString)
                     .Some(Right<string, Command>)
-                    .None(() => Parse(remainder,cmdString )));
+                    .None(() => Parse(xs, cmdString)));
         }
         
         public Either<string, Command> Parse(string cmdString)

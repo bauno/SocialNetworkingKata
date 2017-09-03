@@ -20,27 +20,19 @@ namespace CSharp.Core.Services
         }
 
         public void Show(WallView wall)
-        {            
-            wall.Posts                
+        {
+            wall.Posts
                 .OrderByDescending(p => p.TimeStamp)
                 .ToList()
                 .ForEach(p => _console.PrintLine($"{p.Content} ({_formatter.NiceTs(TimeService.Now(), p.TimeStamp)})"));
         }
 
         public void Show(IEnumerable<WallView> walls)
-        {            
-         
-            
-                var posts = from wall in walls
-                    from post in wall.Posts
-                    orderby post.TimeStamp descending
-                    select new {wall.User, post.Content, post.TimeStamp};
-
-                foreach (var post in posts)
-                {
-                    _console.PrintLine(
-                        $"{post.User} - {post.Content} ({_formatter.NiceTs(TimeService.Now(), post.TimeStamp)})");
-                }            
+        {
+            walls.SelectMany(wall => wall.Posts, (w, p) => new {w.User, p.Content, p.TimeStamp})
+                .OrderByDescending(post => post.TimeStamp)
+                .ToList().ForEach(post => _console.PrintLine(
+                    $"{post.User} - {post.Content} ({_formatter.NiceTs(TimeService.Now(), post.TimeStamp)})"));                        
         }
     }
 }
