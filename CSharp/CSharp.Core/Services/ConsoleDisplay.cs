@@ -33,6 +33,6 @@ namespace CSharp.Core.Services
                 .OrderByDescending(post => post.TimeStamp)
                 .ToList().ForEach(post => _console.PrintLine(
                     $"{post.User} - {post.Content} ({_formatter.NiceTs(TimeService.Now(), post.TimeStamp)})"));                        
-        }
+        }        
     }
 }
