@@ -17,8 +17,7 @@ namespace CSharp.Core.Repositories
 
         public MemoryPostRepository(Dictionary<string, WallDto> walls)
         {
-            if (walls == null) throw new ArgumentNullException(nameof(walls));
-            _walls = walls;
+            _walls = walls ?? throw new ArgumentNullException(nameof(walls));
         }
 
         public MemoryPostRepository() : this(new Dictionary<string, WallDto>())

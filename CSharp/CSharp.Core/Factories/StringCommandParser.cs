@@ -14,8 +14,7 @@ namespace CSharp.Core.Factories
 
         public StringCommandParser(IEnumerable<CommandFactory> commandFactories)
         {
-            if (commandFactories == null) throw new ArgumentNullException(nameof(commandFactories));
-            _commandFactories = commandFactories;
+            _commandFactories = commandFactories ?? throw new ArgumentNullException(nameof(commandFactories));
         }
               
         private Either<string, Command> Parse(ISeq<CommandFactory> commandFactories, string cmdString)
