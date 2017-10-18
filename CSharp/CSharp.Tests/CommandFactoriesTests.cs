@@ -1,6 +1,7 @@
 using CSharp.Core.Factories;
 using LanguageExt;
 using NUnit.Framework;
+using static LanguageExt.Prelude;
 
 namespace CSharp.Tests
 {
@@ -34,7 +35,6 @@ namespace CSharp.Tests
             var sut = new WallCommandFactory();
             sut.Parse(cmdString)
                 .IfSome(cmd => Assert.AreEqual(expected, cmd.ToString()));
-
         }
         
         [Test]
