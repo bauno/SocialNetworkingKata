@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.Remoting.Messaging;
 using CSharp.Core.Repositories.Interfaces;
 using CSharp.Core.Services.Interfaces;
 using CSharp.Core.Values;
@@ -14,8 +13,7 @@ namespace CSharp.Core.Services
 
         public SocialEngine(PostRepository repository)
         {
-            if (repository == null) throw new ArgumentNullException(nameof(repository));
-            _repository = repository;
+            _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
         public void Post(string user, string message)

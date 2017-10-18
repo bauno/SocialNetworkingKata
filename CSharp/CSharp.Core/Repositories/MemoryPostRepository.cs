@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using CSharp.Core.Dtos;
 using CSharp.Core.Entities;
 using CSharp.Core.Entities.Interfaces;
 using CSharp.Core.Repositories.Interfaces;
-using CSharp.Core.Values;
 using CSharp.Core.Views;
 using LanguageExt;
 
@@ -13,14 +10,14 @@ namespace CSharp.Core.Repositories
 {
     public class MemoryPostRepository : PostRepository
     {
-        private readonly Dictionary<string, WallDto> _walls;
+        private Map<string, WallDto> _walls;
 
-        public MemoryPostRepository(Dictionary<string, WallDto> walls)
+        public MemoryPostRepository(Map<string, WallDto> walls)
         {
-            _walls = walls ?? throw new ArgumentNullException(nameof(walls));
+            _walls = walls;
         }
 
-        public MemoryPostRepository() : this(new Dictionary<string, WallDto>())
+        public MemoryPostRepository() : this(Map<string, WallDto>.Empty)
         {
             
         }
@@ -28,10 +25,7 @@ namespace CSharp.Core.Repositories
         public Unit Save(IWall wall)
         {
             var dto = ((Dto<WallDto, Wall>) wall).ToDto();
-            if (_walls.ContainsKey(dto.User))
-            {
-                _walls[dto.User] = dto;
-            }else _walls.Add(dto.User, dto);
+            _walls = _walls.AddOrUpdate(dto.User, dto);            
             return Unit.Default;
         }
 
@@ -43,8 +37,7 @@ namespace CSharp.Core.Repositories
                 wall.Load(_walls[user]);
                 return (IWall)wall;                
             }
-            return new Wall(user);
-            
+            return new Wall(user);            
         }
 
         public WallView ReadWallOf(string user)
