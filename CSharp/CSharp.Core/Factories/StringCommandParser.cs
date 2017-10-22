@@ -20,7 +20,7 @@ namespace CSharp.Core.Factories
         private Either<string, Command> Parse(ISeq<CommandFactory> commandFactories, string cmdString)
         {
             return commandFactories.Match(
-                () => Left<string, Command>($"Cannot parse command: '{cmdString}'"),
+                () => $"Cannot parse command: '{cmdString}'",
                 (x, xs) => x.Parse(cmdString)
                     .Some(Right<string, Command>)
                     .None(() => Parse(xs, cmdString)));
