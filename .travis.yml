@@ -1,7 +1,7 @@
 language: csharp
 solution: CSharp.sln
 install:
-  - nuget install NUnit.Runners -version 3.7.0 -OutputDirectory testrunner
+  - nuget install NUnit.Runners -version 3.8.1 -OutputDirectory testrunner
 env:
   - TEST_DIR=CSharp
   - TEST_DIR=FSharp
