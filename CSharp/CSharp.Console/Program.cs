@@ -4,7 +4,6 @@ using Autofac;
 using CSharp.Core.Factories.Interfaces;
 using CSharp.Core.Services;
 using CSharp.Core.Services.Interfaces;
-using LanguageExt;
 using static System.Console;
 
 namespace CSharp.Console
