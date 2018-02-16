@@ -83,12 +83,6 @@
       <LastGenOutput>SocialNetwork.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CSharp.Core\CSharp.Core.csproj">
-      <Project>{BF90CC57-325C-4850-8974-A524ED2268AC}</Project>
-      <Name>CSharp.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -97,4 +91,10 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <ProjectReference Include="..\CSharp.Core\CSharp.Core.csproj">
+      <Project>{BF90CC57-325C-4850-8974-A524ED2268AC}</Project>
+      <Name>CSharp.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
