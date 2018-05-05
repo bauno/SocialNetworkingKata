@@ -30,5 +30,5 @@ namespace CSharp.Core.Factories
         {
             return Parse(_commandFactories.ToSeq(), cmdString);
         }
-    }
+    }    
 }

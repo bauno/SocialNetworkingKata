@@ -2,7 +2,6 @@ module internal SocialNetwork.Parser
 
 open SocialNetwork.Commands
 
-open System
 open System.Text.RegularExpressions
 open SocialNetwork.Data
 

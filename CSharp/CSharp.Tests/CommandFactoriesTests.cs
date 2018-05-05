@@ -85,7 +85,5 @@ namespace CSharp.Tests
             var sut = new ReadCommandFactory();
             Assert.IsTrue(sut.Parse(cmdString).IsNone);
         }
-
-
     }
 }
