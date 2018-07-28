@@ -39,9 +39,7 @@ namespace CSharp.Tests
             var cmd = new MesssageCommand("pippo", "pluto", "Messaggio!!");
             var res = cmd.SendTo(_socialNetwork.Object);
             _socialNetwork.Verify(s => s.SendMessage("pippo","pluto", "Messaggio!!"));
-            Assert.IsTrue(res.IsNone);
-            
-
+            Assert.IsTrue(res.IsNone);            
         }
 
 

@@ -2,7 +2,6 @@ module internal SocialNetwork.Parser
 
 open SocialNetwork.Commands
 
-open System
 open System.Text.RegularExpressions
 open SocialNetwork.Data
 
@@ -45,10 +44,10 @@ let (|PostStr|ReadStr|WallStr|FollowStr|InvalidStr|) input =
         elif Regex.IsMatch(input, followPattern) then FollowStr(input)
         else InvalidStr(input)
 
-let parse cmdString =
-    match cmdString with
+let parse  =
+    function
     | PostStr input -> parsePostCommand input
     | ReadStr input -> parseReadCommand input
     | FollowStr input -> parseFollowCommand input
     | WallStr input -> parseWallCommand input
-    | _ -> Invalid(cmdString)
+    | cmdString -> Invalid(cmdString)
