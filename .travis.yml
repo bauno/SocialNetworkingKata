@@ -2,8 +2,8 @@ language: csharp
 mono: none
 dotnet: 2.1.300
 solution: CSharp.sln
-install:
-  - nuget install NUnit.Runners -version 3.7.0 -OutputDirectory testrunner
+#install:
+  #- nuget install NUnit.Runners -version 3.7.0 -OutputDirectory testrunner
 env:  
   - TEST_DIR=FSharp
 script:
