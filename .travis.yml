@@ -4,10 +4,10 @@ dotnet: 2.1.300
 solution: CSharp.sln
 #install:
   #- nuget install NUnit.Runners -version 3.7.0 -OutputDirectory testrunner
+  - dotnet tool install fake-cli -g
 env:  
   - TEST_DIR=FSharp
 script:
-  - dotnet tool install fake-cli
   - cd $TEST_DIR
   - fake run build.fsx
   
