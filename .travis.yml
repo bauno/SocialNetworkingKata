@@ -9,5 +9,5 @@ env:
   - TEST_DIR=FSharp
 script:
   - cd $TEST_DIR
-  - fake run build.fsx
+  - /home/travis/.dotnet/tools/fake run build.fsx
   
