@@ -1,13 +1,12 @@
 language: csharp
 mono: none
 dotnet: 2.1.300
-solution: CSharp.sln
-install:
-  #- nuget install NUnit.Runners -version 3.7.0 -OutputDirectory testrunner
-  - dotnet tool install fake-cli -g
-env:  
-  - TEST_DIR=FSharp
+# install:  
+#   - dotnet tool install fake-cli -g
+# env:  
+#   - TEST_DIR=FSharp
 script:
-  - cd $TEST_DIR
+  - cd FSharp
+  - dotnet tool install fake-cli -g
   - /home/travis/.dotnet/tools/fake run build.fsx
   
