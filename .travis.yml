@@ -2,7 +2,7 @@ language: csharp
 mono: none
 dotnet: 2.1.300
 solution: CSharp.sln
-#install:
+install:
   #- nuget install NUnit.Runners -version 3.7.0 -OutputDirectory testrunner
   - dotnet tool install fake-cli -g
 env:  
