@@ -6,8 +6,9 @@ nuget Fake.IO.FileSystem
 nuget Fake.IO.Zip
 nuget Fake.DotNet
 nuget Fake.DotNet.MSBuild
-nuget Fake.DotNet.AssemblyInfoFile 
-nuget Fake.DotNet.Testing.NUnit //"
+nuget Fake.DotNet.AssemblyInfoFile
+nuget Fake.DotNet.Testing.NUnit
+nuget fsunit //"
 #load "./.fake/build.fsx/intellisense.fsx"
 
 open Fake.Core
@@ -16,7 +17,6 @@ open Fake.DotNet
 open Fake.Core.TargetOperators
 open Fake.IO.Globbing.Operators
 open Fake.DotNet.Testing
-// open Fake.Testing
 
     // Directories
 let buildDir  = "./build/"
