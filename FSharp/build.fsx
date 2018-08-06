@@ -46,10 +46,10 @@ Target.create "Build" (fun _ ->
     |> Fake.Core.Trace.logItems "AppBuild-Output: "
 )
 
-Target.create "CoreBuild" (fun _ -> 
-     !! "./**/*.fsproj"
-     |> Seq.iter (DotNet.build id)
-)
+// Target.create "CoreBuild" (fun _ -> 
+//      !! "./**/*.fsproj"
+//      |> Seq.iter (DotNet.build id)
+// )
 
 Target.create "Test" (fun _ ->
     !! (testDir + "/Tests.dll")
