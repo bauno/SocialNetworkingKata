@@ -2,6 +2,7 @@ source https://www.nuget.org/api/v2
 nuget FAKE
 nuget Fake.DotNet
 nuget Fake.DotNet.MsBuild
+nuget Fake.DotNet.AssemblyInfoFile
 nuget Fake.IO.FileSystem
 nuget FSharp.Core
 nuget FsUnit

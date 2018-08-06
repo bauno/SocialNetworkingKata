@@ -1,18 +1,22 @@
-// #r "paket:
-// nuget Fake.Core.Target
-// nuget Fake.IO.FileSystem
-// nuget Fake.DotNet
-// nuget Fake.DotNet.MSBuild //"
+#r "paket:
+nuget FSharp.Core
+nuget FAKE
+nuget Fake.Core.Target
+nuget Fake.IO.FileSystem
+nuget Fake.IO.Zip
+nuget Fake.DotNet
+nuget Fake.DotNet.MSBuild
+nuget Fake.DotNet.AssemblyInfoFile //"
 #load "./.fake/build.fsx/intellisense.fsx"
 
 open Fake.Core
 open Fake.IO
-open Fake.DotNet
+open Fake.DotNet    
 open Fake.Core.TargetOperators
 open Fake.IO.Globbing.Operators
 // open Fake.Testing
 
-// Directories
+    // Directories
 let buildDir  = "./build/"
 let deployDir = "./deploy/"
 
@@ -26,20 +30,13 @@ let appReferences  =
 let version = "0.1"  // or retrieve from CI server
 
 // Targets
-Fake.Core.Target.create "Clean" (fun _ ->
-    Fake.IO.Shell.cleanDirs [buildDir; deployDir]
+Target.create "Clean" (fun _ ->
+    Shell.cleanDirs [buildDir; deployDir]
 )
 
-// Fake.Core.Target.create "Build" (fun _ ->
-//     Fake.DotNet.MSBuild.AssemblyInfoFile.createFSharp "./Core/Properties/AssemblyInfo.fs"
-//         [Fake.DotNet.AssemblyInfo.InternalsVisibleTo "Tests" ]
-//     !! "/**/*.fsproj"
-//     // compile all projects below src/app/
-//     |> Fake.DotNet.MSBuild.runDebug id buildDir "Build"
-//     |> Fake.Core.Trace.logItems "AppBuild-Output: "
-// )
-
-Fake.Core.Target.create "Build" (fun _ ->
+Target.create "Build" (fun _ ->
+    AssemblyInfoFile.createFSharp "./Core/Properties/AssemblyInfo.fs"
+        [Fake.DotNet.AssemblyInfo.InternalsVisibleTo "Tests" ]
     !! "./**/*.fsproj"
     |> Fake.DotNet.MSBuild.runDebug id buildDir "Build"
     |> Fake.Core.Trace.logItems "AppBuild-Output: "
@@ -50,17 +47,18 @@ Fake.Core.Target.create "Build" (fun _ ->
 //     |> Fake.DotNet.Testing.NUnit3.NUnit3Defaults (id)
 // )
 
-// Fake.Core.Target.create "Deploy" (fun _ ->
-//     !! (buildDir + "/**/*.*")
-//         -- "*.zip"
-//         |> Fake.IO.Zip.createZip buildDir (deployDir + "ApplicationName." + version + ".zip")
-// )
+Target.create "Deploy" (fun _ ->
+    !! (buildDir + "/**/*.*")
+        -- "*.zip"
+        |> Zip.createZip buildDir (deployDir + "SocialNetworkingKata." + version + ".zip") "Pippo" 3 false 
+)
 
 // Build order
 "Clean"
   ==> "Build"
 //   ==> "Test"
-//   ==> "Deploy"
+  ==> "Deploy"
+  
 
 // start build
-Fake.Core.Target.runOrDefault "Build"
+Target.runOrDefault "Build"
