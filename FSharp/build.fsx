@@ -6,7 +6,8 @@ nuget Fake.IO.FileSystem
 nuget Fake.IO.Zip
 nuget Fake.DotNet
 nuget Fake.DotNet.MSBuild
-nuget Fake.DotNet.AssemblyInfoFile //"
+nuget Fake.DotNet.AssemblyInfoFile 
+nuget Fake.DotNet.Testing.NUnit //"
 #load "./.fake/build.fsx/intellisense.fsx"
 
 open Fake.Core
@@ -14,10 +15,12 @@ open Fake.IO
 open Fake.DotNet    
 open Fake.Core.TargetOperators
 open Fake.IO.Globbing.Operators
+open Fake.DotNet.Testing
 // open Fake.Testing
 
     // Directories
 let buildDir  = "./build/"
+let testDir = "./build/"
 let deployDir = "./deploy/"
 
 
@@ -42,10 +45,12 @@ Target.create "Build" (fun _ ->
     |> Fake.Core.Trace.logItems "AppBuild-Output: "
 )
 
-// Fake.Core.Target.create "Test" (fun _ ->
-//     !! "/**/build/Tests.dll"
-//     |> Fake.DotNet.Testing.NUnit3.NUnit3Defaults (id)
-// )
+Target.create "Test" (fun _ ->
+    !! (testDir + "/Tests.dll")
+      |> NUnit3.run (fun p ->
+          {p with
+                ShadowCopy = false })
+)
 
 Target.create "Deploy" (fun _ ->
     !! (buildDir + "/**/*.*")
@@ -56,9 +61,9 @@ Target.create "Deploy" (fun _ ->
 // Build order
 "Clean"
   ==> "Build"
-//   ==> "Test"
+  ==> "Test"
   ==> "Deploy"
   
 
 // start build
-Target.runOrDefault "Build"
+Target.runOrDefault "Test"
