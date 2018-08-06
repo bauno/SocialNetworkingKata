@@ -8,6 +8,7 @@ nuget Fake.DotNet
 nuget Fake.DotNet.MSBuild
 nuget Fake.DotNet.AssemblyInfoFile
 nuget Fake.DotNet.Testing.NUnit
+nuget Fake.DotNet.Cli
 nuget fsunit //"
 #load "./.fake/build.fsx/intellisense.fsx"
 
@@ -39,10 +40,15 @@ Target.create "Clean" (fun _ ->
 
 Target.create "Build" (fun _ ->
     AssemblyInfoFile.createFSharp "./Core/Properties/AssemblyInfo.fs"
-        [Fake.DotNet.AssemblyInfo.InternalsVisibleTo "Tests" ]
-    !! "./**/*.fsproj"
-    |> Fake.DotNet.MSBuild.runDebug id buildDir "Build"
+        [AssemblyInfo.InternalsVisibleTo "Tests" ]
+    !! "./**/*.fsproj"    
+    |> MSBuild.runDebug id buildDir "Build"
     |> Fake.Core.Trace.logItems "AppBuild-Output: "
+)
+
+Target.create "CoreBuild" (fun _ -> 
+     !! "./**/*.fsproj"
+     |> Seq.iter (DotNet.build id)
 )
 
 Target.create "Test" (fun _ ->
