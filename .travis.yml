@@ -4,10 +4,11 @@ dotnet: 2.1.300
 #   - dotnet tool install fake-cli -g
 # env:  
 #   - TEST_DIR=FSharp
+#   - TEST_DIR=CSharp
 script:
   - cd FSharp
   - dotnet tool install fake-cli -g
   - mono .paket/paket.bootstrapper.exe
-  - mono .paket/paket.exe restore
+  - mono .paket/paket.exe update
   - /home/travis/.dotnet/tools/fake run build.fsx
   
