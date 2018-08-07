@@ -1,14 +1,10 @@
 language: csharp
 dotnet: 2.1.300
-# install:  
-#   - dotnet tool install fake-cli -g
-# env:  
-#   - TEST_DIR=FSharp
-#   - TEST_DIR=CSharp
-script:
-  - cd FSharp
+install:  
   - dotnet tool install fake-cli -g
-  - mono .paket/paket.bootstrapper.exe
-  - mono .paket/paket.exe update
-  - /home/travis/.dotnet/tools/fake run build.fsx
+env:  
+  - TEST_DIR=FSharp
+  - TEST_DIR=CSharp
+script:
+  - cd $TEST_DIR && ./build.sh  
   
