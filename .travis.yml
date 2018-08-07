@@ -7,5 +7,7 @@ dotnet: 2.1.300
 script:
   - cd FSharp
   - dotnet tool install fake-cli -g
+  - mono .paket/paket.bootstrapper.exe
+  - mono .paket/paket.exe restore
   - /home/travis/.dotnet/tools/fake run build.fsx
   
