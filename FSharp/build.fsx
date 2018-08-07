@@ -18,7 +18,7 @@ open Fake.Core.TargetOperators
 open Fake.IO.Globbing.Operators
 open Fake.DotNet.Testing
 
-    // Directories
+// Directories
 let buildDir  = "./build/"
 let testDir = "./build/"
 let deployDir = "./deploy/"
