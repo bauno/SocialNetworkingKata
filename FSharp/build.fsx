@@ -8,8 +8,7 @@ nuget Fake.DotNet
 nuget Fake.DotNet.MSBuild
 nuget Fake.DotNet.AssemblyInfoFile
 nuget Fake.DotNet.Testing.NUnit
-nuget Fake.DotNet.Cli
-nuget fsunit //"
+nuget Fake.DotNet.Cli //"
 #load "./.fake/build.fsx/intellisense.fsx"
 
 open Fake.Core
