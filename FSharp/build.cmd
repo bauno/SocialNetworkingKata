@@ -7,8 +7,9 @@ if errorlevel 1 (
 )
 
 .paket\paket.exe restore
+.paket\paket.exe update
 if errorlevel 1 (
   exit /b %errorlevel%
 )
 
-packages\FAKE\tools\FAKE.exe build.fsx %*
+FAKE run build.fsx %*
