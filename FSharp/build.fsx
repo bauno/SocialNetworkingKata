@@ -2,7 +2,6 @@
 open Fake.Core
 open Fake.DotNet
 open Fake.IO
-open Fake.IO.FileSystemOperators
 open Fake.IO.Globbing.Operators
 open Fake.Core.TargetOperators
 
@@ -13,6 +12,8 @@ Target.create "Clean" (fun _ ->
 )
 
 Target.create "Build" (fun _ ->
+    AssemblyInfoFile.createFSharp "./src/SocialNetwork.Core/Properties/AssemblyInfo.fs"
+        [AssemblyInfo.InternalsVisibleTo "Tests" ]
     !! "src/**/*.*proj"
     |> Seq.iter (DotNet.build id)
 )

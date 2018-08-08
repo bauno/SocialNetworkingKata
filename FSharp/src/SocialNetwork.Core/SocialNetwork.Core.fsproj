@@ -3,7 +3,12 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="TimeService.fs" />
     <Compile Include="SocialNetwork.Data.fs" />
-    <Compile Include="SocialNetwork.repository.fs" />
+    <Compile Include="SocialNetwork.Repository.fs" />
+    <Compile Include="SocialNetwork.Commands.fs" />
+    <Compile Include="SocialNetwork.Parser.fs" />
+    <Compile Include="SocialNetwork.cmdExec.fs" />
+    <Compile Include="SocialNetwork.Main.fs" />
   </ItemGroup>
 </Project>

@@ -42,7 +42,7 @@ Target.create "Build" (fun _ ->
         [AssemblyInfo.InternalsVisibleTo "Tests" ]
     !! "./**/*.fsproj"    
     |> MSBuild.runDebug id buildDir "Build"
-    |> Fake.Core.Trace.logItems "AppBuild-Output: "
+    |> Trace.logItems "AppBuild-Output: "
 )
 
 // Target.create "CoreBuild" (fun _ -> 
