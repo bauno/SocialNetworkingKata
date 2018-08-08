@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Acceptance.Steps.fs" />
+    <Compile Include="acceptanceTests.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="nunit.framework" Version="*" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SocialNetwork.Core\SocialNetwork.Core.fsproj" />
+  </ItemGroup>
+</Project>
