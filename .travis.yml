@@ -7,5 +7,5 @@ env:
   - TEST_DIR=FSharp.Net
   - TEST_DIR=CSharp.Net
 script:
-  - cd $TEST_DIR && ./build.sh  
+  - cd $TEST_DIR && /bin/bash build.sh  
   
