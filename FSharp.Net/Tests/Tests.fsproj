@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\NUnit\build\NUnit.props" Condition="Exists('..\packages\NUnit\build\NUnit.props')" Label="Paket" />
+<Project ToolsVersion="14.0" DefaultTargets="Build">
   <PropertyGroup>
     <Name>Tests</Name>
     <AssemblyName>Tests</AssemblyName>
@@ -34,15 +32,12 @@
     <PlatformTarget>$(Platform)</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="mscorlib" />
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Numerics" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Core\Core.fsproj">
       <Name>Core.fsproj</Name>
       <Project>{d85fda89-f2ac-4ce3-8e45-ecc2b88c1210}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CSharp.Net\CSharp.Console\CSharp.Console.csproj">
+      <Name>CSharp.Console.csproj</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -54,8 +49,15 @@
     <Compile Include="acceptanceTests.fs" />
     <None Include="App.config" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <Choose>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+  </ItemGroup>
+  <Import Project="..\packages\NUnit\build\NUnit.props" Condition="Exists('..\packages\NUnit\build\NUnit.props')" Label="Paket" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" />
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\FSharp\Microsoft.FSharp.Targets')">
       <PropertyGroup>
         <FSharpTargetsPath>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\FSharp\Microsoft.FSharp.Targets</FSharpTargetsPath>
@@ -67,15 +69,15 @@
       </PropertyGroup>
     </Otherwise>
   </Choose>
-  <Import Project="$(FSharpTargetsPath)" Condition="Exists('$(FSharpTargetsPath)')" />
-  <Choose>
+  <Import Project="$(FSharpTargetsPath)" Condition="Exists('$(FSharpTargetsPath)')" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" />
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v2.0' Or $(TargetFrameworkVersion) == 'v2.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v2.0') Or ($(TargetFrameworkIdentifier) == '.NETCore' And $(TargetFrameworkVersion) == 'v5.0')">
       <PropertyGroup>
         <__paket__NETStandard_Library_targets>netstandard2.0\NETStandard.Library</__paket__NETStandard_Library_targets>
       </PropertyGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3' Or $(TargetFrameworkVersion) == 'v4.6' Or $(TargetFrameworkVersion) == 'v4.6.1' Or $(TargetFrameworkVersion) == 'v4.6.2' Or $(TargetFrameworkVersion) == 'v4.6.3' Or $(TargetFrameworkVersion) == 'v4.7' Or $(TargetFrameworkVersion) == 'v4.7.1' Or $(TargetFrameworkVersion) == 'v4.7.2')">
       <ItemGroup>
         <Reference Include="FSharp.Core">
@@ -95,7 +97,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.6' Or $(TargetFrameworkVersion) == 'v4.6.1' Or $(TargetFrameworkVersion) == 'v4.6.2' Or $(TargetFrameworkVersion) == 'v4.6.3' Or $(TargetFrameworkVersion) == 'v4.7' Or $(TargetFrameworkVersion) == 'v4.7.1' Or $(TargetFrameworkVersion) == 'v4.7.2')">
       <ItemGroup>
         <Reference Include="FsUnit.NUnit">
@@ -115,7 +117,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v2.0' Or $(TargetFrameworkVersion) == 'v3.0')">
       <ItemGroup>
         <Reference Include="NUnit.System.Linq">
@@ -176,7 +178,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Collections">
@@ -187,7 +189,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Collections.Concurrent">
@@ -207,7 +209,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Console">
@@ -218,7 +220,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Diagnostics.Debug">
@@ -229,7 +231,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Diagnostics.DiagnosticSource">
@@ -240,7 +242,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Diagnostics.Tools">
@@ -251,7 +253,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Diagnostics.Tracing">
@@ -262,7 +264,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Globalization">
@@ -273,7 +275,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Globalization.Calendars">
@@ -284,7 +286,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Globalization.Extensions">
@@ -295,7 +297,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.IO">
@@ -306,7 +308,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.IO.FileSystem">
@@ -317,7 +319,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.IO.FileSystem.Primitives">
@@ -337,7 +339,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Linq">
@@ -357,7 +359,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Linq.Expressions">
@@ -377,7 +379,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Linq.Queryable">
@@ -397,7 +399,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Net.Http">
@@ -408,7 +410,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Net.Primitives">
@@ -419,7 +421,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Net.Requests">
@@ -430,7 +432,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Net.WebHeaderCollection">
@@ -450,7 +452,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.ObjectModel">
@@ -470,7 +472,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Reflection">
@@ -481,7 +483,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Reflection.Emit">
@@ -501,7 +503,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Reflection.Emit.ILGeneration">
@@ -521,7 +523,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Reflection.Emit.Lightweight">
@@ -541,7 +543,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Reflection.Extensions">
@@ -552,7 +554,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Reflection.Primitives">
@@ -563,7 +565,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="$(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')">
       <ItemGroup>
         <Reference Include="System.Reflection.TypeExtensions">
@@ -592,7 +594,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Resources.ResourceManager">
@@ -603,7 +605,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Runtime">
@@ -614,7 +616,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Runtime.Extensions">
@@ -625,7 +627,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Runtime.Handles">
@@ -636,7 +638,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="$(TargetFrameworkIdentifier) == '.NETCoreApp' And $(TargetFrameworkVersion) == 'v1.1'">
       <ItemGroup>
         <Reference Include="System.Runtime.InteropServices">
@@ -656,7 +658,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Runtime.Numerics">
@@ -676,7 +678,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Security.Cryptography.Algorithms">
@@ -687,7 +689,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Security.Cryptography.Cng">
@@ -707,7 +709,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Security.Cryptography.Csp">
@@ -718,7 +720,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Security.Cryptography.Encoding">
@@ -729,7 +731,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Security.Cryptography.OpenSsl">
@@ -749,7 +751,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Security.Cryptography.Primitives">
@@ -769,7 +771,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Security.Cryptography.X509Certificates">
@@ -780,7 +782,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Text.Encoding">
@@ -791,7 +793,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="$(TargetFrameworkIdentifier) == '.NETCoreApp' And $(TargetFrameworkVersion) == 'v1.1'">
       <ItemGroup>
         <Reference Include="System.Text.RegularExpressions">
@@ -820,7 +822,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Threading">
@@ -840,7 +842,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Threading.Tasks">
@@ -851,7 +853,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Threading.Tasks.Parallel">
@@ -871,7 +873,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Threading.Thread">
@@ -891,7 +893,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Threading.ThreadPool">
@@ -911,7 +913,7 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Choose>
+  <Choose xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <When Condition="($(TargetFrameworkIdentifier) == '.NETCoreApp' And ($(TargetFrameworkVersion) == 'v1.0' Or $(TargetFrameworkVersion) == 'v1.1')) Or ($(TargetFrameworkIdentifier) == '.NETStandard' And $(TargetFrameworkVersion) == 'v1.6')">
       <ItemGroup>
         <Reference Include="System.Threading.Timer">
@@ -922,5 +924,5 @@
       </ItemGroup>
     </When>
   </Choose>
-  <Import Project="..\packages\NETStandard.Library\build\$(__paket__NETStandard_Library_targets).targets" Condition="Exists('..\packages\NETStandard.Library\build\$(__paket__NETStandard_Library_targets).targets')" Label="Paket" />
+  <Import Project="..\packages\NETStandard.Library\build\$(__paket__NETStandard_Library_targets).targets" Condition="Exists('..\packages\NETStandard.Library\build\$(__paket__NETStandard_Library_targets).targets')" Label="Paket" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" />
 </Project>
