@@ -35,10 +35,7 @@
     <ProjectReference Include="..\Core\Core.fsproj">
       <Name>Core.fsproj</Name>
       <Project>{d85fda89-f2ac-4ce3-8e45-ecc2b88c1210}</Project>
-    </ProjectReference>
-    <ProjectReference Include="..\..\CSharp.Net\CSharp.Console\CSharp.Console.csproj">
-      <Name>CSharp.Console.csproj</Name>
-    </ProjectReference>
+    </ProjectReference>    
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ParserTests.fs" />
