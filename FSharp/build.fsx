@@ -1,3 +1,7 @@
+#r "paket: nuget Fake.DotNet.Cli
+nuget Fake.IO.FileSystem
+nuget Fake.Core.Target
+nuget Fake.DotNet.AssemblyInfoFile //"
 #load ".fake/build.fsx/intellisense.fsx"
 open Fake.Core
 open Fake.DotNet
@@ -13,7 +17,7 @@ Target.create "Clean" (fun _ ->
 
 Target.create "Build" (fun _ ->
     AssemblyInfoFile.createFSharp "./src/SocialNetwork.Core/Properties/AssemblyInfo.fs"
-        [AssemblyInfo.InternalsVisibleTo "Tests" ]
+        [AssemblyInfo.InternalsVisibleTo "SocialNetwork.Tests" ]
     !! "src/**/*.*proj"
     |> Seq.iter (DotNet.build id)
 )

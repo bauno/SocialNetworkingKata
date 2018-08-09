@@ -10,5 +10,6 @@
     <Compile Include="SocialNetwork.Parser.fs" />
     <Compile Include="SocialNetwork.cmdExec.fs" />
     <Compile Include="SocialNetwork.Core.fs" />
+    <Compile Include="Properties/AssemblyInfo.fs" />
   </ItemGroup>
 </Project>

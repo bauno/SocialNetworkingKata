@@ -3,13 +3,18 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Acceptance.Steps.fs" />
-    <Compile Include="acceptanceTests.fs" />
+    <ProjectReference Include="..\SocialNetwork.Core\SocialNetwork.Core.fsproj"/>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="nunit.framework" Version="*" />
+    <Compile Include="Acceptance.Steps.fs"/>
+    <Compile Include="acceptanceTests.fs"/>
+    <Compile Include="cmdExecTests.fs"/>
+    <Compile Include="ParserTests.fs"/>
+    <Compile Include="repositoryTests.fs"/>
+    <Compile Include="TimeServiceTests.fs"/>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SocialNetwork.Core\SocialNetwork.Core.fsproj" />
+    <PackageReference Include="nunit.framework" Version="*"/>
+    <PackageReference Include="FsUnit" Version="*"/>
   </ItemGroup>
 </Project>
