@@ -1,2 +1,2 @@
 #/bin/bash
-/bin/bash fake.sh build
+/bin/bash /home/travis/fake.sh build
