@@ -24,17 +24,16 @@ Target.create "Build" (fun _ ->
     |> Seq.iter (DotNet.build id)
 )
 
-// Target.create "Test" (fun _ ->
-//     !! ("./src/SocialNetwork.Tests" + "/bin/Release/netcoreapp2.0/SocialNetwork.Tests.dll")
-//       |> DotNet (fun p ->
-//         {p with
-//             ShadowCopy = false;})
-// )
+Target.create "Test" (fun _ ->
+    "src/SocialNetwork.Tests/SocialNetwork.Tests.fsproj"
+    |> (DotNet.test id)
+)
 
 Target.create "All" ignore
 
 "Clean"
   ==> "Build"
+  ==> "Test"
   ==> "All"
 
 Target.runOrDefault "All"
