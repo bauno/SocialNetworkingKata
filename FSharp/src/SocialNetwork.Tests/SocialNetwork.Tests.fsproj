@@ -14,7 +14,7 @@
     <Compile Include="TimeServiceTests.fs"/>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="nunit.framework" Version="*"/>
+    <PackageReference Include="NUnit" Version="*"/>
     <PackageReference Include="FsUnit" Version="*"/>
   </ItemGroup>
 </Project>
