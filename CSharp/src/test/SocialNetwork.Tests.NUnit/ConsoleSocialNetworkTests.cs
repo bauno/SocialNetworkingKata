@@ -14,7 +14,7 @@ namespace CSharp.Tests
     [TestFixture]
     public class ConsoleSocialNetworkTests
     {
-        private Mock<SocialNetwork> _engine;
+        private Mock<ISocialNetwork> _engine;
         private Mock<CommandParser> _parser;
         private Mock<Display> _display;
         private ConsoleSocialNetwork _sut;
@@ -22,7 +22,7 @@ namespace CSharp.Tests
         [SetUp]
         public void Init()
         {
-            _engine = new Mock<SocialNetwork>();
+            _engine = new Mock<ISocialNetwork>();
             _parser = new Mock<CommandParser>();
             _display = new Mock<Display>();
             _sut = new ConsoleSocialNetwork(_parser.Object, _engine.Object, _display.Object);

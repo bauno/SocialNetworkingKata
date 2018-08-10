@@ -14,13 +14,13 @@ namespace CSharp.Tests
     public class CommandTests
     {
         private Mock<Display> _display;
-        private Mock<SocialNetwork> _socialNetwork;
+        private Mock<ISocialNetwork> _socialNetwork;
 
         [SetUp]
         public void Init()
         {
             _display = new Mock<Display>();
-            _socialNetwork = new Mock<SocialNetwork>();
+            _socialNetwork = new Mock<ISocialNetwork>();
         }
         
         [Test]
