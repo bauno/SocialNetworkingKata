@@ -6,6 +6,7 @@ install:
 env:  
   - TEST_DIR=FSharp
   - TEST_DIR=CSharp.Net
+  - TEST_DIR=CSharp
 script:
   - cd $TEST_DIR && ./build.sh  
   
