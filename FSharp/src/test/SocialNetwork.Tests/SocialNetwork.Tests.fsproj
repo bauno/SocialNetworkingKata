@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SocialNetwork.Core\SocialNetwork.Core.fsproj"/>
+    <ProjectReference Include="..\..\app\SocialNetwork.Core\SocialNetwork.Core.fsproj"/>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Acceptance.Steps.fs"/>

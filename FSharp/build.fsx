@@ -20,13 +20,13 @@ Target.create "Clean" (fun _ ->
 Target.create "Build" (fun _ ->
     AssemblyInfoFile.createFSharp "./src/SocialNetwork.Core/Properties/AssemblyInfo.fs"
         [AssemblyInfo.InternalsVisibleTo "SocialNetwork.Tests" ]
-    !! "src/**/*.*proj"
+    !! "src/app/**/*.fsproj"
     |> Seq.iter (DotNet.build id)
 )
 
 Target.create "Test" (fun _ ->
-    "src/SocialNetwork.Tests/SocialNetwork.Tests.fsproj"
-    |> (DotNet.test id)
+    !! "src/test/**/*.fsproj"
+    |> Seq.iter (DotNet.test id)
 )
 
 Target.create "All" ignore
