@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace CSharp.Core.Dtos
+namespace SocialNetwork.Core.Dtos
 {
     public class WallDto
     {

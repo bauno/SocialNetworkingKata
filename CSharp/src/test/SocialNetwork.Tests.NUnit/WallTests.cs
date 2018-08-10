@@ -2,12 +2,12 @@ using System;
 using System.CodeDom;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using CSharp.Core;
-using CSharp.Core.Dtos;
-using CSharp.Core.Entities;
-using CSharp.Core.Repositories.Interfaces;
-using CSharp.Core.Services;
-using CSharp.Core.Values;
+using SocialNetwork.Core;
+using SocialNetwork.Core.Dtos;
+using SocialNetwork.Core.Entities;
+using SocialNetwork.Core.Repositories.Interfaces;
+using SocialNetwork.Core.Services;
+using SocialNetwork.Core.Values;
 using NUnit.Framework;
 
 namespace CSharp.Tests

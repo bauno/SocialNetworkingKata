@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CSharp.Core;
-using CSharp.Core.Entities.Interfaces;
-using CSharp.Core.Repositories.Interfaces;
-using CSharp.Core.Services;
-using CSharp.Core.Values;
-using CSharp.Core.Views;
+using SocialNetwork.Core;
+using SocialNetwork.Core.Entities.Interfaces;
+using SocialNetwork.Core.Repositories.Interfaces;
+using SocialNetwork.Core.Services;
+using SocialNetwork.Core.Values;
+using SocialNetwork.Core.Views;
 using Moq;
 using NUnit.Framework;
 

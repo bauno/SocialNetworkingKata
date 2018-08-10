@@ -1,10 +1,10 @@
 ﻿using System;
-using CSharp.Core.Commands.Interfaces;
-using CSharp.Core.Services;
-using CSharp.Core.Services.Interfaces;
+using SocialNetwork.Core.Commands.Interfaces;
+using SocialNetwork.Core.Services;
+using SocialNetwork.Core.Services.Interfaces;
 using LanguageExt;
 
-namespace CSharp.Core.Commands
+namespace SocialNetwork.Core.Commands
 {
     public class FollowCommand : Command
     {
@@ -22,7 +22,7 @@ namespace CSharp.Core.Commands
             return $"Type: Follow; User: {_user}; Who: {_who}";
         }
 
-        public Option<Displayable> SendTo(SocialNetwork socialNetwork)
+        public Option<Displayable> SendTo(ISocialNetwork socialNetwork)
         {
             socialNetwork.Follow(_user, _who);
             return null;

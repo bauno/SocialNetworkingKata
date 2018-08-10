@@ -1,4 +1,4 @@
-namespace CSharp.Core.Repositories.Interfaces
+namespace SocialNetwork.Core.Repositories.Interfaces
 {
     public interface Dto<TDto, TEntity>
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Reflection;
 using Autofac;
-using CSharp.Core.Factories.Interfaces;
-using CSharp.Core.Services;
-using CSharp.Core.Services.Interfaces;
+using SocialNetwork.Core.Factories.Interfaces;
+using SocialNetwork.Core.Services;
+using SocialNetwork.Core.Services.Interfaces;
 using static System.Console;
 
 namespace CSharp.Console

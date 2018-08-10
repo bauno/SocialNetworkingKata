@@ -1,12 +1,12 @@
 ﻿using System.Linq;
-using CSharp.Core.Dtos;
-using CSharp.Core.Entities;
-using CSharp.Core.Entities.Interfaces;
-using CSharp.Core.Repositories.Interfaces;
-using CSharp.Core.Views;
+using SocialNetwork.Core.Dtos;
+using SocialNetwork.Core.Entities;
+using SocialNetwork.Core.Entities.Interfaces;
+using SocialNetwork.Core.Repositories.Interfaces;
+using SocialNetwork.Core.Views;
 using LanguageExt;
 
-namespace CSharp.Core.Repositories
+namespace SocialNetwork.Core.Repositories
 {
     public class MemoryPostRepository : PostRepository
     {

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CSharp.Core.Services.Interfaces;
-using CSharp.Core.Views;
+using SocialNetwork.Core.Services.Interfaces;
+using SocialNetwork.Core.Views;
 
-namespace CSharp.Core.Services
+namespace SocialNetwork.Core.Services
 {
     public class ConsoleDisplay : Display
     {

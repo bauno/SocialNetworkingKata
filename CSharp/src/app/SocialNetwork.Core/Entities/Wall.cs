@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CSharp.Core.Dtos;
-using CSharp.Core.Entities.Interfaces;
-using CSharp.Core.Repositories.Interfaces;
-using CSharp.Core.Values;
+using SocialNetwork.Core.Dtos;
+using SocialNetwork.Core.Entities.Interfaces;
+using SocialNetwork.Core.Repositories.Interfaces;
+using SocialNetwork.Core.Values;
 
-namespace CSharp.Core.Entities
+namespace SocialNetwork.Core.Entities
 {
     public class Wall : Dto<WallDto, Wall>, IWall
     {

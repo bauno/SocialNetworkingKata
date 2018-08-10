@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CSharp.Core.Commands.Interfaces;
-using CSharp.Core.Services;
-using CSharp.Core.Services.Interfaces;
-using CSharp.Core.Views;
+using SocialNetwork.Core.Commands.Interfaces;
+using SocialNetwork.Core.Services;
+using SocialNetwork.Core.Services.Interfaces;
+using SocialNetwork.Core.Views;
 using LanguageExt;
 
-namespace CSharp.Core.Commands
+namespace SocialNetwork.Core.Commands
 {
     public class WallCommand : Command
     {
@@ -26,7 +26,7 @@ namespace CSharp.Core.Commands
             
         }
 
-        public Option<Displayable> SendTo(SocialNetwork socialNetwork)
+        public Option<Displayable> SendTo(ISocialNetwork socialNetwork)
         {
             var walls = new List<WallView>();
             var userWall = socialNetwork.ReadWall(_user);

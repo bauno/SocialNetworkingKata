@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSharp.Core.Exceptions
+namespace SocialNetwork.Core.Exceptions
 {
     public class InvalidCommandException : Exception
     {

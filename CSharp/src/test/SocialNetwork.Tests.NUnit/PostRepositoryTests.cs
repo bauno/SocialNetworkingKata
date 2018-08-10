@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CSharp.Core.Dtos;
-using CSharp.Core.Entities;
-using CSharp.Core.Repositories;
-using CSharp.Core.Repositories.Interfaces;
-using CSharp.Core.Services;
-using CSharp.Core.Values;
+using SocialNetwork.Core.Dtos;
+using SocialNetwork.Core.Entities;
+using SocialNetwork.Core.Repositories;
+using SocialNetwork.Core.Repositories.Interfaces;
+using SocialNetwork.Core.Services;
+using SocialNetwork.Core.Values;
 using NUnit.Framework;
 using static LanguageExt.Prelude;
 

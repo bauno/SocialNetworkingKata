@@ -1,4 +1,4 @@
-using CSharp.Core.Factories;
+using SocialNetwork.Core.Factories;
 using NUnit.Framework;
 
 namespace CSharp.Tests

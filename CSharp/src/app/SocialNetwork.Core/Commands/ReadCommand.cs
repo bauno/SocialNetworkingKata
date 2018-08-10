@@ -1,9 +1,9 @@
-﻿using CSharp.Core.Commands.Interfaces;
-using CSharp.Core.Services;
-using CSharp.Core.Services.Interfaces;
+﻿using SocialNetwork.Core.Commands.Interfaces;
+using SocialNetwork.Core.Services;
+using SocialNetwork.Core.Services.Interfaces;
 using LanguageExt;
 
-namespace CSharp.Core.Commands
+namespace SocialNetwork.Core.Commands
 {
     public class ReadCommand : Command
     {
@@ -19,7 +19,7 @@ namespace CSharp.Core.Commands
             return $"Type: Read; User: {_user}";
         }
 
-        public Option<Displayable> SendTo(SocialNetwork socialNetwork)
+        public Option<Displayable> SendTo(ISocialNetwork socialNetwork)
         {
             return new WallDisplay(socialNetwork.ReadWall(_user));
         }

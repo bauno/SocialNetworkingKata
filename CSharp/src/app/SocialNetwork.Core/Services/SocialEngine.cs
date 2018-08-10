@@ -1,13 +1,13 @@
 ﻿using System;
-using CSharp.Core.Repositories.Interfaces;
-using CSharp.Core.Services.Interfaces;
-using CSharp.Core.Values;
-using CSharp.Core.Views;
+using SocialNetwork.Core.Repositories.Interfaces;
+using SocialNetwork.Core.Services.Interfaces;
+using SocialNetwork.Core.Values;
+using SocialNetwork.Core.Views;
 using LanguageExt;
 
-namespace CSharp.Core.Services
+namespace SocialNetwork.Core.Services
 {
-    public class SocialEngine : SocialNetwork
+    public class SocialEngine : ISocialNetwork
     {
         private readonly PostRepository _repository;
 

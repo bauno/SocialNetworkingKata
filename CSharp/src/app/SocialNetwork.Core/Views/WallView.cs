@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CSharp.Core.Views
+namespace SocialNetwork.Core.Views
 {
     public class WallView
     {

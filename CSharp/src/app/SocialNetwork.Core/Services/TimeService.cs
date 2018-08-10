@@ -1,6 +1,6 @@
 using System;
 
-namespace CSharp.Core.Services
+namespace SocialNetwork.Core.Services
 {
     public static class TimeService
     {

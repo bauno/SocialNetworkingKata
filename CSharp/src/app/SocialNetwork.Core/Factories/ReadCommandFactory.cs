@@ -1,10 +1,10 @@
 ﻿using System.Text.RegularExpressions;
-using CSharp.Core.Commands;
-using CSharp.Core.Commands.Interfaces;
-using CSharp.Core.Factories.Interfaces;
+using SocialNetwork.Core.Commands;
+using SocialNetwork.Core.Commands.Interfaces;
+using SocialNetwork.Core.Factories.Interfaces;
 using LanguageExt;
 
-namespace CSharp.Core.Factories
+namespace SocialNetwork.Core.Factories
 {
     public class ReadCommandFactory : CommandFactory
     {

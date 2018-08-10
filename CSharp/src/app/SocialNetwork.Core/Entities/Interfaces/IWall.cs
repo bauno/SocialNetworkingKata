@@ -1,6 +1,6 @@
-﻿using CSharp.Core.Values;
+﻿using SocialNetwork.Core.Values;
 
-namespace CSharp.Core.Entities.Interfaces
+namespace SocialNetwork.Core.Entities.Interfaces
 {
     public interface IWall
     {

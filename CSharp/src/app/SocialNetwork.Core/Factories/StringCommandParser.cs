@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharp.Core.Commands.Interfaces;
-using CSharp.Core.Factories.Interfaces;
+using SocialNetwork.Core.Commands.Interfaces;
+using SocialNetwork.Core.Factories.Interfaces;
 using LanguageExt;
 using static LanguageExt.Prelude;
   
 
-namespace CSharp.Core.Factories
+namespace SocialNetwork.Core.Factories
 {
     public class StringCommandParser : CommandParser
     {

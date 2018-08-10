@@ -1,6 +1,6 @@
 using System;
-using CSharp.Core;
-using CSharp.Core.Services;
+using SocialNetwork.Core;
+using SocialNetwork.Core.Services;
 using NUnit.Framework;
 
 namespace CSharp.Tests

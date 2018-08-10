@@ -1,8 +1,8 @@
 using System;
-using CSharp.Core.Commands.Interfaces;
-using CSharp.Core.Factories.Interfaces;
-using CSharp.Core.Services;
-using CSharp.Core.Services.Interfaces;
+using SocialNetwork.Core.Commands.Interfaces;
+using SocialNetwork.Core.Factories.Interfaces;
+using SocialNetwork.Core.Services;
+using SocialNetwork.Core.Services.Interfaces;
 using LanguageExt;
 using Moq;
 using NUnit.Framework;

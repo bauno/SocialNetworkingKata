@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSharp.Core.Dtos
+namespace SocialNetwork.Core.Dtos
 {
     public class PostDto
     {

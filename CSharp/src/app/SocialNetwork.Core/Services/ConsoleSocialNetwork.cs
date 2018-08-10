@@ -1,18 +1,18 @@
 ﻿using System;
-using CSharp.Core.Factories.Interfaces;
-using CSharp.Core.Services.Interfaces;
+using SocialNetwork.Core.Factories.Interfaces;
+using SocialNetwork.Core.Services.Interfaces;
 using LanguageExt;
 using static LanguageExt.Prelude;
 
-namespace CSharp.Core.Services
+namespace SocialNetwork.Core.Services
 {
     public class ConsoleSocialNetwork : IConsoleSocialNetwork
     {
         private readonly CommandParser _parser;
-        private readonly SocialNetwork _engine;
+        private readonly ISocialNetwork _engine;
         private readonly Display _display;
 
-        public ConsoleSocialNetwork(CommandParser parser, SocialNetwork engine, Display display)
+        public ConsoleSocialNetwork(CommandParser parser, ISocialNetwork engine, Display display)
         {
             if (parser == null) throw new ArgumentNullException(nameof(parser));
             if (engine == null) throw new ArgumentNullException(nameof(engine));

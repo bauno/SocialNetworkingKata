@@ -1,8 +1,8 @@
-using CSharp.Core.Commands.Interfaces;
-using CSharp.Core.Services.Interfaces;
+using SocialNetwork.Core.Commands.Interfaces;
+using SocialNetwork.Core.Services.Interfaces;
 using LanguageExt;
 
-namespace CSharp.Core.Commands
+namespace SocialNetwork.Core.Commands
 {
     public class PostCommand : Command
     {
@@ -20,7 +20,7 @@ namespace CSharp.Core.Commands
             return $"Type: Post; User: {_user}; Post: {_message}";
         }
 
-        public Option<Displayable> SendTo(SocialNetwork socialNetwork)
+        public Option<Displayable> SendTo(ISocialNetwork socialNetwork)
         {
             socialNetwork.Post(_user, _message);
             return null;

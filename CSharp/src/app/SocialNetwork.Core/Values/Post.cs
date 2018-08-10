@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSharp.Core.Values
+namespace SocialNetwork.Core.Values
 {
     public class Post
     {

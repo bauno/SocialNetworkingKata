@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSharp.Core.Views
+namespace SocialNetwork.Core.Views
 {
     public class PostView
     {

@@ -1,9 +1,9 @@
-﻿using CSharp.Core.Views;
+﻿using SocialNetwork.Core.Views;
 using LanguageExt;
 
-namespace CSharp.Core.Services.Interfaces
+namespace SocialNetwork.Core.Services.Interfaces
 {
-    public interface SocialNetwork
+    public interface ISocialNetwork
     {        
         void Post(string user, string message);
         Unit Follow(string user, string whoToFollow);

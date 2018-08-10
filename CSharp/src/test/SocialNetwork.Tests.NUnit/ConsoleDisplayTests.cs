@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CSharp.Core.Services;
-using CSharp.Core.Services.Interfaces;
-using CSharp.Core.Views;
+using SocialNetwork.Core.Services;
+using SocialNetwork.Core.Services.Interfaces;
+using SocialNetwork.Core.Views;
 using Moq;
 using NUnit.Framework;
 

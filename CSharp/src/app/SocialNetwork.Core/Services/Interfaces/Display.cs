@@ -1,7 +1,7 @@
-using System.Collections.Generic;
-using CSharp.Core.Views;
+ using System.Collections.Generic;
+using SocialNetwork.Core.Views;
 
-namespace CSharp.Core.Services.Interfaces
+namespace SocialNetwork.Core.Services.Interfaces
 {
     public interface Display
     {        

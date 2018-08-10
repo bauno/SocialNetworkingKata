@@ -1,8 +1,8 @@
-﻿using CSharp.Core.Entities.Interfaces;
-using CSharp.Core.Views;
+﻿using SocialNetwork.Core.Entities.Interfaces;
+using SocialNetwork.Core.Views;
 using LanguageExt;
 
-namespace CSharp.Core.Repositories.Interfaces
+namespace SocialNetwork.Core.Repositories.Interfaces
 {
     public interface PostRepository
     {

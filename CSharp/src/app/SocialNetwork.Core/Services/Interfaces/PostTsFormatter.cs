@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSharp.Core.Services.Interfaces
+namespace SocialNetwork.Core.Services.Interfaces
 {
     public interface PostTsFormatter
     {

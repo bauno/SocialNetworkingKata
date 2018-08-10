@@ -1,6 +1,6 @@
 ﻿using LanguageExt;
 
-namespace CSharp.Core.Services.Interfaces
+namespace SocialNetwork.Core.Services.Interfaces
 {
     public interface IConsoleSocialNetwork
     {

@@ -1,7 +1,7 @@
-﻿using CSharp.Core.Commands.Interfaces;
+﻿using SocialNetwork.Core.Commands.Interfaces;
 using LanguageExt;
 
-namespace CSharp.Core.Factories.Interfaces
+namespace SocialNetwork.Core.Factories.Interfaces
 {
     public interface CommandFactory
     {
