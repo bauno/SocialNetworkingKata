@@ -20,7 +20,7 @@ Target.create "Clean" (fun _ ->
 Target.create "Build" (fun _ ->
     AssemblyInfoFile.createCSharp "./src/app/SocialNetwork.Core/Properties/AssemblyInfo.cs"
         [AssemblyInfo.InternalsVisibleTo "SocialNetwork.Tests.NUnit" ]
-    !! "src/app/**/*.fsproj"
+    !! "src/app/**/*.csproj"
     |> Seq.iter (DotNet.build id)
 )
 
