@@ -1,6 +1,9 @@
+using SocialNetwork.Core.Services.Interfaces;
+using System.Collections.Generic;
+
 namespace SocialNetwork.Tests.Acceptance
 {
-    private class FakeConsole : ITextConsole
+    public class FakeConsole : ITextConsole
 		{
 			public List<string> Display { get; }
 

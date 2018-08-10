@@ -2,6 +2,10 @@ using Xbehave;
 using System;
 using Xunit;
 using SocialNetwork.Core.Services;
+using System.Collections.Generic;
+using SocialNetwork.Core.Factories;
+using SocialNetwork.Core.Repositories;
+using SocialNetwork.Core.Factories.Interfaces;
 
 namespace SocialNetwork.Tests.Acceptance
 {
@@ -46,7 +50,7 @@ namespace SocialNetwork.Tests.Acceptance
 
             "Then he can read 'I love the weather today (5 minutes ago)'"
             .x(() => {
-                Assert.AreEqual(message, _console.Display[_count]);
+                Assert.Equal("I love the weather today (5 minutes ago)", _console.Display[_count]);
                 _count++;
             });
         }

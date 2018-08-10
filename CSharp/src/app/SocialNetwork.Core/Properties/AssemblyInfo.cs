@@ -3,8 +3,10 @@
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("SocialNetwork.Tests.NUnit")]
+[assembly: InternalsVisibleTo("SocialNetwork.Tests.Acceptance")]
 namespace System {
     internal static class AssemblyVersionInformation {
         internal const System.String InternalsVisibleTo = "SocialNetwork.Tests.NUnit";
+        internal const System.String InternalsVisibleTo_1 = "SocialNetwork.Tests.Acceptance";
     }
 }
