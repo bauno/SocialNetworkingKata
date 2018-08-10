@@ -59,24 +59,8 @@ namespace CSharp.Tests.Acceptance
 			var cmdStr = $"{user} -> {message}";			
 			var res = _socialNetwork.Enter(cmdStr);
 			TimeService.TestNow = _now;
-
 		}
-				
-		[Given(@"(.*) follows (.*)")]
-		public void GivenCharlieFollowsAlice(string user, string who)
-		{
-			var cmdStr = $"{user} follows {who}";
-			_socialNetwork.Enter(cmdStr);
-		}
-
-		[When(@"someone enters the command ""(.*)""")]
-		public void WhenSomeoneEnters(string cmd)
-		{
-			var cmdStr = cmd;
-			_socialNetwork.Enter(cmdStr);
-		}
-		
-				
+						
 		[Then(@"he can read ""(.*)""")]
 		public void ThenHeCanRead(string message)
 		{
