@@ -42,25 +42,23 @@ namespace SocialNetwork.Tests.Acceptance
             TimeService.TestNow = _now;
         }
 
+        private void CheckMessage(string message){
+            Assert.Equal(message, _console.Display[_count]);
+            _count++;
+        }
+
         [Scenario]
         public void Can_Read_Alice_Posts(){
             "Given Alice has posted 'I love the weather today' to her wall 5 minutes ago"
             .x(() => {
-                //TimeService.TestNow = unit == "seconds" ? _now.AddSeconds(-delta) : _now.AddMinutes(-delta);
-                TimeService.TestNow = _now.AddMinutes(-5);
-			    var cmdStr = $"Alice -> I love the weather today";			
-			    var res = _socialNetwork.Enter(cmdStr);
-			    TimeService.TestNow = _now;
+                PostToWall("Alice", "I love the weather today", 5, "minutes");                
             });            
 
             "When someone enters the command 'Alice'"
             .x(() => _socialNetwork.Enter("Alice"));
 
             "Then he can read 'I love the weather today (5 minutes ago)'"
-            .x(() => {
-                Assert.Equal("I love the weather today (5 minutes ago)", _console.Display[_count]);
-                _count++;
-            });
+            .x(() => CheckMessage("I love the weather today (5 minutes ago)"));
         }
 
         [Scenario]
@@ -69,16 +67,16 @@ namespace SocialNetwork.Tests.Acceptance
             .x(() => PostToWall("Bob", "Damn! We lost!", 2, "minutes"));
 
             "And Bob posted 'Good game though' to his wall 1 minute ago"
-            .x(() => {});
+            .x(() => PostToWall("Bob", "Good game though", 1, "minute"));
 
             "When someone enters the command 'Bob'"
-            .x(() => {});
+            .x(() => _socialNetwork.Enter("Bob"));
 
             "Then he can read 'Good game though (1 minutes ago)'"
-            .x(() => {});
+            .x(() => CheckMessage("Good game though (1 minutes ago)"));
 
-            "And he can read 'Damn! We lost (2 minutes ago)'"
-            .x(() => {});
+            "And he can read 'Damn! We lost! (2 minutes ago)'"
+            .x(() => CheckMessage("Damn! We lost! (2 minutes ago)"));
 
         }
     }
