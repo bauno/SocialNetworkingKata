@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using SocialNetwork.Core.Factories;
 using SocialNetwork.Core.Repositories;
 using SocialNetwork.Core.Factories.Interfaces;
+using SocialNetwork.Core.Services.Interfaces;
 
 namespace SocialNetwork.Tests.Acceptance
 {
@@ -34,6 +35,13 @@ namespace SocialNetwork.Tests.Acceptance
 			_socialNetwork = new ConsoleSocialNetwork(parser, engine, display);            
         }
 
+        private void PostToWall(string user, string message, int delta, string minutesOrSeconds){
+            TimeService.TestNow = minutesOrSeconds == "seconds" ? _now.AddSeconds(-delta) : _now.AddMinutes(-delta);
+			var cmdStr = $"{user} -> {message}";			
+			var res = _socialNetwork.Enter(cmdStr);
+            TimeService.TestNow = _now;
+        }
+
         [Scenario]
         public void Can_Read_Alice_Posts(){
             "Given Alice has posted 'I love the weather today' to her wall 5 minutes ago"
@@ -53,6 +61,25 @@ namespace SocialNetwork.Tests.Acceptance
                 Assert.Equal("I love the weather today (5 minutes ago)", _console.Display[_count]);
                 _count++;
             });
+        }
+
+        [Scenario]
+        public void Can_Read_Bob_Posts(){
+            "Given Bob posted 'Damn! We lost' to his wall 2 minutes ago"
+            .x(() => PostToWall("Bob", "Damn! We lost!", 2, "minutes"));
+
+            "And Bob posted 'Good game though' to his wall 1 minute ago"
+            .x(() => {});
+
+            "When someone enters the command 'Bob'"
+            .x(() => {});
+
+            "Then he can read 'Good game though (1 minutes ago)'"
+            .x(() => {});
+
+            "And he can read 'Damn! We lost (2 minutes ago)'"
+            .x(() => {});
+
         }
     }
 }
