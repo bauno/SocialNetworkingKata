@@ -47,6 +47,18 @@ namespace SocialNetwork.Tests.Acceptance
             _count++;
         }
 
+        private void Follows(string user, string who)
+		{
+			var cmdStr = $"{user} follows {who}";
+			_socialNetwork.Enter(cmdStr);
+        }
+
+        public void WhenSomeoneEnters(string cmd)
+		{
+			var cmdStr = cmd;
+			_socialNetwork.Enter(cmdStr);
+}
+
         [Scenario]
         public void Can_Read_Alice_Posts(){
             "Given Alice has posted 'I love the weather today' to her wall 5 minutes ago"
@@ -83,22 +95,22 @@ namespace SocialNetwork.Tests.Acceptance
         [Scenario]
         public void Subscriptions(){
             "Given Alice posted 'I love the weather today' to her wall 5 minutes ago"
-            .x(() => {});
+            .x(() => PostToWall("Alice", "I love the weather today", 5, "minutes"));
         	
             "And Charlie posted 'I''m in New York today! Anyone wants to have a coffee?' to his wall 2 seconds ago"
-            .x(() => {});
+            .x(() => PostToWall("Charlie", "I'm in New York today! Anyone wants to have a coffee?", 2, "seconds" ));
 
             "And Charlie follows Alice"
-            .x(() => {});
+            .x(() => Follows("Charlie", "Alice"));
 
             "When someone enters the command 'Charlie wall'"
-            .x(() => {});
+            .x(() => _socialNetwork.Enter("Charlie wall"));
             
             "Then he can read 'Charlie - I''m in New York today! Anyone wants to have a coffee? (2 seconds ago)'"
-            .x(() => {});
+            .x(() => CheckMessage("Charlie - I'm in New York today! Anyone wants to have a coffee? (2 seconds ago)"));
 
             "And he can read 'Alice - I love the weather today (5 minutes ago)'"
-            .x(() => {});
+            .x(() => CheckMessage("Alice - I love the weather today (5 minutes ago)"));
 
         }
 
