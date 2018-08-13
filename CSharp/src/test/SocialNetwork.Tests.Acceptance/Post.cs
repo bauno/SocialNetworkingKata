@@ -79,5 +79,64 @@ namespace SocialNetwork.Tests.Acceptance
             .x(() => CheckMessage("Damn! We lost! (2 minutes ago)"));
 
         }
+
+        [Scenario]
+        public void Subscriptions(){
+            "Given Alice posted 'I love the weather today' to her wall 5 minutes ago"
+            .x(() => {});
+        	
+            "And Charlie posted 'I''m in New York today! Anyone wants to have a coffee?' to his wall 2 seconds ago"
+            .x(() => {});
+
+            "And Charlie follows Alice"
+            .x(() => {});
+
+            "When someone enters the command 'Charlie wall'"
+            .x(() => {});
+            
+            "Then he can read 'Charlie - I''m in New York today! Anyone wants to have a coffee? (2 seconds ago)'"
+            .x(() => {});
+
+            "And he can read 'Alice - I love the weather today (5 minutes ago)'"
+            .x(() => {});
+
+        }
+
+        [Scenario]
+        public void Multiple_Subscription(){
+            "Given Bob posted 'Damn! We lost' to his wall 2 minutes ago"
+            .x(() => {});
+
+            "And Bob posted 'Good game though' to his wall 1 minutes ago"
+            .x(() => {});
+
+            "And Alice posted 'I love the weather today' to her wall 15 minutes ago"
+            .x(() => {});
+
+            "And Charlie posted 'I'm in New York today! Anyone wants to have a coffee?' to his wall 15 seconds ago"
+            .x(() => {});
+
+            "And Charlie follows Alice"
+            .x(() => {});
+
+            "And Charlie follows Bob"
+            .x(() => {});
+
+            "When someone enters the command 'Charlie wall'"
+            .x(() => {});
+
+            "Then he can read 'Charlie - I''m in New York today! Anyone wants to have a coffee? (15 seconds ago)'"
+            .x(() => {});
+
+            "And he can read 'Bob - Good game though (1 minutes ago)'"
+            .x(() => {});
+
+            "And he can read 'Bob - Damn! We lost (2 minutes ago)'"
+            .x(() => {});
+
+            "And he can read 'Alice - I love the weather today (15 minutes ago)'"
+            .x(() => {});
+
+        }
     }
 }
