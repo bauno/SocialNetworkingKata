@@ -13,6 +13,7 @@
     <Compile Include="ParserTests.fs" />
     <Compile Include="Acceptance.Steps.fs" />
     <Compile Include="acceptanceTests.fs" />
+    <Compile Include="TimeServiceTests.fs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
