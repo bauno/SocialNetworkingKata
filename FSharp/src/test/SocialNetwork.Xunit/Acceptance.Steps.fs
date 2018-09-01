@@ -7,7 +7,7 @@ open FsUnit
 
 
 let mutable lines = new List<string>()
-let mutable index = 2
+let mutable index = 0
 
 
 let init() =     

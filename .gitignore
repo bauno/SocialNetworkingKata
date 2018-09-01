@@ -291,3 +291,4 @@ __pycache__/
 
 */packages/**
 */.paket/*
+FSharp/src/app/SocialNetwork.Core/Properties/AssemblyInfo.fs

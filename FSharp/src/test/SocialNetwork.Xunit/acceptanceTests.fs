@@ -3,7 +3,6 @@ module AcceptanceTests
 open Xunit
 open Acceptance.Steps
 
-// [assembly: CollectionBehavior(DisableTestParallelization = true)] 
 
 [<Fact>]
 let ``I Can read Alice's posts``() =
