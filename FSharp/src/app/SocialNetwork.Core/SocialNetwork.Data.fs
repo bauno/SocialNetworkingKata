@@ -12,7 +12,7 @@ let xFollowed (Followed f) = f
 
 type Message = Message of string
 
-let xMessage (Message m) = m
+let xm (Message m) = m
 
 
 type Post ={
