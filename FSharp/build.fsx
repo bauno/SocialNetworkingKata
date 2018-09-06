@@ -32,7 +32,7 @@ Target.create "Test" (fun _ ->
 )
 
 Target.create "Publish" (fun _ ->
-    "src/app/SocialNetwork.Main/SocialNetwork.Main.fsproj"
+    "src/app/SocialNetwork.Console/SocialNetwork.Console.fsproj"
     |> DotNet.publish (fun options ->             
             {options with OutputPath =  Some(options.Common.WorkingDirectory + "/" + publishDir )}
         )
