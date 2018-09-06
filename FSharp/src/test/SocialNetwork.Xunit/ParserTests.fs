@@ -15,7 +15,7 @@ let ``Can parse post command`` () =
     |> parse
     |> function
     | Post (u, m) -> u |> xUser |>  should equal "Alice"
-                     m |> xMessage |> should equal "I love the wweather today!"
+                     m |> xm |> should equal "I love the wweather today!"
     | _ -> failwith "Error"
 
 [<Fact>]
