@@ -12,14 +12,14 @@ let parsePostCommand cmdStr =
         let follower = matches.Groups.[1].Value
         let user = matches.Groups.[1].Value
         let message = matches.Groups.[2].Value
-        Post(User(user),Message(message))
+        (user |> User,message |> Message) |> Post
     else Invalid(cmdStr)
 
 let parseReadCommand cmdStr =
   if Regex.IsMatch(cmdStr, readPattern) then
     let matches = Regex.Match(cmdStr, readPattern)
     let user = matches.Groups.[1].Value
-    Read(User(user))
+    user |> User |> Read
   else Invalid(cmdStr)
 
 let parseFollowCommand cmdStr = 
@@ -27,14 +27,14 @@ let parseFollowCommand cmdStr =
         let matches = Regex.Match(cmdStr, followPattern)
         let follower = matches.Groups.[1].Value
         let followed = matches.Groups.[2].Value
-        Follows(follower |> User, Followed(User(followed)))
+        (follower |> User, followed |> User |> Followed) |> Follows
     else Invalid(cmdStr)
 
 let parseWallCommand cmdStr =     
     if Regex.IsMatch(cmdStr, wallPattern) then
         let matches = Regex.Match(cmdStr, wallPattern)
         let user = matches.Groups.[1].Value
-        Wall(User(user))
+        user |> User |> Wall
     else Invalid(cmdStr)
 
 let (|PostStr|ReadStr|WallStr|FollowStr|InvalidStr|) input =
