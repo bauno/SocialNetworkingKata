@@ -4,7 +4,6 @@ open SocialNetwork.CmdExec
 open SocialNetwork.Repository
 open SocialNetwork.Commands
 open SocialNetwork.Parser
-open System
 
 let internal init'' (now,niceTime) display =               
     let follow cmd =

@@ -2,7 +2,7 @@ module TimeService
 
 open System
 
-let now () =
+let internal now () =
   DateTime.Now
 
 let internal niceTime' (now: unit -> DateTime) (timeStamp: DateTime) = 
