@@ -3,7 +3,9 @@ namespace System
 open System.Runtime.CompilerServices
 
 [<assembly: InternalsVisibleToAttribute("SocialNetwork.Tests")>]
+[<assembly: InternalsVisibleToAttribute("SocialNetwork.Xunit")>]
 do ()
 
 module internal AssemblyVersionInformation =
     let [<Literal>] InternalsVisibleTo = "SocialNetwork.Tests"
+    let [<Literal>] InternalsVisibleTo_1 = "SocialNetwork.Xunit"

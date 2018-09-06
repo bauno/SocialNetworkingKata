@@ -1,4 +1,4 @@
-﻿module SocialNetwork.Main
+﻿module SocialNetwork.Console
 
 let rec readLine sendCommand =         
     printf "Enter a command (or 'q' to quit): "    
@@ -10,6 +10,6 @@ let rec readLine sendCommand =
 
 [<EntryPoint>]
 let main argv =
-    SocialNetwork.Core.init
+    SocialNetwork.Main.init
     |> readLine 
     0 // return an integer exit code

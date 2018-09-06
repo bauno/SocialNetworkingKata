@@ -1,4 +1,4 @@
-module SocialNetwork.Core
+module SocialNetwork.Main
 
 open SocialNetwork.CmdExec
 open SocialNetwork.Repository

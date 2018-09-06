@@ -9,7 +9,7 @@
     <Compile Include="SocialNetwork.Commands.fs" />
     <Compile Include="SocialNetwork.Parser.fs" />
     <Compile Include="SocialNetwork.cmdExec.fs" />
-    <Compile Include="SocialNetwork.Core.fs" />
+    <Compile Include="SocialNetwork.Main.fs" />
     <Compile Include="Properties/AssemblyInfo.fs" />
   </ItemGroup>
 </Project>

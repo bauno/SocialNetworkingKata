@@ -3,7 +3,7 @@ module Acceptance.Steps
 open System
 open System.Collections.Generic
 open System.Linq
-open SocialNetwork.Core
+open SocialNetwork.Main
 open NUnit.Framework
 open FsUnit
 
