@@ -3,7 +3,6 @@ module CmdExec.Test
 open SocialNetwork.Commands
 open SocialNetwork.Data
 open SocialNetwork.CmdExec
-open Microsoft.FSharp.Reflection
 
 open NUnit.Framework
 open FsUnit
@@ -12,24 +11,26 @@ open System
 open System.Collections.Generic
 open System.Linq
 
+let now =  DateTime.Now
+let testNow () = now
+
+let niceTime = TimeService.niceTime' testNow
+
 [<Test>]
 let ``Can write to a wall`` () =
     
-    let now = DateTime.Now
-    TimeService.testNow <- Some now
     
     let post = {Content = Message "Quo"; TimeStamp = now.AddSeconds(-20.0); User = "Bauno"|> User}
     let wall = {User = "Bauno"|> User; Follows = list.Empty; Posts = [post] }
     
-    let writtenWAll = write (Message("Qui")) wall    
+    let writtenWAll = write' testNow (Message("Qui")) wall    
     let modWall = {wall with Posts = wall.Posts@[{Content = Message "Qui"; TimeStamp = now; User = "Bauno"|> User}]}
 
     writtenWAll |> should equal modWall
 
 [<Test>]
 let ``Can display post on display``() =
-    let now = DateTime.Now
-    TimeService.testNow <- Some now
+    
     let wall = {
         User = "pippo" |> User; 
         Follows = list.Empty
@@ -39,18 +40,19 @@ let ``Can display post on display``() =
         ]
     }
 
+    
+
     let mutable lines = List<string>()
     let display line = lines.Add(line)
 
-    displayOn' display wall
+    displayOn'' niceTime display wall
 
     lines.First() |> should equal "Quo (5 seconds ago)"
     lines.Last() |> should equal "Qui (10 seconds ago)"
 
 [<Test>]
 let ``Can display walls`` () =
-    let now = DateTime.Now
-    TimeService.testNow <- Some now
+    
     let wall1 = {
         User = "pippo"|> User; 
         Follows = list.Empty
@@ -72,7 +74,7 @@ let ``Can display walls`` () =
     let mutable lines = List<string>()
     let display line = lines.Add(line)
 
-    showOn' display walls
+    showOn'' niceTime display walls
 
     lines.[0] |> should equal "pluto - topolino (1 seconds ago)"
     lines.[1] |> should equal "pluto - paperino (2 seconds ago)"

@@ -2,10 +2,15 @@ module Acceptance.Steps
 
 open System
 open System.Collections.Generic
-open System.Linq
 open SocialNetwork.Main
-open NUnit.Framework
 open FsUnit
+
+let mutable now =  DateTime.Now
+let testNow () =
+    now
+
+
+
 
 let mutable lines = new List<string>()
 let mutable index = 0
@@ -13,7 +18,7 @@ let mutable index = 0
 let fakeDisplay line = 
     lines.Add(line)
 
-let mutable enter = init' fakeDisplay
+let mutable enter = init'' (testNow,TimeService.niceTime') fakeDisplay
 
     
 let ``Given`` (user) continuation =
@@ -29,20 +34,21 @@ let ``to the wall`` (user,message) minutes continuation =
     continuation(user,message,minutes)
 
 let ``seconds ago`` (user, message, seconds) =
-    let now = DateTime.Now
-    let delta = (float)seconds
-    let postTs = now.AddSeconds(-delta)
-    TimeService.testNow <- Some postTs
-    enter (sprintf "%s -> %s" user message )
-    TimeService.testNow <- Some now
+    let delta = seconds |> float
+    let oldNow = now
+    now <- oldNow.AddSeconds(-delta)    
+    sprintf "%s -> %s" user message  
+    |> enter
+    now <- oldNow
 
 let ``minutes ago``(user,message,minutes) =
-  let now = DateTime.Now
-  let delta = (float)minutes
-  let postTs = now.AddMinutes(-delta)
-  TimeService.testNow <- Some postTs
-  enter (sprintf "%s -> %s" user message )
-  TimeService.testNow <- Some now
+  let delta = minutes |> float
+  let oldNow = now
+  now <- oldNow.AddMinutes(-delta)  
+  sprintf "%s -> %s" user message 
+  |> enter
+  now <- oldNow
+
 
 let ``follows``(user) followed = 
     let cmd = sprintf "%s follows %s" user followed
