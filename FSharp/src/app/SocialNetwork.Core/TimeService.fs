@@ -2,6 +2,9 @@ module TimeService
 
 open System
 
+let now () =
+  DateTime.Now
+
 let internal niceTime' (now: unit -> DateTime) (timeStamp: DateTime) = 
   let delta = now().Subtract(timeStamp)
   if delta.TotalMinutes < 1.0

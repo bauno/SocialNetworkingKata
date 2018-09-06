@@ -46,10 +46,7 @@ let internal init'' (now,niceTime) display =
         exec' execRop cmd |> ignore 
     parse >> exec    
 
-let internal now () = DateTime.Now
-
-
 
 
 let init =
-    init'' (now,TimeService.niceTime') display
+    init'' (TimeService.now,TimeService.niceTime') display
