@@ -2,13 +2,16 @@ module Repository.Test
 
 open SocialNetwork.Repository
 open SocialNetwork.Data
+open System
 
 open FsUnit
 open Xunit
 
+let now =  DateTime.Now
 
 [<Fact>]
 let ``Can crud wall`` () =
+
     let user = User "pippo";
     let emptyWall = user  |>  loadOrCreateWallOf 
 
@@ -16,8 +19,7 @@ let ``Can crud wall`` () =
     emptyWall.Follows |> should be Empty   
     emptyWall.Posts |> should be Empty
 
-    let now = System.DateTime.Now
-    TimeService.testNow <- Some now    
+    
     let post = {Content = Message"topolino"; TimeStamp = now; User = "pippo" |> User}
     let fullWall = {emptyWall with Follows = ["pluto" |> User |> Followed]; Posts = [post]}
     save fullWall

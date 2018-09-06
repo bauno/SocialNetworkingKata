@@ -154,7 +154,3 @@ let ``Can execute wall Command``() =
     let cmd = Wall(User("pippo"))
     wall' rop cmd |> should equal Done
     called |> should be True
-
-module dummy =
-    [<assembly: CollectionBehavior(DisableTestParallelization = true)>]
-    do()
