@@ -15,9 +15,10 @@ let now () = DateTime.Now
 [<InlineData(40.8)>]
 [<InlineData(59.2)>]
 let ``Timeservice can give a nice Time for seconds`` (seconds: float) =
-    
-    let postTs = now().AddSeconds(-seconds);    
-    TimeService.niceTime' now postTs |> should equal (sprintf "%i seconds ago" ((int)seconds))
+    now
+    |> TimeService.niceTime'
+    <| now().AddSeconds(-seconds)
+    |> should equal (seconds |> int |> sprintf "%i seconds ago")
 
 [<Theory>]
 [<InlineData(126.9, 2)>]
@@ -25,5 +26,7 @@ let ``Timeservice can give a nice Time for seconds`` (seconds: float) =
 [<InlineData(299.2, 4)>]
 [<InlineData(601.2, 10)>]
 let ``Timeservice can give a nice Time for minutes`` (seconds: float) (minutes: int) =    
-    let postTs = now().AddSeconds(-seconds);    
-    TimeService.niceTime' now postTs |> should equal (sprintf "%i minutes ago" minutes)
+    now
+    |>  TimeService.niceTime' 
+    <| now().AddMinutes(-minutes |> float)
+    |> should equal (minutes |> sprintf "%i minutes ago")
