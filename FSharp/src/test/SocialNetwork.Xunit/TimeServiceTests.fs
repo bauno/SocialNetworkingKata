@@ -28,5 +28,5 @@ let ``Timeservice can give a nice Time for seconds`` (seconds: float) =
 let ``Timeservice can give a nice Time for minutes`` (seconds: float) (minutes: int) =    
     now
     |>  TimeService.niceTime' 
-    <| now().AddMinutes(-minutes |> float)
+    <| now().AddSeconds(-seconds)
     |> should equal (minutes |> sprintf "%i minutes ago")
