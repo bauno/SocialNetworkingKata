@@ -12,7 +12,7 @@ let display line =
 let displayOn'' niceTime display wall = 
     wall.Posts
     |> Seq.sortByDescending(fun p -> p.TimeStamp)
-    |> Seq.map(fun p -> {Content = p.Content |> xm ; NiceTime = p.TimeStamp |> niceTime; User = wall.User |> xUser})
+    |> Seq.map(fun p -> {Content = p.Content |> xm ; NiceTime = p.TimeStamp |> niceTime; User = wall.User |> xu})
     |> Seq.iter (fun p -> display (sprintf "%s (%s)" p.Content p.NiceTime))
 
 let addFollowed followed wall =
@@ -55,7 +55,7 @@ let wall' rop  =
 
 let loadWalls' loadWall wall =
     let others = wall.Follows
-                 |> Seq.map (xFollowed >> loadWall)
+                 |> Seq.map (xf >> loadWall)
                  |> Seq.toList
     [wall]@others
 
@@ -64,6 +64,6 @@ let showOn'' niceTime display walls =
     walls
     |> List.collect (fun wall -> wall.Posts)
     |> List.sortByDescending (fun p -> p.TimeStamp)
-    |> List.map(fun p -> {Content= xm p.Content; NiceTime = p.TimeStamp |> niceTime; User = p.User |> xUser}
+    |> List.map(fun p -> {Content= xm p.Content; NiceTime = p.TimeStamp |> niceTime; User = p.User |> xu}
                          |> fun p -> (sprintf "%s - %s (%s)" p.User p.Content p.NiceTime))
     |> List.iter display

@@ -14,7 +14,7 @@ let ``Can parse post command`` () =
     cmdString 
     |> parse
     |> function
-    | Post (u, m) -> u |> xUser |>  should equal "Alice"
+    | Post (u, m) -> u |> xu |>  should equal "Alice"
                      m |> xm |> should equal "I love the wweather today!"
     | _ -> failwith "Error"
 
@@ -24,7 +24,7 @@ let ``Can parse read command``() =
   cmdString
   |> parse
   |> function
-  | Read u -> u |> xUser |> should equal "Alice"
+  | Read u -> u |> xu |> should equal "Alice"
   |_ -> failwith "Error"
 
 [<Fact>]
@@ -33,7 +33,7 @@ let ``Can parse wall command``() =
   cmdString
   |> parse
   |> function
-  | Wall u -> u |> xUser |> should equal "Alice"
+  | Wall u -> u |> xu |> should equal "Alice"
   |_ -> failwith "Error"
 
 [<Fact>]
@@ -42,6 +42,6 @@ let ``Can parse follow command``() =
   cmdString
   |> parse
   |> function
-  | Follows(u,w) -> u |> xUser |> should equal "Alice"
-                    w |> xFollowed |> should equal (User("Bob"))
+  | Follows(u,w) -> u |> xu |> should equal "Alice"
+                    w |> xf |> should equal (User("Bob"))
   |_ -> failwith "Error"  

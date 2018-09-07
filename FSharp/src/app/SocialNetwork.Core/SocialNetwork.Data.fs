@@ -4,11 +4,11 @@ open System
 
 type User= User of string
 
-let xUser (User user) = user
+let xu (User user) = user
 
 type Followed = Followed of User
 
-let xFollowed (Followed f) = f 
+let xf (Followed f) = f 
 
 type Message = Message of string
 
